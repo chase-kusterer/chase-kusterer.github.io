@@ -1,12 +1,14 @@
-<h1>Chase Kusterer<h1>
+# Data Scientist and Educator
   
-<h3>Education</h3>
+### Education
 Predictive Analytics, Master
 Business Administration, Bachelor
 
-<h3>Work Experience</h3>
+
+### Work Experience
 Professor for 12 years.
 - 9-time Faculty of the Year
 
-<h3>Projects</h3>
+
+### Projects
 Retention Modeling
