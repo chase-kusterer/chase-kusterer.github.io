@@ -1,12 +1,5 @@
 title: Chase Kusterer
-logo:  /assets/images/chase_tedx_circle.jpeg
+logo:  /assets/images/chase_tedx_circle.png
 #description: [text under image]
 #show_downloads: True
 theme: jekyll-theme-midnight
-# defaults:
-#   - 
-#     scope:
-#       path: ""
-#     values:
-#       layout: default
-#       css: /assets/css/style.css
