@@ -2,7 +2,7 @@ title: Chase Kusterer
 logo:  /assets/images/chase_tedx.jpeg
 #description: [text under image]
 #show_downloads: True
-theme: jekyll-theme-midnight
+theme: jekyll-theme-minimal
 defaults:
   - 
     scope:
