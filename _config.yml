@@ -4,7 +4,8 @@ logo:  ./assets/images/chase_tedx.jpeg
 #show_downloads: True
 theme: jekyll-theme-minimal
 defaults:
-  - scope:
+  - 
+    scope:
       path: ""
     values:
       layout: default
