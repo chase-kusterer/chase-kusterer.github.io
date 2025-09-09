@@ -1,11 +1,17 @@
 main:
+main:
   - title: "Portfolio"
     url: /portfolio/
-  - title: "Posts"
-    url: /posts/
-  - title: "Categories"
-    url: /categories/
-  - title: "Tags"
-    url: /tags/
+    children:
+      - title: "Python"
+        url: /portfolio/python/
+      - title: "ML/AI"
+        url: /portfolio/ml/
+      - title: "Analytics"
+        url: /portfolio/analytics/
+      - title: "Textbook"
+        url: /portfolio/textbook/
+  - title: "Résumé"
+    url: /assets/ChaseKusterer_Resume.pdf
   - title: "About"
     url: /about/
