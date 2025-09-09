@@ -20,14 +20,16 @@ description: >- # this means to ignore newlines until "baseurl:" (It will appear
 github_username: chase-kusterer
 minimal_mistakes_skin: default
 search: true
+url: "https://chase-kusterer.github.io"   # canonical url for SEO
+baseurl: ""                               # empty for a personal github.io site
 
 # Build settings
 markdown: kramdown
 remote_theme: mmistakes/minimal-mistakes
 # Outputting
 permalink: /:categories/:title/
-paginate: 5 # amount of posts to show
-paginate_path: /page:num/
+# paginate: 5 # amount of posts to show (removed since this is a blog feature)
+# paginate_path: /page:num/ # amount of posts to show (removed since this is a blog feature)
 timezone: America/Los_Angeles # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
 include:
@@ -55,12 +57,13 @@ collections:
 
 # Plugins (previously gems:)
 plugins:
-  - jekyll-paginate
+# - jekyll-paginate (removed since this is a blog feature)
+# - jekyll-feed (removed since this is a blog feature)
   - jekyll-sitemap
   - jekyll-gist
-  - jekyll-feed
   - jemoji
   - jekyll-include-cache
+  - jekyll-seo-tag # adding seo tagging
 
 author:
   name   : "Chase Kusterer"
@@ -95,18 +98,19 @@ defaults:
       comments: false
       share: true
       classes: wide
-      
-  # _posts
-  - scope:
-      path: ""
-      type: posts
-    values:
-      layout: single
-      author_profile: true
-      read_time: true
-      comments: false
-      share: false
-      related: false
+
+  # removing posts since not planning to blog
+  # # _posts
+  # - scope:
+  #     path: ""
+  #     type: posts
+  #   values:
+  #     layout: single
+  #     author_profile: true
+  #     read_time: true
+  #     comments: false
+  #     share: false
+  #     related: false
   # _pages
   - scope:
       path: "_pages"
@@ -115,9 +119,10 @@ defaults:
       layout: single
       author_profile: true
 
-category_archive:
-  type: liquid
-  path: /categories/
-tag_archive:
-  type: liquid
-  path: /tags/
+# removed below since these are for taxomony pages
+# category_archive:
+#   type: liquid
+#   path: /categories/
+# tag_archive:
+#   type: liquid
+#   path: /tags/
