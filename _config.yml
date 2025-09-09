@@ -33,6 +33,14 @@ timezone: America/Los_Angeles # https://en.wikipedia.org/wiki/List_of_tz_databas
 include:
   - _pages
 
+
+# adding top-level projects block
+collections:
+  projects:
+    output: true
+    permalink: /projects/:name/
+
+    
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
@@ -57,7 +65,7 @@ plugins:
 author:
   name   : "Chase Kusterer"
   avatar : "/assets/images/bio-photo.jpg"
-  bio    : "Data Scientist | Educator | Author \n Passionate about creating analytical value with machine learning and AI."
+  bio    : "**Data Scientist | Educator | Author** \n Passionate about creating analytical value with machine learning and AI."
   links:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
@@ -76,6 +84,18 @@ footer:
       url: "https://www.linkedin.com/in/kusterer/"
 
 defaults:
+  # _projects
+  - scope:
+      path: ""
+      type: projects
+    values:
+      layout: single
+      author_profile: false
+      read_time: false
+      comments: false
+      share: true
+      classes: wide
+      
   # _posts
   - scope:
       path: ""
@@ -84,9 +104,9 @@ defaults:
       layout: single
       author_profile: true
       read_time: true
-      comments: true
-      share: true
-      related: true
+      comments: false
+      share: false
+      related: false
   # _pages
   - scope:
       path: "_pages"
