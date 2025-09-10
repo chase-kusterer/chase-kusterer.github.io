@@ -1,6 +1,7 @@
 ---
-title: "From Print to Prediction"
-excerpt: "A Beginner's Guide to Data Analysis in Python"
+title: "From Print to Prediction - A Beginner's Guide to Data Analysis in Python"
+excerpt: "An interactive, jargon-friendly guide into the beautiful world of Python."
+header:
   teaser: /assets/images/teasers/textbook_card.png
 tags: [python, ml, analytics, textbook]
 link: "https://github.com/chase-kusterer/textbook-py-data-analysis#readme"
