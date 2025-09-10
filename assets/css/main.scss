@@ -2,8 +2,13 @@
 # Only the main Sass file needs front matter
 ---
 
-@import "minimal-mistakes/skins/default";  /* or your skin */
+/* Import the theme first */
+@import "minimal-mistakes/skins/default";  /* or your chosen skin */
 @import "minimal-mistakes";
 
-/* TEMP: visual check that CSS is loading */
-.readme { outline: 2px dashed rgba(0,0,0,.15); }
+/* DEBUG: make the README area extremely obvious */
+.page__content .readme {
+  border: 8px solid red !important;
+  padding: 0.75rem !important;
+  background: rgba(255,0,0,0.04) !important; /* faint tint so you can't miss it */
+}
