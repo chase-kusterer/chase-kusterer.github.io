@@ -4,6 +4,6 @@ excerpt: "An interactive, jargon-friendly guide into the beautiful world of Pyth
 header:
   teaser: /assets/images/teasers/textbook_card.png
 tags: [python, ml, analytics, textbook]
-url: "https://github.com/chase-kusterer/textbook-py-data-analysis#readme"
+link: "https://github.com/chase-kusterer/textbook-py-data-analysis#readme"
 ---
 This interactive book is designed for readers from less-technical backgrounds. You’ll write and run code in each chapter and learn core concepts through short stories and hands-on exercises.
