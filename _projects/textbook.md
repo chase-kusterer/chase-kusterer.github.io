@@ -4,7 +4,6 @@ excerpt: "A Beginner's Guide to Data Analysis in Python"
 header:
   teaser: /assets/images/teasers/textbook_card.png
 tags: [python, ml, analytics, textbook]
-link: "https://github.com/chase-kusterer/textbook-py-data-analysis#readme"
 ---
 # From Print to Prediction
 ## A Beginner's Guide to Python for Data Analysis
