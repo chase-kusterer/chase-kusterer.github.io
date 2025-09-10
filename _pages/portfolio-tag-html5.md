@@ -1,12 +1,14 @@
 ---
-title: "Portfolio · html5"
-permalink: /portfolio/sklearn/
+title: "Portfolio · HTML5"
+permalink: /portfolio/html5/
 layout: single
 classes: wide
 ---
-{% assign filtered = site.projects | where_exp:"p","p.tags contains 'html5' or p.tags contains 'html-5' or p.tags contains 'h5'" %}
+
 <div class="entries-grid">
-  {% for project in filtered %}
-    {% include archive-single.html type="grid" post=project %}
+  {% for project in site.projects %}
+    {% if project.tags contains 'html5' or project.tags contains 'html' %}
+      {% include archive-single.html type="grid" post=project %}
+    {% endif %}
   {% endfor %}
 </div>
