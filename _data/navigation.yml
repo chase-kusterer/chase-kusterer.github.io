@@ -1,5 +1,4 @@
 main:
-main:
   - title: "Portfolio"
     url: /portfolio/
     children:
@@ -11,7 +10,7 @@ main:
         url: /portfolio/analytics/
       - title: "Textbook"
         url: /portfolio/textbook/
-  - title: "Résumé"
-    url: /assets/ChaseKusterer_Resume.pdf
   - title: "About"
     url: /about/
+  - title: "Résumé"
+    url: /assets/ChaseKusterer_Resume.pdf
