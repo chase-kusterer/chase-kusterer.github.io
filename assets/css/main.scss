@@ -8,6 +8,20 @@
 
 .page__content .readme h1:first-of-type { display: none !important; }
 
+/* new */
+/* If you keep both H1 and H2, make their gap small */
+.page__content .readme h1 { margin-bottom: 0.25rem !important; }
+.page__content .readme h1 + h2 { margin-top: 0.3rem !important; }
+
+/* new */
+/* General heading tuning inside README */
+.page__content .readme h2 { margin-top: 1rem !important; }   /* default between sections */
+.page__content .readme h3 { margin-top: 0.85rem !important; }
+
+/* new */
+/* Safety: never add top margin to the first element in README */
+.page__content .readme > *:first-child { margin-top: 0 !important; }
+
 /* README typography — scoped */
 .page__content .readme {
   font-size: 0.80rem !important;  /* adjust 0.90–0.97 to taste */
