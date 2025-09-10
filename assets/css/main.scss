@@ -6,9 +6,44 @@
 @import "minimal-mistakes/skins/default";  /* or your chosen skin */
 @import "minimal-mistakes";
 
-/* DEBUG: make the README area extremely obvious */
+/* DEBUG: make the README area extremely obvious
 .page__content .readme {
   border: 8px solid red !important;
   padding: 0.75rem !important;
   background: rgba(255,0,0,0.04) !important; /* faint tint so you can't miss it */
 }
+*/
+
+/* ===== README typography (scoped) ===== */
+.page__content .readme {
+  /* overall scale for normal text in the README */
+  font-size: 0.94rem;          /* tweak to taste: 0.90–0.97 */
+  line-height: 1.65;
+  max-width: 48rem;            /* optional: improve readability */
+  margin-inline: auto;
+}
+
+/* Paragraphs, lists, tables in README */
+.page__content .readme p,
+.page__content .readme li,
+.page__content .readme td,
+.page__content .readme th,
+.page__content .readme blockquote {
+  font-size: 1em;              /* follow .readme base size */
+  line-height: 1.65;
+}
+
+/* Code a touch smaller inside README */
+.page__content .readme code,
+.page__content .readme pre code {
+  font-size: 0.9em;
+}
+
+/* Headings inside README (smaller than site default) */
+.page__content .readme h1 { font-size: 1.55rem; line-height: 1.25; }
+.page__content .readme h2 { font-size: 1.30rem; line-height: 1.35; }
+.page__content .readme h3 { font-size: 1.15rem; line-height: 1.4;  }
+.page__content .readme h4 { font-size: 1.05rem; line-height: 1.45; }
+
+/* If your page uses `classes: wide`, this keeps README text comfortably narrow */
+.page__content .readme { max-width: 44rem; }
