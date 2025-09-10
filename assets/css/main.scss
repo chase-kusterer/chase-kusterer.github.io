@@ -1,0 +1,26 @@
+---
+# Only the main Sass file needs front matter
+---
+
+@import "minimal-mistakes/skins/default";  /* or your skin */
+@import "minimal-mistakes";
+
+/* Scope typography to README block */
+.page__content .readme {
+  font-size: 0.95rem;    /* tweak as you like */
+  line-height: 1.65;
+  max-width: 48rem;
+  margin-inline: auto;
+}
+
+/* Hide the first H1 coming from README */
+.page__content .readme h1:first-of-type { display: none; }
+
+/* Optional: scale headings in README */
+.page__content .readme h2 { font-size: 1.35rem; line-height: 1.35; }
+.page__content .readme h3 { font-size: 1.20rem; line-height: 1.4;  }
+.page__content .readme h4 { font-size: 1.10rem; line-height: 1.45; }
+
+/* Optional: code and tables a touch smaller */
+.page__content .readme code, .page__content .readme pre code { font-size: 0.9em; }
+.page__content .readme table { font-size: 0.95em; }
