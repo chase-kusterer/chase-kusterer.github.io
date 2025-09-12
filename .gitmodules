@@ -1,3 +1,6 @@
 [submodule "_includes/readmes/textbook"]
 	path = _includes/readmes/textbook
 	url = https://github.com/chase-kusterer/textbook-py-data-analysis
+[submodule "_includes/readmes/s2_tif"]
+	path = _includes/readmes/s2_tif
+	url = https://github.com/chase-kusterer/sentinel_2_tif
