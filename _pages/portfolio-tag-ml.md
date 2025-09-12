@@ -1,5 +1,5 @@
 ---
-title: "Portfolio · ML"
+title: "Portfolio · ML|AI"
 permalink: /portfolio/ml/
 layout: single
 classes: wide
