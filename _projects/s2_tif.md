@@ -6,9 +6,7 @@ header:
 tags: [python]
 ---
 
-/*
-{% capture readme_md %}{% include readmes/textbook/README.md %}{% endcapture %}
+{% capture readme_md %}{% include readmes/s2_tif/README.md %}{% endcapture %}
 <div class="readme">
   {{ readme_md | markdownify }}
 </div>
-*/
