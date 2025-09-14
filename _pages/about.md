@@ -13,3 +13,28 @@ title: "About"
     title="Career Map"
   ></iframe>
 </div>
+
+
+<div style="position:relative; padding-top:33.33%; margin:1rem 0;">
+  <iframe
+    src="{{ '/assets/maps/career_map.html' | relative_url }}"
+    style="position:absolute; inset:0; width:100%; height:100%; border:0;"
+    loading="lazy" title="Career Map"></iframe>
+</div>
+
+
+<!-- ~70% of viewport height -->
+<div style="position:relative; height:70vh; margin:1rem 0;">
+  <iframe
+    src="{{ '/assets/maps/career_map.html' | relative_url }}"
+    style="position:absolute; inset:0; width:100%; height:100%; border:0;"
+    loading="lazy" title="Career Map"></iframe>
+</div>
+
+
+<div style="position:relative; height:700px; margin:1rem 0;">
+  <iframe
+    src="{{ '/assets/maps/career_map.html' | relative_url }}"
+    style="position:absolute; inset:0; width:100%; height:100%; border:0;"
+    loading="lazy" title="Career Map"></iframe>
+</div>
