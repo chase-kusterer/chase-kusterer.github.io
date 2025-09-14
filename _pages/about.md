@@ -2,7 +2,7 @@
 permalink: /about/
 title: "About"
 ---
-{% career map %}
+<!-- career map -->
 <!-- Responsive 16:9 wrapper -->
 <div class="mm-embed" style="position:relative;padding-top:56.25%;margin:1rem 0;">
   <iframe
