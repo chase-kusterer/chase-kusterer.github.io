@@ -1,6 +1,8 @@
 ---
 permalink: /about/
 title: "About"
+layout: single
+classes: wide
 ---
 <!-- career map -->
 <!-- Responsive 16:9 wrapper -->
