@@ -7,8 +7,8 @@ classes: wide
 <h2 class="h2" style="margin:.25rem 0 .35rem;">My Career Journey</h2>
 <style>
   :root{
-    --map-h: 60vh;      /* full iframe height */
-    --overlay-frac: .45;/* portion reserved for overlay (0.50 = bottom 50%) */
+    --map-h: 60vh;       /* full iframe height */
+    --overlay-frac: .42; /* portion reserved for overlay (0.50 = bottom 50%) */
 
     /* optional: keep the oval mask on the visible part */
     --oval-rx: 50%;
@@ -65,8 +65,9 @@ classes: wide
     </div>
 
     <!-- Transparent overlay area = normal page content -->
+    
     <div class="map-overlay">
-      <div class="map-legend" role="group" aria-label="Map legend">
+      <div class="map-legend" role="group" aria-label="Map legend" style="text-align:center;">
         <span><span class="dot" style="background:#e11d48;"></span> Places I’ve Worked</span>
         <span><span class="dot" style="background:#2563eb;"></span> Presentations &amp; Workshops</span>
       </div>
@@ -74,6 +75,8 @@ classes: wide
     </div>
   </div>
 </figure>
+
+
 
 ## Professional Highlights
   * 10-time Faculty of the Year
