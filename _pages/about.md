@@ -6,6 +6,14 @@ classes: wide
 ---
 <!-- career map -->
 ## My Career Journey
+---
+permalink: /about/
+title: "About"
+layout: single
+classes: wide
+---
+## My Career Journey
+{% raw %}
 <figure style="margin:0;">
   <div style="position:relative; height:60vh; max-height:800px; margin:0;">
     <iframe
@@ -28,6 +36,7 @@ classes: wide
     </span>
   </figcaption>
 </figure>
+{% endraw %}
 
 
 
