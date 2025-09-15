@@ -7,11 +7,11 @@ classes: wide
 <!-- career map -->
 ## My Career Journey
 <figure style="margin:0;">
-  <!-- map wrapper: no extra bottom margin -->
-  <div class="mm-embed" style="position:relative; padding-top:56.25%; margin:0;">
+  <!-- map wrapper: uses viewport height so the iframe always has space -->
+  <div style="position:relative; height:60vh; max-height:800px; margin:0;">
     <iframe
       src="{{ '/assets/maps/career_map2.html' | relative_url }}"
-      style="position:absolute; inset:0; width:100%; height:100%; border:0;"
+      style="position:absolute; top:0; left:0; right:0; bottom:0; width:100%; height:100%; border:0;"
       loading="lazy" title="Career Map">
     </iframe>
   </div>
@@ -26,7 +26,7 @@ classes: wide
     <span style="margin-left:1rem; --dot:10px; display:inline-flex; align-items:center; gap:.4rem;">
       <span aria-hidden="true" style="width:var(--dot); height:var(--dot); border-radius:50%;
         background:#2563eb; box-shadow:0 0 0 2px #fff, 0 0 0 3px #e5e7eb;"></span>
-      Presentations and Workshops (blue)
+      Presentations &amp; Workshops (blue)
     </span>
   </figcaption>
 </figure>
