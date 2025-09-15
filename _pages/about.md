@@ -6,60 +6,76 @@ classes: wide
 ---
 <!-- yet ANOTHER career map -->
 <style>
-  /* Tweak these to taste */
   :root{
-    --map-aspect: 3 / 1;     /* wide + short; try 16 / 9 or 2.5 / 1 */
-    --oval-rx: 50%;          /* horizontal radius of the oval */
-    --oval-ry: 42%;          /* vertical radius of the oval (lower = tighter crop) */
-    --oval-cx: 50%;          /* oval center X (shift left/right: 48%, 52%, …) */
-    --oval-cy: 50%;          /* oval center Y (shift up/down) */
+    --overlay-h: 50%;           /* how much of the iframe the overlay covers */
+    --panel-bg: rgba(255,255,255,.94);  /* panel background (use a dark rgba for dark maps) */
   }
 
-  .map-oval-wrap{
+  .map-wrap{
     position: relative;
     width: 100%;
-    aspect-ratio: var(--map-aspect);  /* gives the container a real height */
-    margin: 0;                        /* kill extra spacing */
-    overflow: hidden;                 /* trim anything outside the mask/clip */
-    /* Primary: CSS mask (clips children but keeps events) */
-    -webkit-mask-image: radial-gradient(
-      ellipse var(--oval-rx) var(--oval-ry) at var(--oval-cx) var(--oval-cy),
-      #000 98%, transparent 100%);
-    mask-image: radial-gradient(
-      ellipse var(--oval-rx) var(--oval-ry) at var(--oval-cx) var(--oval-cy),
-      #000 98%, transparent 100%);
-    /* Fallback: clip-path if mask isn’t supported */
-    clip-path: ellipse(var(--oval-rx) var(--oval-ry) at var(--oval-cx) var(--oval-cy));
+    height: 60vh;               /* give the iframe real height; tweak to taste */
+    max-height: 800px;
+    margin: 0;
+  }
+  .map-wrap > iframe{
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    border:0;
+    display:block;
   }
 
-  .map-oval-wrap > iframe{
-    display: block;
-    width: 100%;
-    height: 100%;
-    border: 0;
+  /* bottom overlay that “crops” the map and holds text */
+  .map-overlay{
+    position:absolute; left:0; right:0; bottom:0;
+    height: var(--overlay-h);
+    display:flex; align-items:flex-end; justify-content:center;
+    /* fade the map out toward the panel */
+    background: linear-gradient(to top, var(--panel-bg) 35%, rgba(255,255,255,0) 100%);
+    /* if you prefer a solid panel only, replace the line above with: background: var(--panel-bg); */
+  }
+
+  .map-overlay .content{
+    /* text block centered on the panel */
+    background: var(--panel-bg);
+    padding: .75rem 1rem 1rem;
+    text-align:center;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0,0,0,.12);
+    max-width: 900px;
+    margin: 0 1rem .5rem;
+  }
+
+  /* legend dots */
+  .map-legend { font-size:.75em; display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-top:.25rem; }
+  .map-legend .dot{ width:10px; height:10px; border-radius:50%; display:inline-block; box-shadow:0 0 0 2px #fff, 0 0 0 3px #e5e7eb; }
+
+  /* Mobile: make the overlay shallower so more map remains interactive */
+  @media (max-width: 640px){
+    :root{ --overlay-h: 40%; }
+    .map-wrap{ height: 50vh; }
+    .map-legend{ font-size:.7em; }
   }
 </style>
 
 <figure style="margin:0;">
-  <div class="map-oval-wrap">
+  <div class="map-wrap">
     <iframe
       src="{{ '/assets/maps/career_map2.html' | relative_url }}"
       title="Career Map">
     </iframe>
-  </div>
 
-  <figcaption style="font-size:.5em; text-align:center; margin:.15rem 0 0;">
-    <span style="--dot:10px; display:inline-flex; align-items:center; gap:.4rem;">
-      <span aria-hidden="true" style="width:var(--dot); height:var(--dot); border-radius:50%;
-        background:#e11d48; box-shadow:0 0 0 2px #fff, 0 0 0 3px #e5e7eb;"></span>
-      Places I’ve Worked (red)
-    </span>
-    <span style="margin-left:1rem; --dot:10px; display:inline-flex; align-items:center; gap:.4rem;">
-      <span aria-hidden="true" style="width:var(--dot); height:var(--dot); border-radius:50%;
-        background:#2563eb; box-shadow:0 0 0 2px #fff, 0 0 0 3px #e5e7eb;"></span>
-      Presentations &amp; Workshops (blue)
-    </span>
-  </figcaption>
+    <!-- Bottom-half overlay with H2 + legend -->
+    <div class="map-overlay">
+      <div class="content">
+        <h2 class="h2" style="margin:.25rem 0 .35rem;">My Career Journey</h2>
+        <div class="map-legend" role="group" aria-label="Map legend">
+          <span><span class="dot" style="background:#e11d48;"></span> Places I’ve Worked (red)</span>
+          <span><span class="dot" style="background:#2563eb;"></span> Presentations &amp; Workshops (blue)</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </figure>
 
 
