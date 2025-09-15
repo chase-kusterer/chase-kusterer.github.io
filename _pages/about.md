@@ -7,7 +7,7 @@ classes: wide
 <style>
   :root{
     --map-h: 60vh;      /* full iframe height */
-    --overlay-frac: .50;/* portion reserved for overlay (0.50 = bottom 50%) */
+    --overlay-frac: .35;/* portion reserved for overlay (0.50 = bottom 50%) */
 
     /* optional: keep the oval mask on the visible part */
     --oval-rx: 50%;
