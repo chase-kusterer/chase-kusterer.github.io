@@ -4,74 +4,71 @@ title: "About"
 layout: single
 classes: wide
 ---
-<!-- yet ANOTHER career map -->
 <style>
   :root{
-    --overlay-h: 75%;                 /* how much of the iframe the overlay covers */
-    --panel-bg: rgba(255,255,255,.92);/* use rgba(17,24,39,.90) for dark-theme pages */
-    --gutter: 1rem;                   /* side padding so text isn’t flush to the edge */
+    --map-h: 60vh;      /* full iframe height */
+    --overlay-frac: .50;/* portion reserved for overlay (0.50 = bottom 50%) */
+
+    /* optional: keep the oval mask on the visible part */
+    --oval-rx: 50%;
+    --oval-ry: 42%;
+    --oval-cx: 50%;
+    --oval-cy: 50%;
   }
 
-  .map-wrap{
+  .map-shell { position: relative; width: 100%; margin: 0; }
+
+  /* Only shows the TOP (1 - overlay) of the iframe */
+  .map-viewport {
     position: relative;
-    width: 100%;
-    height: 60vh; max-height: 800px;
-    margin: 0;
-  }
-  .map-wrap > iframe{
-    position:absolute; inset:0; width:100%; height:100%; border:0; display:block;
+    height: calc(var(--map-h) * (1 - var(--overlay-frac)));
+    overflow: hidden;           /* hides the bottom part of the iframe */
+    /* optional: oval mask on the visible part */
+    -webkit-mask-image: radial-gradient(ellipse var(--oval-rx) var(--oval-ry)
+      at var(--oval-cx) var(--oval-cy), #000 98%, transparent 100%);
+    mask-image: radial-gradient(ellipse var(--oval-rx) var(--oval-ry)
+      at var(--oval-cx) var(--oval-cy), #000 98%, transparent 100%);
   }
 
-  /* Bottom overlay: left-aligned, no box */
+  .map-viewport iframe{
+    display:block; width:100%; height: var(--map-h); border:0;
+  }
+
+  /* Transparent overlay area: feels like normal page content */
   .map-overlay{
-    position:absolute; left:0; right:0; bottom:0;
-    height: var(--overlay-h);
-    display:flex; align-items:flex-end; justify-content:flex-start;
-    /* soft fade so the map merges into the page; reduce 35%→20% for subtler fade */
-    background: linear-gradient(to top, var(--panel-bg) 35%, rgba(255,255,255,0) 100%);
-    padding: 0 var(--gutter) .6rem var(--gutter);   /* simple page-like gutters */
+    position: relative;  /* sits right below the cropped map */
+    margin: .25rem 0 0;  /* tiny gap; set to 0 if you want it touching */
+    background: transparent;   /* no color */
+    color: inherit;            /* use your site’s text color */
+    padding: 0;                /* no box feel */
   }
 
-  .map-overlay .content{
-    /* make it feel like normal flow — no background, no border, no shadow */
-    background: none; box-shadow:none; border-radius:0; padding:0;
-    text-align:left;
-    color: inherit;      /* use site’s default text color */
-    pointer-events:auto; /* links are clickable (overlay itself remains interactive) */
+  .map-legend{ font-size:.75em; display:flex; gap:1rem; flex-wrap:wrap; }
+  .map-legend .dot{
+    width:10px; height:10px; border-radius:50%; display:inline-block;
+    box-shadow:0 0 0 2px #fff, 0 0 0 3px #e5e7eb;
   }
 
-  .map-overlay h2{
-    margin:.25rem 0 .35rem;           /* tight spacing */
-  }
-
-  /* Legend inline, left-aligned */
-  .map-legend{ font-size:.75em; display:flex; gap:1rem; flex-wrap:wrap; margin-top:.15rem; }
-  .map-legend .dot{ width:10px; height:10px; border-radius:50%; display:inline-block;
-                    box-shadow:0 0 0 2px #fff, 0 0 0 3px #e5e7eb; }
-
-  /* Mobile: show a bit more map and keep text readable */
+  /* Mobile: reveal more of the map if you like */
   @media (max-width: 640px){
-    :root{ --overlay-h: 40%; }
-    .map-wrap{ height: 50vh; }
-    .map-legend{ font-size:.7em; }
+    :root{ --overlay-frac: .40; --map-h: 50vh; }
   }
 </style>
 
 <figure style="margin:0;">
-  <div class="map-wrap">
-    <iframe
-      src="{{ '/assets/maps/career_map2.html' | relative_url }}"
-      title="Career Map">
-    </iframe>
+  <div class="map-shell">
+    <div class="map-viewport">
+      <iframe
+        src="{{ '/assets/maps/career_map2.html' | relative_url }}"
+        title="Career Map" loading="lazy"></iframe>
+    </div>
 
-    <!-- bottom-left caption area that reads like page content -->
+    <!-- Transparent overlay area = normal page content -->
     <div class="map-overlay">
-      <div class="content">
-        <h2 class="h2">My Career Journey</h2>
-        <div class="map-legend" role="group" aria-label="Map legend">
-          <span><span class="dot" style="background:#e11d48;"></span> Places I’ve Worked (red)</span>
-          <span><span class="dot" style="background:#2563eb;"></span> Presentations &amp; Workshops (blue)</span>
-        </div>
+      <h2 class="h2" style="margin:.25rem 0 .35rem;">My Career Journey</h2>
+      <div class="map-legend" role="group" aria-label="Map legend">
+        <span><span class="dot" style="background:#e11d48;"></span> Places I’ve Worked (red)</span>
+        <span><span class="dot" style="background:#2563eb;"></span> Presentations &amp; Workshops (blue)</span>
       </div>
     </div>
   </div>
