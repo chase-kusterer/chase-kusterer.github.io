@@ -29,10 +29,10 @@ classes: wide
   .map-overlay{
     position:absolute; left:0; right:0; bottom:0;
     height: var(--overlay-h);
-    display:flex; align-items:flex-end; justify-content:center;
-    /* fade the map out toward the panel */
-    background: linear-gradient(to top, var(--panel-bg) 35%, rgba(255,255,255,0) 100%);
-    /* if you prefer a solid panel only, replace the line above with: background: var(--panel-bg); */
+    display:flex; align-items:flex-end; justify-content:left;
+    /* solid */
+    background: var(--panel-bg);
+    /* if you prefer a fade, replace the line above with: background: linear-gradient(to top, var(--panel-bg) 35%, rgba(255,255,255,0) 100%); */
   }
 
   .map-overlay .content{
@@ -68,6 +68,7 @@ classes: wide
         <div class="map-legend" role="group" aria-label="Map legend">
           <span><span class="dot" style="background:#e11d48;"></span> Places I’ve Worked</span>
           <span><span class="dot" style="background:#2563eb;"></span> Presentations &amp; Workshops</span>
+          <br>
           <h2 class="h2" style="margin:.25rem 0 .35rem;">Random Task</h2>
         </div>
       </div>
