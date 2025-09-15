@@ -34,8 +34,10 @@ classes: wide
   .map-viewport iframe{
     display:block; width:100%; height: var(--map-h); border:0;
   }
-
-  /* Transparent overlay area: feels like normal page content */
+  
+  /* -------------------------------------------------------- */
+  /* transparent overlay area: feels like normal page content */
+  /* -------------------------------------------------------- */
   .map-overlay{
     position: relative;  /* sits right below the cropped map */
     margin: .25rem 0 0;  /* tiny gap; set to 0 if you want it touching */
@@ -44,10 +46,12 @@ classes: wide
     padding: 0;                /* no box feel */
   }
 
-  .map-legend{ font-size:.75em; display:flex; gap:1rem; flex-wrap:wrap; }
+  /* centered text */
+  .map-legend{ font-size:.90em; display:flex; gap:1rem; flex-wrap:wrap; text-align: center; }
   .map-legend .dot{
     width:10px; height:10px; border-radius:50%; display:inline-block;
     box-shadow:0 0 0 2px #fff, 0 0 0 3px #e5e7eb;
+    
   }
 
   /* Mobile: reveal more of the map if you like */
@@ -71,6 +75,7 @@ classes: wide
         <span><span class="dot" style="background:#e11d48;"></span> Places I’ve Worked</span>
         <span><span class="dot" style="background:#2563eb;"></span> Presentations &amp; Workshops</span>
       </div>
+      <br>
       <h2 class="h2" style="margin:.25rem 0 .35rem;">Career Timeline</h2>
     </div>
   </div>
