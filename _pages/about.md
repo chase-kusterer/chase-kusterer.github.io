@@ -7,12 +7,6 @@ classes: wide
 <!-- career map -->
 ## My Career Journey
 <figure style="margin:0;">
-  <iframe
-    src="{{ '/assets/maps/career_map2.html' | relative_url }}"
-    title="Career Map"
-    style="display:block; width:100%; aspect-ratio: 16 / 9; border:0;"
-  ></iframe>
-
   <figcaption style="font-size:.5em; text-align:center; margin:.15rem 0 0;">
     <span style="--dot:10px; display:inline-flex; align-items:center; gap:.4rem;">
       <span aria-hidden="true" style="width:var(--dot); height:var(--dot); border-radius:50%;
@@ -25,4 +19,9 @@ classes: wide
       Presentations and Workshops (blue)
     </span>
   </figcaption>
+  <iframe
+    src="{{ '/assets/maps/career_map2.html' | relative_url }}"
+    title="Career Map"
+    style="display:block; width:100%; aspect-ratio: 16 / 9; border:0;"
+  ></iframe>
 </figure>
