@@ -35,7 +35,7 @@ classes: wide
   <!-- map wrapper: uses viewport height so the iframe always has space -->
   <div style="position:relative; height:60vh; max-height:800px; margin:0;">
     <iframe
-      src="{{ '/assets/maps/career_map2.html' | relative_url }}"
+      src="{{{ site.baseurl }}/assets/maps/career_map2.html}"
       style="position:absolute; top:0; left:0; right:0; bottom:0; width:100%; height:100%; border:0;"
       loading="lazy" title="Career Map">
     </iframe>
