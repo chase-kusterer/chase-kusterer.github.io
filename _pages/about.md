@@ -5,6 +5,8 @@ layout: single
 classes: wide
 ---
 <!-- career map -->
+## My Career Journey
+<!-- career map -->
 <!-- Responsive 16:9 wrapper -->
 <div class="mm-embed" style="position:relative;padding-top:56.25%;margin:1rem 0;">
   <iframe
@@ -18,14 +20,14 @@ classes: wide
 
 <!-- map legend -->
 <div role="group" aria-label="Map legend"
-     style="--dot:14px; display:flex; gap:1rem; align-items:center; flex-wrap:wrap; margin:.75rem 0 1.25rem;">
-  <span style="display:inline-flex; align-items:center; gap:.5rem;">
+     style="font-size:0.5em; display:flex; justify-content:center; gap:1rem; align-items:center; flex-wrap:wrap; margin:.4rem auto 1rem; text-align:center;">
+  <span style="--dot:10px; display:inline-flex; align-items:center; gap:.5rem;">
     <span aria-hidden="true"
           style="width:var(--dot); height:var(--dot); border-radius:50%;
                  background:#e11d48; box-shadow:0 0 0 2px #fff, 0 0 0 3px #e5e7eb;"></span>
     <span>Places I've Worked (red)</span>
   </span>
-  <span style="display:inline-flex; align-items:center; gap:.5rem;">
+  <span style="--dot:10px; display:inline-flex; align-items:center; gap:.5rem;">
     <span aria-hidden="true"
           style="width:var(--dot); height:var(--dot); border-radius:50%;
                  background:#2563eb; box-shadow:0 0 0 2px #fff, 0 0 0 3px #e5e7eb;"></span>
