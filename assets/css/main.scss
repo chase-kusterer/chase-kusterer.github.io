@@ -11,22 +11,20 @@
 /* ----------------------------------------------- */
 .page__content .readme h1:first-of-type { display: none !important; }
 
-/* If you keep both H1 and H2, make their gap small */
 .page__content .readme h1 { margin-bottom: 0.25rem !important; }
 .page__content .readme h1 + h2 { margin-top: 0.3rem !important; }
 
-/* general heading tuning inside README */
-.page__content .readme h2 { margin-top: 1rem !important; }   /* default between sections */
+.page__content .readme h2 { margin-top: 1rem !important; }
 .page__content .readme h3 { margin-top: 0.85rem !important; }
 
-/* safety: never add top margin to the first element in README */
 .page__content .readme > *:first-child { margin-top: 0 !important; }
 
 /* README typography — scoped */
 .page__content .readme {
-  font-size: 0.80rem !important;  /* adjust 0.80–0.97 to taste */
-  line-height: 1.65;
-  max-width: 44rem;               /* keeps lines readable even on wide pages */
+  font-size: 0.80rem !important;
+  /* OLD: 1.65 → NEW: 1 + 0.25*(1.65-1) ≈ 1.16 */
+  line-height: 1.16 !important;
+  max-width: 44rem;
   margin-inline: auto;
 }
 
@@ -35,53 +33,54 @@
 .page__content .readme td,
 .page__content .readme th,
 .page__content .readme blockquote {
-  font-size: 1em !important;      /* follow the .readme base size */
-  line-height: 1.65;
+  font-size: 1em !important;
+  line-height: 1.16 !important;  /* match .readme base */
 }
 
 .page__content .readme code,
 .page__content .readme pre code {
-  font-size: 0.80em !important;   /* slightly smaller code */
+  font-size: 0.80em !important;
+  line-height: 1.2 !important;   /* compact but readable for code */
 }
 
 /* slightly smaller headings inside README */
-.page__content .readme h2 { font-size: 1.15rem !important; line-height: 1.35; }
-.page__content .readme h3 { font-size: 1.00rem !important; line-height: 1.40; }
-.page__content .readme h4 { font-size: 0.80rem !important; line-height: 1.45; }
+.page__content .readme h2 { font-size: 1.15rem !important; line-height: 1.20 !important; }
+.page__content .readme h3 { font-size: 1.00rem !important; line-height: 1.20 !important; }
+.page__content .readme h4 { font-size: 0.80rem !important; line-height: 1.22 !important; }
 
 /* --------------------------------------- */
 /* text adjustment for all native md pages */
 /* --------------------------------------- */
-/* ↓↓↓ Global content typography (site-wide within page content) ↓↓↓ */
 .page__content h1:first-of-type { display: none !important; }
+
 .page__content {
-  font-size: 0.80rem;   /* ↓ tune: 0.80–0.95 */
-  line-height: 1.65;
+  font-size: 0.80rem;
+  /* OLD: 1.65 → NEW ≈ 1.16 */
+  line-height: 1.16;
 }
 
-/* keeping elements in sync with the base size as above */
 .page__content p,
 .page__content li,
 .page__content td,
 .page__content th,
 .page__content blockquote {
-  font-size: 1em;       /* follow .page__content base */
-  line-height: 1.7;
+  font-size: 1em;
+  /* OLD: 1.7 → NEW: 1 + 0.25*(1.7-1) ≈ 1.18 */
+  line-height: 1.18;
 }
 
-/* slightly smaller code */
 .page__content code,
-.page__content pre code { font-size: 0.80em; }
+.page__content pre code {
+  font-size: 0.80em;
+  line-height: 1.2;
+}
 
-/* trimming heading sizes a bit */
-.page__content h1 { font-size: 1.35rem; }
-.page__content h2 { font-size: 1.15rem; line-height: 1.35; }
-.page__content h3 { font-size: 1.00rem; line-height: 1.40; }
-.page__content h4 { font-size: 0.80rem; line-height: 1.45; }
-
-/* Optional: hide first H1 in content (when the theme already prints the page title) */
-.layout--single .page__content > h1:first-child { display: none; }
+/* trim heading sizes + keep modest line-height for multi-line titles */
+.page__content h1 { font-size: 1.35rem; line-height: 1.20; }
+.page__content h2 { font-size: 1.15rem; line-height: 1.20; }
+.page__content h3 { font-size: 1.00rem; line-height: 1.20; }
+.page__content h4 { font-size: 0.80rem; line-height: 1.22; }
 
 /* Optional: tighten bottom space around media */
 .page__content figure,
-.page__content iframe { margin-bottom: 0.75rem; }
+.page__content iframe { margin-bottom: 0.5rem; }  /* was 0.75rem */
