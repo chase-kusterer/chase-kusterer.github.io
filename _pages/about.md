@@ -4,6 +4,7 @@ title: "About"
 layout: single
 classes: wide
 ---
+<h2 class="h2" style="margin:.25rem 0 .35rem;">My Career Journey</h2>
 <style>
   :root{
     --map-h: 60vh;      /* full iframe height */
@@ -65,11 +66,16 @@ classes: wide
 
     <!-- Transparent overlay area = normal page content -->
     <div class="map-overlay">
-      <h2 class="h2" style="margin:.25rem 0 .35rem;">My Career Journey</h2>
       <div class="map-legend" role="group" aria-label="Map legend">
         <span><span class="dot" style="background:#e11d48;"></span> Places I’ve Worked (red)</span>
         <span><span class="dot" style="background:#2563eb;"></span> Presentations &amp; Workshops (blue)</span>
+      <h2 class="h2" style="margin:.25rem 0 .35rem;">Career Timeline</h2>
       </div>
     </div>
   </div>
 </figure>
+
+## Professional Highlights
+  * 10-time Faculty of the Year
+  * Author of From Print to Prediction: A Beginner's Guide to Data Analysis in Python
+  * Quoted in New York Times newspaper
