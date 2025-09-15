@@ -25,3 +25,13 @@ classes: wide
     style="display:block; width:100%; aspect-ratio: 16 / 9; border:0;"
   ></iframe>
 </figure>
+
+## Professional Highlights
+
+  * 10-time Faculty of the Year
+  * Author of From Print to Prediction: A Beginner's Guide to Data Analysis in Python
+  * Quoted in New York Times newspaper
+
+## Personal Highlights
+
+  * Bilingual (English and Mandarin Chinese)
