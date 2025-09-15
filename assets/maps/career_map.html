@@ -122,12 +122,12 @@
   if (typeof map.setMaxBounds === "function") map.setMaxBounds(null);   // optional: remove bounds lock
   if (typeof map.setMinZoom === "function")   map.setMinZoom(Math.max(0, z - 1));
 
-  // if you previously used half-steps, keep them; otherwise default to whole steps
+  // using half steps if present (otherwise defaults to whole steps)
   map.options.zoomSnap  = map.options.zoomSnap  ?? 1;
   map.options.zoomDelta = map.options.zoomDelta ?? 1;
 
   // zoom out exactly one level
-  map.setZoom(z - 1, { animate: false });
+  map.setZoom(z - 2, { animate: false });
 })();
 </script>
 
