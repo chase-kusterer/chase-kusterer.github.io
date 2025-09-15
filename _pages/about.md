@@ -7,7 +7,7 @@ classes: wide
 <!-- yet ANOTHER career map -->
 <style>
   :root{
-    --overlay-h: 50%;                 /* how much of the iframe the overlay covers */
+    --overlay-h: 75%;                 /* how much of the iframe the overlay covers */
     --panel-bg: rgba(255,255,255,.92);/* use rgba(17,24,39,.90) for dark-theme pages */
     --gutter: 1rem;                   /* side padding so text isn’t flush to the edge */
   }
@@ -74,7 +74,5 @@ classes: wide
         </div>
       </div>
     </div>
-  </div>
-</figure>
   </div>
 </figure>
