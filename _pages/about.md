@@ -69,9 +69,8 @@ classes: wide
       <div class="map-legend" role="group" aria-label="Map legend">
         <span><span class="dot" style="background:#e11d48;"></span> Places I’ve Worked</span>
         <span><span class="dot" style="background:#2563eb;"></span> Presentations &amp; Workshops</span>
-      <br>
-      <h2 class="h2" style="margin:.25rem 0 .35rem;">Career Timeline</h2>
       </div>
+      <h2 class="h2" style="margin:.25rem 0 .35rem;">Career Timeline</h2>
     </div>
   </div>
 </figure>
