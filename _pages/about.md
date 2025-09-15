@@ -8,7 +8,7 @@ classes: wide
 <style>
   :root{
     --map-h: 60vh;      /* full iframe height */
-    --overlay-frac: .35;/* portion reserved for overlay (0.50 = bottom 50%) */
+    --overlay-frac: .45;/* portion reserved for overlay (0.50 = bottom 50%) */
 
     /* optional: keep the oval mask on the visible part */
     --oval-rx: 50%;
@@ -67,8 +67,9 @@ classes: wide
     <!-- Transparent overlay area = normal page content -->
     <div class="map-overlay">
       <div class="map-legend" role="group" aria-label="Map legend">
-        <span><span class="dot" style="background:#e11d48;"></span> Places I’ve Worked (red)</span>
-        <span><span class="dot" style="background:#2563eb;"></span> Presentations &amp; Workshops (blue)</span>
+        <span><span class="dot" style="background:#e11d48;"></span> Places I’ve Worked</span>
+        <span><span class="dot" style="background:#2563eb;"></span> Presentations &amp; Workshops</span>
+      <br>
       <h2 class="h2" style="margin:.25rem 0 .35rem;">Career Timeline</h2>
       </div>
     </div>
