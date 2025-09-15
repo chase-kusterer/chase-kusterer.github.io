@@ -6,16 +6,19 @@ classes: wide
 ---
 <!-- career map -->
 ## My Career Journey
-
+<!-- career map -->
+<!-- Responsive 16:9 wrapper -->
+<div class="mm-embed" style="position:relative;padding-top:56.25%;margin:1rem 0;">
+  <iframe
+    src="{{ '/assets/maps/career_map2.html' | relative_url }}"
+    style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"
+    loading="lazy"
+    referrerpolicy="no-referrer"
+    title="Career Map"
+  ></iframe>
+</div>
+<!-- map legend -->
 <figure style="margin:0;">
-  <!-- map frame -->
-  <div style="position:relative; padding-top:33.33%;">
-    <iframe
-      src="{{ '/assets/maps/career_map2.html' | relative_url }}"
-      style="position:absolute; inset:0; width:100%; height:100%; border:0;"
-      loading="lazy" title="Career Map"></iframe>
-  </div>
-
   <!-- caption right under the map -->
   <figcaption style="font-size:.75em; text-align:center; margin-top:.25rem;">
     <span style="--dot:10px; display:inline-flex; align-items:center; gap:.4rem;">
