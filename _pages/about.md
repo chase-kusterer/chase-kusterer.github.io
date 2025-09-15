@@ -38,23 +38,6 @@ classes: wide
     height: 100%;
     border: 0;
   }
-
-  /* Optional: soften the edge with a subtle inner shadow (doesn’t block clicks) */
-  .map-oval-wrap::after{
-    content:"";
-    position:absolute; inset:0;
-    pointer-events:none;
-    box-shadow: 0 0 40px 20px rgba(0,0,0,.25) inset;
-  }
-
-  /* On very small screens, disable the mask so users can pan/zoom freely */
-  @media (max-width: 640px){
-    .map-oval-wrap{
-      -webkit-mask-image:none; mask-image:none; clip-path:none;
-      aspect-ratio: 16 / 9;
-    }
-    .map-oval-wrap::after{ box-shadow:none; }
-  }
 </style>
 
 <figure style="margin:0;">
