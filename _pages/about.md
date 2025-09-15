@@ -25,21 +25,24 @@ classes: wide
     display:block;
   }
 
-  /* bottom overlay that “crops” the map and holds text */
+/* bottom overlay that “crops” the map and holds text */
   .map-overlay{
     position:absolute; left:0; right:0; bottom:0;
     height: var(--overlay-h);
-    display:flex; align-items:flex-end; justify-content:left;
-    /* solid */
-    background: var(--panel-bg);
-    /* if you prefer a fade, replace the line above with: background: linear-gradient(to top, var(--panel-bg) 35%, rgba(255,255,255,0) 100%); */
+    display:flex; align-items:flex-end; justify-content:center;
+    /* fade the map out toward the panel */
+    background: linear-gradient(to top, var(--panel-bg) 35%, rgba(255,255,255,0) 100%);
+    /* if you prefer a solid panel only, replace the line above with: background: var(--panel-bg); */
   }
 
   .map-overlay .content{
     /* text block centered on the panel */
     background: var(--panel-bg);
     padding: .75rem 1rem 1rem;
-    text-align:left;
+    text-align:center;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0,0,0,.12);
+    max-width: 900px;
     margin: 0 1rem .5rem;
   }
 
