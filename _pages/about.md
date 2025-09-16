@@ -161,25 +161,33 @@ classes: wide
   /* ---- Timeline geometry fix: make items tall and keep baseline behind ---- */
 
   /* 1) One height for the whole timeline row (tweak to taste) */
-  :root { --tl-height: 260px; }  /* try 240–300px depending on your stem lengths */
+  :root { --tl-height: 280px; }  /* try 240–300px depending on your stem lengths */
   
   /* 2) Baseline handled by .tl-list background (not a pseudo-element) */
   .timeline::before { display: none; }
   
   /* 3) The list owns the baseline and the vertical space */
-  .timeline .tl-list{
-    position: relative;
-    min-height: var(--tl-height);
-    background: linear-gradient(to right, var(--tl-line), var(--tl-line)) center/100% 2px no-repeat;
-    overflow-y: visible;         /* dots/stems won’t be clipped crossing the line */
-  }
-  
-  /* 4) Each item has the same height as the list; allow overflow just in case */
-  .timeline .tl-item{
-    position: relative;
-    height: var(--tl-height);
-    overflow: visible;
-  }
+.tl-list{
+  /* your current settings… */
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(220px, 1fr);
+  gap: 3rem;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  background: linear-gradient(to right, var(--tl-line), var(--tl-line)) center/100% 2px no-repeat;
+  overflow-y: visible;
+
+  min-height: var(--tl-height);            /* NEW: gives the row vertical space */
+}
+
+.tl-item{
+  position: relative;
+  scroll-snap-align: center;
+
+  height: var(--tl-height);                /* NEW: same height per column */
+  overflow: visible;                       /* NEW: belt-and-suspenders vs clipping */
+}
   
   /* 5) Stacking order: line (background) < stem < tick */
   .timeline .tl-item .stem { z-index: 1; }
