@@ -73,6 +73,95 @@ classes: wide
   @media (max-width: 640px){
     :root{ --overlay-frac: .40; --map-h: 50vh; }
   }
+
+/* ===== Timeline vars (tweak colors and sizes) ===== */
+:root{
+  --tl-line: #0f172a33;        /* timeline line + stems */
+  --tl-dot:  #0f172a;          /* node dot color */
+  --tl-muted:#6b7280;          /* secondary text */
+  --tl-gap:  12px;             /* gap between baseline and text */
+}
+
+/* ===== Layout ===== */
+.timeline{
+  position: relative;
+  margin: 1.5rem 0 2rem;
+  padding: 2.5rem 0;           /* space for above/below labels */
+  background: transparent;     /* keep page background visible */
+}
+
+.timeline::before{
+  /* baseline */
+  content:"";
+  position:absolute; left:0; right:0; top:50%;
+  border-top: 2px solid var(--tl-line);
+}
+
+/* scrollable horizontal flow on small screens */
+.tl-list{
+  list-style:none; margin:0; padding:0;
+  display:grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(220px, 1fr);
+  gap: 3rem;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+}
+
+/* each event */
+.tl-item{
+  position: relative;
+  scroll-snap-align: center;
+}
+
+/* node on the baseline */
+.tl-item .tick{
+  position:absolute; left:50%; top:50%;
+  width:12px; height:12px; border-radius:50%;
+  background: var(--tl-dot);
+  transform: translate(-50%, -50%);
+}
+
+/* vertical stems */
+.tl-item.up   .stem{ position:absolute; left:50%; width:2px; background:var(--tl-line);
+                     height: var(--stem, 110px);
+                     top: calc(50% - var(--stem, 110px)); transform: translateX(-50%); }
+.tl-item.down .stem{ position:absolute; left:50%; width:2px; background:var(--tl-line);
+                     height: var(--stem, 110px);
+                     top: 50%; transform: translateX(-50%); }
+
+/* content blocks (no boxes; text only) */
+.tl-item.up   .card{ position:absolute; left:50%; bottom: calc(50% + var(--tl-gap));
+                     transform: translateX(-50%); text-align:left; }
+.tl-item.down .card{ position:absolute; left:50%; top:    calc(50% + var(--tl-gap));
+                     transform: translateX(-50%); text-align:left; }
+
+/* text styles */
+.tl-eyebrow{
+  font-size: .70rem; letter-spacing:.03em; text-transform:uppercase;
+  color: var(--tl-muted);
+}
+.tl-range{
+  font-size: .80rem; color: var(--tl-muted); margin:.15rem 0 .35rem;
+}
+.tl-title{
+  margin: 0; font-size: 1.10rem; line-height: 1.25; font-weight: 700;
+}
+.tl-sub{
+  margin: .15rem 0 0; color: var(--tl-muted);
+}
+
+/* optional neon "Education" pill like your sample */
+.tl-pill{
+  display:inline-block; padding:.2rem .5rem; border-radius:999px;
+  background:#caff00; color:#0f172a; font-weight:600; font-size:.75rem;
+}
+
+/* responsive: shorten stems on narrow screens */
+@media (max-width: 800px){
+  .tl-item .stem{ height: calc(var(--stem,110px) * .75); top:auto; }
+}
 </style>
 
 <figure style="margin:0;">
@@ -102,3 +191,78 @@ classes: wide
   <li>Author of <em>From Print to Prediction: A Beginner’s Guide to Data Analysis in Python</em></li>
   <li>Quoted in <em>The New York Times</em></li>
 </ul>
+
+
+<!-- Role (below the line) -->
+<div class="timeline" aria-label="Career timeline">
+  <ol class="tl-list">
+
+    <!-- Education (above the line) -->
+    <li class="tl-item up" style="--stem: 140px;">
+      <span class="tick"></span>
+      <span class="stem"></span>
+      <div class="card">
+        <span class="tl-pill">Education</span>
+        <div class="tl-range">2008–2009 · 1 year</div>
+        <h3 class="tl-title">Assistant of Student Affairs</h3>
+        <div class="tl-sub">Shantou University Business School</div>
+      </div>
+    </li>
+
+    <!-- Role (below the line) -->
+    <li class="tl-item down" style="--stem: 120px;">
+      <span class="tick"></span>
+      <span class="stem"></span>
+      <div class="card">
+        <div class="tl-range">2009–2018 · 9 years</div>
+        <h3 class="tl-title">Director / Adjunct Professor</h3>
+        <div class="tl-sub">EF Education First · Hult International Business School</div>
+      </div>
+    </li>
+
+    <!-- Speaker (above) -->
+    <li class="tl-item up" style="--stem: 110px;">
+      <span class="tick"></span>
+      <span class="stem"></span>
+      <div class="card">
+        <div class="tl-range">2016</div>
+        <h3 class="tl-title">Chair & Keynote Speaker</h3>
+        <div class="tl-sub">DataX · Shenzhen & Seoul</div>
+      </div>
+    </li>
+
+    <!-- Faculty (below) -->
+    <li class="tl-item down" style="--stem: 130px;">
+      <span class="tick"></span>
+      <span class="stem"></span>
+      <div class="card">
+        <div class="tl-range">2018–2025 · 7 years</div>
+        <h3 class="tl-title">Faculty of Analytics</h3>
+        <div class="tl-sub">Hult International Business School · San Francisco</div>
+      </div>
+    </li>
+
+    <!-- NYC (above) -->
+    <li class="tl-item up" style="--stem: 115px;">
+      <span class="tick"></span>
+      <span class="stem"></span>
+      <div class="card">
+        <div class="tl-range">2022, 2025</div>
+        <h3 class="tl-title">Faculty (Visiting)</h3>
+        <div class="tl-sub">Hult · New York City</div>
+      </div>
+    </li>
+
+    <!-- Recent (below) -->
+    <li class="tl-item down" style="--stem: 120px;">
+      <span class="tick"></span>
+      <span class="stem"></span>
+      <div class="card">
+        <div class="tl-range">2024–Now</div>
+        <h3 class="tl-title">Presenter & Workshop Host</h3>
+        <div class="tl-sub">Conferences across Asia & U.S.</div>
+      </div>
+    </li>
+
+  </ol>
+</div>
