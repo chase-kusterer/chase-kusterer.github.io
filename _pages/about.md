@@ -218,7 +218,7 @@ classes: wide
       <div class="card">
         <span class="tl-pill">Education</span>
         <div class="tl-range">2008–2009 · 1 year</div>
-        <h3 class="tl-title">Assistant of Student Affairs</h3>
+        <h4 class="tl-title">Assistant of Student Affairs</h4>
         <div class="tl-sub">Shantou University Business School</div>
       </div>
     </li>
@@ -228,7 +228,7 @@ classes: wide
       <span class="stem"></span>
       <div class="card">
         <div class="tl-range">2009–2018 · 9 years</div>
-        <h3 class="tl-title">Director / Adjunct Professor</h3>
+        <h4 class="tl-title">Director / Adjunct Professor</h4>
         <div class="tl-sub">EF Education First · Hult International Business School</div>
       </div>
     </li>
@@ -238,7 +238,7 @@ classes: wide
       <span class="stem"></span>
       <div class="card">
         <div class="tl-range">2016</div>
-        <h3 class="tl-title">Chair &amp; Keynote Speaker</h3>
+        <h4 class="tl-title">Chair &amp; Keynote Speaker</h4>
         <div class="tl-sub">DataX · Shenzhen &amp; Seoul</div>
       </div>
     </li>
@@ -248,7 +248,7 @@ classes: wide
       <span class="stem"></span>
       <div class="card">
         <div class="tl-range">2018–2025 · 7 years</div>
-        <h3 class="tl-title">Faculty of Analytics</h3>
+        <h4 class="tl-title">Faculty of Analytics</h4>
         <div class="tl-sub">Hult International Business School · San Francisco</div>
       </div>
     </li>
@@ -258,7 +258,7 @@ classes: wide
       <span class="stem"></span>
       <div class="card">
         <div class="tl-range">2022, 2025</div>
-        <h3 class="tl-title">Faculty (Visiting)</h3>
+        <h4 class="tl-title">Faculty (Visiting)</h4>
         <div class="tl-sub">Hult · New York City</div>
       </div>
     </li>
@@ -268,7 +268,7 @@ classes: wide
       <span class="stem"></span>
       <div class="card">
         <div class="tl-range">2024–Now</div>
-        <h3 class="tl-title">Presenter &amp; Workshop Host</h3>
+        <h4 class="tl-title">Presenter &amp; Workshop Host</h4>
         <div class="tl-sub">Conferences across Asia &amp; U.S.</div>
       </div>
     </li>
