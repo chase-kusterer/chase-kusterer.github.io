@@ -72,9 +72,9 @@ classes: wide
   .timeline{
     position: relative;
     margin: 1.5rem 0 2rem;
-    padding: 2.5rem 0;
+    padding: calc(2.5rem + 1.2em) 0 2.5rem; /* +1 line on top */
     background: transparent;
-    isolation: isolate; /* ensures clean stacking context */
+    isolation: isolate;
   }
 
   /* Hide pseudo-element baseline (we'll draw it on .tl-list) */
