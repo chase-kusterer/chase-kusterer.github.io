@@ -90,12 +90,14 @@ classes: wide
     <span><span class="dot" style="background:#2563eb;"></span> Presentations &amp; Workshops</span>
   </div>
 
+  <br>
   <h2 class="h2" style="margin:.25rem 0 .35rem;">Career Timeline</h2>
 </div>
 
 
 
-## Professional Highlights
+<h2>Professional Highlights</h2>
+
   * 10-time Faculty of the Year
   * Author of From Print to Prediction: A Beginner's Guide to Data Analysis in Python
   * Quoted in New York Times newspaper
