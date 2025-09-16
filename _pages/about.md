@@ -96,8 +96,9 @@ classes: wide
 
 
 
-<h2>Professional Highlights</h2>
-
-  * 10-time Faculty of the Year
-  * Author of From Print to Prediction: A Beginner's Guide to Data Analysis in Python
-  * Quoted in New York Times newspaper
+<h3>Professional Highlights</h3>
+<ul>
+  <li>10-time Faculty of the Year</li>
+  <li>Author of <em>From Print to Prediction: A Beginner’s Guide to Data Analysis in Python</em></li>
+  <li>Quoted in <em>The New York Times</em></li>
+</ul>
