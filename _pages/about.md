@@ -180,6 +180,36 @@ classes: wide
        Change #fff to your page background if not white. */
     box-shadow: 0 0 0 2px #fff;
   }
+
+  /* new stuff for textbox width */
+  /* === Wider timeline cards === */
+:root{
+  /* tweak these three numbers to taste */
+  --tl-card-w: 400px;   /* width of each card (desktop) */
+  --tl-col-min: 360px;  /* min width of each timeline column */
+  --tl-gap: 3.5rem;     /* space between columns */
+}
+
+/* make each column a bit wider and add more gap so cards won't collide */
+.timeline .tl-list{
+  grid-auto-columns: minmax(var(--tl-col-min), 1fr);
+  /* gap: var(--tl-gap); */
+}
+
+/* give the text "box" a wider line measure */
+.timeline .tl-item .card{
+  width: var(--tl-card-w);
+  max-width: 42ch;     /* optional: keep lines readable; raise to ~48ch for even wider */
+}
+
+/* keep things comfy on small screens */
+@media (max-width: 800px){
+  :root{
+    --tl-card-w: 260px;
+    --tl-col-min: 280px;
+    --tl-gap: 2.25rem;
+  }
+}
 </style>
 
 <figure style="margin:0;">
