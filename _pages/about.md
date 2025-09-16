@@ -162,6 +162,22 @@ classes: wide
 @media (max-width: 800px){
   .tl-item .stem{ height: calc(var(--stem,110px) * .75); top:auto; }
 }
+
+/* === Timeline tick rendering fix (full circles) === */
+/* Keep the baseline behind everything */
+.timeline::before { z-index: 0; }
+
+/* Stems sit above the line, below the dots */
+.tl-item .stem { z-index: 1; }
+
+/* Dots sit on top; an optional small ring keeps them crisp on the line */
+.tl-item .tick {
+  z-index: 2;
+  box-shadow: 0 0 0 2px #fff; /* change #fff to your page background color if not white */
+}
+
+/* Make sure nothing clips the dots vertically */
+.tl-list { overflow-y: visible; }
 </style>
 
 <figure style="margin:0;">
