@@ -38,20 +38,35 @@ classes: wide
   /* -------------------------------------------------------- */
   /* transparent overlay area: feels like normal page content */
   /* -------------------------------------------------------- */
+
+  /* transparent overlay area */
   .map-overlay{
-    position: relative;  /* sits right below the cropped map */
-    margin: .25rem 0 0;  /* tiny gap; set to 0 if you want it touching */
-    background: transparent;   /* no color */
-    color: inherit;            /* use your site’s text color */
-    padding: 0;                /* no box feel */
+    position: relative;
+    margin: .25rem 0 0;
+    background: transparent;
+    color: inherit;
+    padding: 0;
+
+    /* stack children: legend then h2 */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;   /* keep H2 left-aligned */
   }
 
-  /* centered text */
-  .map-legend{ font-size:.90em; display:flex; gap:1rem; flex-wrap:wrap; text-align: center; }
+  /* center ONLY the legend */
+  .map-legend{
+    align-self: center;        /* centers the legend block */
+    display: flex;
+    justify-content: center;   /* centers the items inside */
+    gap: 1rem;
+    flex-wrap: wrap;
+    text-align: center;
+    font-size: .90em;
+    margin: .15rem 0 0;
+  }
   .map-legend .dot{
     width:10px; height:10px; border-radius:50%; display:inline-block;
     box-shadow:0 0 0 2px #fff, 0 0 0 3px #e5e7eb;
-    
   }
 
   /* Mobile: reveal more of the map if you like */
@@ -68,18 +83,15 @@ classes: wide
         title="Career Map" loading="lazy"></iframe>
     </div>
 
-    <!-- Transparent overlay area = normal page content -->
-    
-    <div class="map-overlay">
-      <div class="map-legend" role="group" aria-label="Map legend" style="text-align:center;">
-        <span><span class="dot" style="background:#e11d48;"></span> Places I’ve Worked</span>
-        <span><span class="dot" style="background:#2563eb;"></span> Presentations &amp; Workshops</span>
-      </div>
-      <br>
-      <h2 class="h2" style="margin:.25rem 0 .35rem;">Career Timeline</h2>
-    </div>
+    <!-- Transparent overlay area = normal page content -->    
+<div class="map-overlay">
+  <div class="map-legend" role="group" aria-label="Map legend">
+    <span><span class="dot" style="background:#e11d48;"></span> Places I’ve Worked</span>
+    <span><span class="dot" style="background:#2563eb;"></span> Presentations &amp; Workshops</span>
   </div>
-</figure>
+
+  <h2 class="h2" style="margin:.25rem 0 .35rem;">Career Timeline</h2>
+</div>
 
 
 
