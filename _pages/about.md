@@ -110,18 +110,27 @@ classes: wide
     box-shadow: 0 0 0 2px #fff; /* change if page bg isn’t white */
   }
   .tl-item .stem{ z-index: 1; }
-
-  .tl-item.up   .stem{ position:absolute; left:50%; width:2px; background:var(--tl-line);
-                       height: var(--stem, 110px);
-                       top: calc(50% - var(--stem, 110px)); transform: translateX(-50%); }
-  .tl-item.down .stem{ position:absolute; left:50%; width:2px; background:var(--tl-line);
-                       height: var(--stem, 110px);
-                       top: 50%; transform: translateX(-50%); }
-
-  .tl-item.up   .card{ position:absolute; left:50%; bottom: calc(50% + var(--tl-gap));
-                       transform: translateX(-50%); text-align:left; }
-  .tl-item.down .card{ position:absolute; left:50%; top:    calc(50% + var(--tl-gap));
-                       transform: translateX(-50%); text-align:left; }
+  
+  .tl-item.up   .stem{
+    position:absolute; left:50%; width:2px; background:var(--tl-line);
+    height: calc(var(--stem, 110px) * .5);
+    top: calc(50% - (var(--stem, 110px) * .5)); transform: translateX(-50%);
+  }
+  .tl-item.down .stem{
+    position:absolute; left:50%; width:2px; background:var(--tl-line);
+    height: calc(var(--stem, 110px) * .5);
+    top: 50%; transform: translateX(-50%);
+  }
+  
+  .tl-item.up   .card{
+    position:absolute; left:50%; bottom: calc(50% + (var(--tl-gap) * .5));
+    /* start at the tick line, shifted slightly to the right */
+    margin-left: 12px; text-align:left;
+  }
+  .tl-item.down .card{
+    position:absolute; left:50%; top:    calc(50% + (var(--tl-gap) * .5));
+    margin-left: 12px; text-align:left;
+  }
 
   /* Text styles */
   .tl-eyebrow{
