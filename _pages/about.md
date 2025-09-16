@@ -103,4 +103,142 @@ classes: wide
   /* Ticks + stems + cards */
   .tl-item .tick{
     position:absolute; left:50%; top:50%;
-    width:1
+    width:12px; height:12px; border-radius:50%;
+    background: var(--tl-dot);
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    box-shadow: 0 0 0 2px #fff; /* change if page bg isn’t white */
+  }
+  .tl-item .stem{ z-index: 1; }
+
+  .tl-item.up   .stem{ position:absolute; left:50%; width:2px; background:var(--tl-line);
+                       height: var(--stem, 110px);
+                       top: calc(50% - var(--stem, 110px)); transform: translateX(-50%); }
+  .tl-item.down .stem{ position:absolute; left:50%; width:2px; background:var(--tl-line);
+                       height: var(--stem, 110px);
+                       top: 50%; transform: translateX(-50%); }
+
+  .tl-item.up   .card{ position:absolute; left:50%; bottom: calc(50% + var(--tl-gap));
+                       transform: translateX(-50%); text-align:left; }
+  .tl-item.down .card{ position:absolute; left:50%; top:    calc(50% + var(--tl-gap));
+                       transform: translateX(-50%); text-align:left; }
+
+  /* Text styles */
+  .tl-eyebrow{
+    font-size: .70rem; letter-spacing:.03em; text-transform:uppercase;
+    color: var(--tl-muted);
+  }
+  .tl-range{
+    font-size: .80rem; color: var(--tl-muted); margin:.15rem 0 .35rem;
+  }
+  .tl-title{
+    margin: 0; font-size: 1.10rem; line-height: 1.25; font-weight: 700;
+  }
+  .tl-sub{
+    margin: .15rem 0 0; color: var(--tl-muted);
+  }
+  .tl-pill{
+    display:inline-block; padding:.2rem .5rem; border-radius:999px;
+    background:#caff00; color:#0f172a; font-weight:600; font-size:.75rem;
+  }
+
+  @media (max-width: 640px){
+    :root{ --overlay-frac: .40; --map-h: 50vh; }
+  }
+  @media (max-width: 800px){
+    .tl-item .stem{ height: calc(var(--stem,110px) * .75); top:auto; }
+  }
+</style>
+
+<figure style="margin:0;">
+  <div class="map-shell">
+    <div class="map-viewport">
+      <iframe
+        src="{{ '/assets/maps/career_map2.html' | relative_url }}"
+        title="Career Map" loading="lazy"></iframe>
+    </div>
+
+    <!-- Transparent overlay area = normal page content -->
+    <div class="map-overlay">
+      <div class="map-legend" role="group" aria-label="Map legend">
+        <span><span class="dot" style="background:#e11d48;"></span> Places I’ve Worked</span>
+        <span><span class="dot" style="background:#2563eb;"></span> Presentations &amp; Workshops</span>
+      </div>
+
+      <h2 class="h2" style="margin:.25rem 0 .35rem;">Career Timeline</h2>
+    </div>
+  </div> <!-- /map-shell -->
+</figure> <!-- /figure -->
+
+<h3>Professional Highlights</h3>
+<ul>
+  <li>10-time Faculty of the Year</li>
+  <li>Author of <em>From Print to Prediction: A Beginner’s Guide to Data Analysis in Python</em></li>
+  <li>Quoted in <em>The New York Times</em></li>
+</ul>
+
+<!-- Timeline -->
+<div class="timeline" aria-label="Career timeline">
+  <ol class="tl-list">
+    <li class="tl-item up" style="--stem: 140px;">
+      <span class="tick"></span>
+      <span class="stem"></span>
+      <div class="card">
+        <span class="tl-pill">Education</span>
+        <div class="tl-range">2008–2009 · 1 year</div>
+        <h3 class="tl-title">Assistant of Student Affairs</h3>
+        <div class="tl-sub">Shantou University Business School</div>
+      </div>
+    </li>
+
+    <li class="tl-item down" style="--stem: 120px;">
+      <span class="tick"></span>
+      <span class="stem"></span>
+      <div class="card">
+        <div class="tl-range">2009–2018 · 9 years</div>
+        <h3 class="tl-title">Director / Adjunct Professor</h3>
+        <div class="tl-sub">EF Education First · Hult International Business School</div>
+      </div>
+    </li>
+
+    <li class="tl-item up" style="--stem: 110px;">
+      <span class="tick"></span>
+      <span class="stem"></span>
+      <div class="card">
+        <div class="tl-range">2016</div>
+        <h3 class="tl-title">Chair &amp; Keynote Speaker</h3>
+        <div class="tl-sub">DataX · Shenzhen &amp; Seoul</div>
+      </div>
+    </li>
+
+    <li class="tl-item down" style="--stem: 130px;">
+      <span class="tick"></span>
+      <span class="stem"></span>
+      <div class="card">
+        <div class="tl-range">2018–2025 · 7 years</div>
+        <h3 class="tl-title">Faculty of Analytics</h3>
+        <div class="tl-sub">Hult International Business School · San Francisco</div>
+      </div>
+    </li>
+
+    <li class="tl-item up" style="--stem: 115px;">
+      <span class="tick"></span>
+      <span class="stem"></span>
+      <div class="card">
+        <div class="tl-range">2022, 2025</div>
+        <h3 class="tl-title">Faculty (Visiting)</h3>
+        <div class="tl-sub">Hult · New York City</div>
+      </div>
+    </li>
+
+    <li class="tl-item down" style="--stem: 120px;">
+      <span class="tick"></span>
+      <span class="stem"></span>
+      <div class="card">
+        <div class="tl-range">2024–Now</div>
+        <h3 class="tl-title">Presenter &amp; Workshop Host</h3>
+        <div class="tl-sub">Conferences across Asia &amp; U.S.</div>
+      </div>
+    </li>
+  </ol>
+</div>
