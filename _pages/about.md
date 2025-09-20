@@ -229,9 +229,7 @@ classes: wide
 
 /* First point hugs the left edge */
 .timeline .tl-item:first-child .tick{
-  left: 0;
-  /* center the 12px dot so its center sits ~6px from the edge */
-  transform: translate(6px, -50%);
+  left: 0;  /* center the 12px dot so its center sits ~6px from the edge */
 }
 .timeline .tl-item:first-child .stem{
   /* center the 2px stem on the dot center (~6px) */
