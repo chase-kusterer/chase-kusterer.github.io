@@ -85,7 +85,7 @@ classes: wide
     display:grid;
     grid-auto-flow: column;
     grid-auto-columns: minmax(220px, 1fr);
-    gap: 1.5rem; /* gap between timeline objects */
+    gap: 0.75rem; /* gap between timeline objects */
     overflow-x: auto;
     overscroll-behavior-x: contain;
     scroll-snap-type: x proximity;
@@ -202,7 +202,7 @@ classes: wide
 :root{
   /* tweak these three numbers to taste */
   --tl-card-w: 400px;   /* width of each card (desktop) */
-  --tl-col-min: 360px;  /* min width of each timeline column */
+  --tl-col-min: 180px;  /* min width of each timeline column */
   --tl-gap: 3.5rem;     /* space between dots and text on timeline */
 }
 
