@@ -85,7 +85,7 @@ classes: wide
     display:grid;
     grid-auto-flow: column;
     grid-auto-columns: minmax(220px, 1fr);
-    gap: 3rem;
+    gap: 1.5rem; /* gap between timeline objects */
     overflow-x: auto;
     overscroll-behavior-x: contain;
     scroll-snap-type: x proximity;
@@ -165,18 +165,6 @@ classes: wide
   
   /* 2) Baseline handled by .tl-list background (not a pseudo-element) */
   .timeline::before { display: none; }
-  
-  /* 3) The list owns the baseline and the vertical space */
-.tl-list{
-  /* your current settings… */
-  grid-auto-flow: column;
-  grid-auto-columns: minmax(220px, 1fr);
-  gap: 3rem;
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
-  scroll-snap-type: x proximity;
-  background: linear-gradient(to right, var(--tl-line), var(--tl-line)) center/100% 2px no-repeat;
-  overflow-y: visible;
 
   min-height: var(--tl-height);            /* NEW: gives the row vertical space */
 }
@@ -204,7 +192,7 @@ classes: wide
   /* tweak these three numbers to taste */
   --tl-card-w: 400px;   /* width of each card (desktop) */
   --tl-col-min: 360px;  /* min width of each timeline column */
-  --tl-gap: 3.5rem;     /* space between columns */
+  --tl-gap: 3.5rem;     /* space between dots and text on timeline */
 }
 
 /* make each column a bit wider and add more gap so cards won't collide */
@@ -226,6 +214,23 @@ classes: wide
     --tl-col-min: 280px;
     --tl-gap: 2.25rem;
   }
+}
+
+/* First point hugs the left edge */
+.timeline .tl-item:first-child .tick{
+  left: 0;
+  /* center the 12px dot so its center sits ~6px from the edge */
+  transform: translate(6px, -50%);
+}
+.timeline .tl-item:first-child .stem{
+  /* center the 2px stem on the dot center (~6px) */
+  left: 6px;
+  transform: translateX(-50%);
+}
+.timeline .tl-item:first-child .card{
+  /* anchor the card to the left edge, just to the right of the tick */
+  left: 0;
+  margin-left: 12px;   /* keep your existing value here */
 }
 </style>
 
@@ -259,6 +264,8 @@ classes: wide
 <!-- Timeline -->
 <div class="timeline" aria-label="Career timeline">
   <ol class="tl-list">
+    
+    /* first timeline item */
     <li class="tl-item up" style="--stem: 140px;">
       <span class="tick"></span>
       <span class="stem"></span>
