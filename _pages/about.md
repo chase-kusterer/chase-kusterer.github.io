@@ -165,6 +165,17 @@ classes: wide
   
   /* 2) Baseline handled by .tl-list background (not a pseudo-element) */
   .timeline::before { display: none; }
+  
+  /* 3) The list owns the baseline and the vertical space */
+.tl-list{
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(220px, 1fr);
+  gap: 1.5rem;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  background: linear-gradient(to right, var(--tl-line), var(--tl-line)) center/100% 2px no-repeat;
+  overflow-y: visible;
 
   min-height: var(--tl-height);            /* NEW: gives the row vertical space */
 }
@@ -321,10 +332,4 @@ classes: wide
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
-        <div class="tl-range">2024–Now</div>
-        <h4 class="tl-title">Presenter &amp; Workshop Host</h4>
-        <div class="tl-sub">Conferences across Asia &amp; U.S.</div>
-      </div>
-    </li>
-  </ol>
-</div>
+   
