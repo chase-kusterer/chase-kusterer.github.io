@@ -276,7 +276,6 @@ classes: wide
 <div class="timeline" aria-label="Career timeline">
   <ol class="tl-list">
     
-    /* first timeline item */
     <li class="tl-item up" style="--stem: 140px;">
       <span class="tick"></span>
       <span class="stem"></span>
