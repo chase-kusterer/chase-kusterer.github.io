@@ -4,21 +4,11 @@ title: "About"
 layout: single
 classes: wide
 sidebar: null
-author_profile: false
+author_profile: True
 ---
 <h2 class="h2" style="margin:.25rem 0 .35rem;">My Career Journey</h2>
 
 <style>
-
-  /* Make a section span the full viewport width, ignoring theme container limits */
-  .fullbleed{
-    width: 100vw;
-    max-width: 100vw;
-    margin-left: 50%;
-    transform: translateX(-50%);
-    padding-inline: clamp(8px, 2.5vw, 24px); /* comfy side padding */
-  }
-  
   :root{
     /* Map */
     --map-h: 60vh;
@@ -151,28 +141,32 @@ author_profile: false
   }
 </style>
 
-<div class="fullbleed">
-  <figure style="margin:0;">
-    <div class="map-shell">
-      <div class="map-viewport">
-        <iframe
-          src="{{ '/assets/maps/career_map2.html' | relative_url }}"
-          title="Career Map" loading="lazy"></iframe>
-      </div>
-  
-      <!-- Transparent overlay area = normal page content -->
-      <div class="map-overlay">
-        <div class="map-legend" role="group" aria-label="Map legend">
-          <span><span class="dot" style="background:#e11d48;"></span> Places I’ve Worked</span>
-          <span><span class="dot" style="background:#2563eb;"></span> Presentations &amp; Workshops</span>
-        </div>
-  
-        <h2 class="h2" style="margin:.25rem 0 .35rem;">Career Timeline</h2>
-      </div>
-    </div> <!-- /map-shell -->
-  </figure> <!-- /figure -->
+<figure style="margin:0;">
+  <div class="map-shell">
+    <div class="map-viewport">
+      <iframe
+        src="{{ '/assets/maps/career_map2.html' | relative_url }}"
+        title="Career Map" loading="lazy"></iframe>
+    </div>
 
+    <!-- Transparent overlay area = normal page content -->
+    <div class="map-overlay">
+      <div class="map-legend" role="group" aria-label="Map legend">
+        <span><span class="dot" style="background:#e11d48;"></span> Places I’ve Worked</span>
+        <span><span class="dot" style="background:#2563eb;"></span> Presentations &amp; Workshops</span>
+      </div>
 
+      <h2 class="h2" style="margin:.25rem 0 .35rem;">Career Timeline</h2>
+    </div>
+  </div> <!-- /map-shell -->
+</figure> <!-- /figure -->
+
+<h3>Professional Highlights</h3>
+<ul>
+  <li>10-time Faculty of the Year</li>
+  <li>Author of <em>From Print to Prediction: A Beginner’s Guide to Data Analysis in Python</em></li>
+  <li>Quoted in <em>The New York Times</em></li>
+</ul>
 
 <!-- Timeline -->
 <div class="timeline" aria-label="Career timeline">
@@ -225,20 +219,4 @@ author_profile: false
       <div class="card">
         <div class="tl-range">2022, 2025</div>
         <h4 class="tl-title">Faculty (Visiting)</h4>
-        <div class="tl-sub">Hult · New York City</div>
-      </div>
-    </li>
-
-    <li class="tl-item down" style="--stem: 120px;">
-      <span class="tick"></span>
-      <span class="stem"></span>
-</div>
-
-<h3>Professional Highlights</h3>
-<ul>
-  <li>10-time Faculty of the Year</li>
-  <li>Author of <em>From Print to Prediction: A Beginner’s Guide to Data Analysis in Python</em></li>
-  <li>Quoted in <em>The New York Times</em></li>
-</ul>
-      <div class="card">
-   
+        <div class="tl-su
