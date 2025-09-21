@@ -85,7 +85,7 @@ classes: wide
     display:grid;
     grid-auto-flow: column;
     grid-auto-columns: minmax(220px, 1fr);
-    gap: 0.75rem; /* gap between timeline objects */
+    gap: 1.00rem; /* gap between timeline objects */
     overflow-x: auto;
     overscroll-behavior-x: contain;
     scroll-snap-type: x proximity;
@@ -202,7 +202,7 @@ classes: wide
 :root{
   /* tweak these three numbers to taste */
   --tl-card-w: 400px;   /* width of each card (desktop) */
-  --tl-col-min: 180px;  /* min width of each timeline column */
+  --tl-col-min: 240px;  /* min width of each timeline column */
   --tl-gap: 3.5rem;     /* space between dots and text on timeline */
 }
 
@@ -227,21 +227,20 @@ classes: wide
   }
 }
 
-/* First point hugs the left edge */
-.timeline .tl-item:first-child .tick{
-  left: 6px;
-  transform: translate(-50%, -50%); /* center on left:6px, align with stem */
+/* baseline already drawn as a background on .tl-list; add a tiny left starter */
+:root{ --tl-dot-size: 12px; } /* match your .tick width/height */
+
+.timeline{ position: relative; }
+.timeline::after{
+  content:"";
+  position:absolute;
+  left:0; top:50%;
+  width: calc(var(--tl-dot-size) / 2);   /* ~6px for a 12px dot */
+  border-top: 2px solid var(--tl-line);
+  transform: translateY(-50%);
+  pointer-events:none;
 }
-.timeline .tl-item:first-child .stem{
-  /* center the 2px stem on the dot center (~6px) */
-  left: 6px;
-  transform: translateX(-50%);
-}
-.timeline .tl-item:first-child .card{
-  /* anchor the card to the left edge, just to the right of the tick */
-  left: 0;
-  margin-left: 12px;   /* keep your existing value here */
-}
+
 </style>
 
 <figure style="margin:0;">
