@@ -135,6 +135,22 @@ author_profile: false
   @media (max-width: 800px){
     .tl-item .stem{ height: calc(var(--stem,110px) * .75); top:auto; } /* slightly longer stems on small screens */
   }
+
+
+  /* Make the main content column use the space that the sidebar used */
+.layout--single .page__inner{ 
+  max-width: min(1600px, 96vw) !important;  /* was ~1100–1200px; bump it up */
+}
+
+.layout--single .page__content{
+  max-width: none !important;               /* let content fill the inner width */
+}
+
+/* Some Minimal Mistakes builds use a grid for page + sidebar.
+   Ensure we’re not reserving a sidebar track. */
+.layout--single .page{ 
+  display: block !important;                /* collapse any grid to a single column */
+}
 </style>
 
 <figure style="margin:0;">
