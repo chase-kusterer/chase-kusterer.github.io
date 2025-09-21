@@ -3,6 +3,7 @@ permalink: /about/
 title: "About"
 layout: single
 classes: wide
+sidebar: null
 ---
 <h2 class="h2" style="margin:.25rem 0 .35rem;">My Career Journey</h2>
 
