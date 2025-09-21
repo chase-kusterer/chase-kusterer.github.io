@@ -242,22 +242,27 @@ classes: wide
 }
 
 :root{
-  /* If you halved spacing earlier, keep that value (e.g., 180px).
-     Otherwise use whatever you set for --tl-col-min now. */
-  --tl-track: var(--tl-col-min);
+  /* choose your per-step spacing (was 240px above; use what feels right) */
+  --tl-track: 200px; /* try 180–240px */
 }
 
-/* Make room on the left equal to half a track… */
-.timeline{
-  padding-left: calc(var(--tl-track) / 2);
-}
-
-/* …then shift the grid left by the same amount so dot #1 center lands at x=0 */
+/* 1) Make each column a fixed width (no 1fr stretch) */
 .timeline .tl-list{
-  margin-left: calc(var(--tl-track) / -2);
-  /* Nice-to-have: when horizontally scrolling, this keeps the first tick aligned to the edge */
-  scroll-padding-left: calc(var(--tl-track) / 2);
+  grid-auto-columns: var(--tl-track) !important;
+  gap: 0.75rem !important; /* your desired gap between dots */
+  /* 2) Shift the grid left by half a track so the first center lands at x=0 */
+  margin-left: calc(var(--tl-track) / -2) !important;
+  /* keeps the first center aligned when you horizontally scroll */
+  scroll-padding-left: calc(var(--tl-track) / 2) !important;
 }
+
+/* 3) Add matching left padding to the container so content isn't cut off */
+.timeline{
+  padding-left: calc(var(--tl-track) / 2) !important;
+}
+
+/* 4) Remove the earlier "starter segment" so the baseline doesn't double up */
+.timeline::after{ display:none !important; }
 
 </style>
 
