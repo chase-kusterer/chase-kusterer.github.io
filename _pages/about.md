@@ -8,6 +8,7 @@ classes: wide
 
 <style>
   :root{
+    /* Map */
     --map-h: 60vh;
     --overlay-frac: .42;
     --oval-rx: 50%;
@@ -15,17 +16,25 @@ classes: wide
     --oval-cx: 50%;
     --oval-cy: 50%;
 
-    /* Timeline vars */
+    /* Timeline */
     --tl-line: #0f172a33;
     --tl-dot:  #0f172a;
     --tl-muted:#6b7280;
-    --tl-gap:  12px;
+    --tl-gap:  12px;        /* baseline ↔ card gap (before the 50% reduction) */
+
+    /* Spacing + geometry (tune these 3 first) */
+    --tl-track: 200px;      /* fixed step between dots (try 180–240px) */
+    --tl-height: 280px;     /* total vertical working height of each column */
+    --tl-gap-factor: .5;    /* 0.5 = cards 50% closer to baseline */
+
+    /* Card & tick */
+    --tl-card-offset: 12px; /* space from tick to card’s left edge */
+    --tl-dot-size: 12px;    /* dot size (keep in sync with .tick) */
   }
 
+  /* ===== Map (unchanged) ===== */
   .map-shell { position: relative; width: 100%; margin: 0; }
-
-  /* Show only the TOP (1 - overlay) of the iframe */
-  .map-viewport {
+  .map-viewport{
     position: relative;
     height: calc(var(--map-h) * (1 - var(--overlay-frac)));
     overflow: hidden;
@@ -34,236 +43,96 @@ classes: wide
     mask-image: radial-gradient(ellipse var(--oval-rx) var(--oval-ry)
       at var(--oval-cx) var(--oval-cy), #000 98%, transparent 100%);
   }
-  .map-viewport iframe{
-    display:block; width:100%; height: var(--map-h); border:0;
-  }
-
-  /* Transparent overlay area */
+  .map-viewport iframe{ display:block; width:100%; height: var(--map-h); border:0; }
   .map-overlay{
-    position: relative;
-    margin: .25rem 0 0;
-    background: transparent;
-    color: inherit;
-    padding: 0;
-
-    /* stack children: legend then h2 */
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;   /* keep H2 left-aligned */
+    position: relative; margin:.25rem 0 0; background:transparent; color:inherit; padding:0;
+    display:flex; flex-direction:column; align-items:flex-start;
   }
-
-  /* Center ONLY the legend */
   .map-legend{
-    align-self: center;        /* centers the legend block */
-    display: flex;
-    justify-content: center;   /* centers the items inside */
-    gap: 1rem;
-    flex-wrap: wrap;
-    text-align: center;
-    font-size: .90em;
-    margin: .15rem 0 0;
+    align-self:center; display:flex; justify-content:center; gap:1rem; flex-wrap:wrap;
+    text-align:center; font-size:.90em; margin:.15rem 0 0;
   }
   .map-legend .dot{
     width:10px; height:10px; border-radius:50%; display:inline-block;
     box-shadow:0 0 0 2px #fff, 0 0 0 3px #e5e7eb;
   }
 
-  /* ===== Timeline layout ===== */
+  /* ===== Timeline (clean, single set of rules) ===== */
   .timeline{
     position: relative;
     margin: 1.5rem 0 2rem;
-    padding: calc(2.5rem + 1.2em) 0 2.5rem; /* +1 line on top */
+    padding: 3.2rem 0 2.5rem; /* ~one extra line on top for “up” cards */
     background: transparent;
     isolation: isolate;
   }
 
-  /* Hide pseudo-element baseline (we'll draw it on .tl-list) */
-  .timeline::before{ display:none; }
-
+  /* baseline drawn as background so it can’t cover ticks; starts under first dot */
   .tl-list{
     list-style:none; margin:0; padding:0;
     display:grid;
     grid-auto-flow: column;
-    grid-auto-columns: minmax(220px, 1fr);
-    gap: 1.00rem; /* gap between timeline objects */
-    overflow-x: auto;
-    overscroll-behavior-x: contain;
-    scroll-snap-type: x proximity;
+    grid-auto-columns: var(--tl-track);     /* FIXED column width = equal spacing */
+    gap: .75rem;                            /* inter-dot gap; halve/raise as needed */
+    overflow-x:auto; overflow-y:visible;
+    overscroll-behavior-x:contain; scroll-snap-type:x proximity;
+    min-height: var(--tl-height);
 
-    /* Baseline as background so it can’t cover ticks */
-    background: linear-gradient(to right, var(--tl-line), var(--tl-line)) center/100% 2px no-repeat;
-    overflow-y: visible; /* let ticks cross the line */
+    /* Baseline that starts at the first dot’s center and runs to the right edge */
+    background: linear-gradient(to right, var(--tl-line), var(--tl-line)) no-repeat;
+    background-position: calc(var(--tl-track)/2) 50%;
+    background-size: calc(100% - (var(--tl-track)/2)) 2px;
   }
 
   .tl-item{
     position: relative;
+    height: var(--tl-height);
+    overflow: visible;
     scroll-snap-align: center;
   }
 
-  /* Ticks + stems + cards */
+  /* Dot sits centered on the baseline; add thin ring for crispness */
   .tl-item .tick{
     position:absolute; left:50%; top:50%;
-    width:12px; height:12px; border-radius:50%;
+    width: var(--tl-dot-size); height: var(--tl-dot-size); border-radius:50%;
     background: var(--tl-dot);
     transform: translate(-50%, -50%);
     z-index: 2;
-    box-shadow: 0 0 0 2px #fff; /* change if page bg isn’t white */
+    box-shadow: 0 0 0 2px #fff; /* change #fff if page bg isn’t white */
   }
-  .tl-item .stem{ z-index: 1; }
-  
-  .tl-item.up   .stem{
-    position:absolute; left:50%; width:2px; background:var(--tl-line);
-    height: calc(var(--stem, 110px) * .5);
-    top: calc(50% - (var(--stem, 110px) * .5)); transform: translateX(-50%);
-  }
-  .tl-item.down .stem{
-    position:absolute; left:50%; width:2px; background:var(--tl-line);
-    height: calc(var(--stem, 110px) * .5);
-    top: 50%; transform: translateX(-50%);
-  }
-  
-  .tl-item.up   .card{
-    position:absolute; left:50%; bottom: calc(50% + (var(--tl-gap) * .5));
-    /* start at the tick line, shifted slightly to the right */
-    margin-left: 12px; text-align:left;
-  }
-  .tl-item.down .card{
-    position:absolute; left:50%; top:    calc(50% + (var(--tl-gap) * .5));
-    margin-left: 12px; text-align:left;
-  }
+
+  /* Stems are 50% of original; under dot, over baseline */
+  .tl-item .stem{ position:absolute; left:50%; width:2px; background:var(--tl-line);
+                  transform: translateX(-50%); z-index:1; }
+  .tl-item.up   .stem{ height: calc(var(--stem, 110px) * .5);
+                       top: calc(50% - (var(--stem,110px) * .5)); }
+  .tl-item.down .stem{ height: calc(var(--stem, 110px) * .5);
+                       top: 50%; }
+
+  /* Cards: start at tick line, 50% closer to baseline */
+  .tl-item.up   .card{ position:absolute; left:50%;
+                       bottom: calc(50% + (var(--tl-gap) * var(--tl-gap-factor)));
+                       margin-left: var(--tl-card-offset); text-align:left; }
+  .tl-item.down .card{ position:absolute; left:50%;
+                       top:    calc(50% + (var(--tl-gap) * var(--tl-gap-factor)));
+                       margin-left: var(--tl-card-offset); text-align:left; }
+
+  /* Optional: sensible width for cards (responsive but bounded) */
+  .tl-item .card{ width: clamp(260px, 26vw, 400px); max-width: 48ch; }
 
   /* Text styles */
-  .tl-eyebrow{
-    font-size: .70rem; letter-spacing:.03em; text-transform:uppercase;
-    color: var(--tl-muted);
-  }
-  .tl-range{
-    font-size: .80rem; color: var(--tl-muted); margin:.15rem 0 .35rem;
-  }
-  .tl-title{
-    margin: 0; font-size: 1.10rem; line-height: 1.25; font-weight: 700;
-  }
-  .tl-sub{
-    margin: .15rem 0 0; color: var(--tl-muted);
-  }
-  .tl-pill{
-    display:inline-block; padding:.2rem .5rem; border-radius:999px;
-    background:#caff00; color:#0f172a; font-weight:600; font-size:.75rem;
-  }
+  .tl-eyebrow{ font-size:.70rem; letter-spacing:.03em; text-transform:uppercase; color:var(--tl-muted); }
+  .tl-range{   font-size:.80rem; color:var(--tl-muted); margin:.15rem 0 .35rem; }
+  .tl-title{   margin:0; font-size:1.10rem; line-height:1.25; font-weight:700; }
+  .tl-sub{     margin:.15rem 0 0; color:var(--tl-muted); }
+  .tl-pill{    display:inline-block; padding:.2rem .5rem; border-radius:999px;
+               background:#caff00; color:#0f172a; font-weight:600; font-size:.75rem; }
 
   @media (max-width: 640px){
-    :root{ --overlay-frac: .40; --map-h: 50vh; }
+    :root{ --overlay-frac:.40; --map-h:50vh; }
   }
   @media (max-width: 800px){
-    .tl-item .stem{ height: calc(var(--stem,110px) * .75); top:auto; }
+    .tl-item .stem{ height: calc(var(--stem,110px) * .75); top:auto; } /* slightly longer stems on small screens */
   }
-
-  /* ---- Timeline geometry fix: make items tall and keep baseline behind ---- */
-
-  /* 1) One height for the whole timeline row (tweak to taste) */
-  :root { --tl-height: 280px; }  /* try 240–300px depending on your stem lengths */
-  
-  /* 2) Baseline handled by .tl-list background (not a pseudo-element) */
-  .timeline::before { display: none; }
-  
-  /* 3) The list owns the baseline and the vertical space */
-.tl-list{
-  grid-auto-flow: column;
-  grid-auto-columns: minmax(220px, 1fr);
-  gap: 1.5rem;
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
-  scroll-snap-type: x proximity;
-  background: linear-gradient(to right, var(--tl-line), var(--tl-line)) center/100% 2px no-repeat;
-  overflow-y: visible;
-
-  min-height: var(--tl-height);            /* NEW: gives the row vertical space */
-}
-
-.tl-item{
-  position: relative;
-  scroll-snap-align: center;
-
-  height: var(--tl-height);                /* NEW: same height per column */
-  overflow: visible;                       /* NEW: belt-and-suspenders vs clipping */
-}
-  
-  /* 5) Stacking order: line (background) < stem < tick */
-  .timeline .tl-item .stem { z-index: 1; }
-  .timeline .tl-item .tick{
-    z-index: 2;
-    /* Optional thin ring so the dot sits crisply over the line.
-       Change #fff to your page background if not white. */
-    box-shadow: 0 0 0 2px #fff;
-  }
-
-  /* new stuff for textbox width */
-  /* === Wider timeline cards === */
-:root{
-  /* tweak these three numbers to taste */
-  --tl-card-w: 400px;   /* width of each card (desktop) */
-  --tl-col-min: 240px;  /* min width of each timeline column */
-  --tl-gap: 3.5rem;     /* space between dots and text on timeline */
-}
-
-/* make each column a bit wider and add more gap so cards won't collide */
-.timeline .tl-list{
-  grid-auto-columns: minmax(var(--tl-col-min), 1fr);
-  /* gap: var(--tl-gap); */
-}
-
-/* give the text "box" a wider line measure */
-.timeline .tl-item .card{
-  width: var(--tl-card-w);
-  max-width: 42ch;     /* optional: keep lines readable; raise to ~48ch for even wider */
-}
-
-/* keep things comfy on small screens */
-@media (max-width: 800px){
-  :root{
-    --tl-card-w: 260px;
-    --tl-col-min: 280px;
-    --tl-gap: 2.25rem;
-  }
-}
-
-/* baseline already drawn as a background on .tl-list; add a tiny left starter */
-:root{ --tl-dot-size: 12px; } /* match your .tick width/height */
-
-.timeline{ position: relative; }
-.timeline::after{
-  content:"";
-  position:absolute;
-  left:0; top:50%;
-  width: calc(var(--tl-dot-size) / 2);   /* ~6px for a 12px dot */
-  border-top: 2px solid var(--tl-line);
-  transform: translateY(-50%);
-  pointer-events:none;
-}
-
-:root{
-  /* choose your per-step spacing (was 240px above; use what feels right) */
-  --tl-track: 200px; /* try 180–240px */
-}
-
-/* 1) Make each column a fixed width (no 1fr stretch) */
-.timeline .tl-list{
-  grid-auto-columns: var(--tl-track) !important;
-  gap: 0.75rem !important; /* your desired gap between dots */
-  /* 2) Shift the grid left by half a track so the first center lands at x=0 */
-  margin-left: calc(var(--tl-track) / -2) !important;
-  /* keeps the first center aligned when you horizontally scroll */
-  scroll-padding-left: calc(var(--tl-track) / 2) !important;
-}
-
-/* 3) Add matching left padding to the container so content isn't cut off */
-.timeline{
-  padding-left: calc(var(--tl-track) / 2) !important;
-}
-
-/* 4) Remove the earlier "starter segment" so the baseline doesn't double up */
-.timeline::after{ display:none !important; }
-
 </style>
 
 <figure style="margin:0;">
