@@ -36,20 +36,19 @@ author_profile: false
 
   /* ===== Map (unchanged) ===== */
   .map-shell { position: relative; width: 100%; margin: 0; }
+  /* Make the map responsive by width, keep 16:9, keep the oval mask + top crop */
   .map-viewport{
-    position: relative;
-    height: calc(var(--map-h) * (1 - var(--overlay-frac)));
-    overflow: hidden;
-    -webkit-mask-image: radial-gradient(ellipse var(--oval-rx) var(--oval-ry)
-      at var(--oval-cx) var(--oval-cy), #000 98%, transparent 100%);
-    mask-image: radial-gradient(ellipse var(--oval-rx) var(--oval-ry)
-      at var(--oval-cx) var(--oval-cy), #000 98%, transparent 100%);
+    height: auto !important;
+    aspect-ratio: 16 / 9;   /* pick 16/9, 2/1, etc. */
+    overflow: hidden;       /* still hides the bottom part for the overlay crop */
   }
-  .map-viewport iframe{ display:block; width:100%; height: var(--map-h); border:0; }
-  .map-overlay{
-    position: relative; margin:.25rem 0 0; background:transparent; color:inherit; padding:0;
-    display:flex; flex-direction:column; align-items:flex-start;
+  
+  /* Show only the top (1 - overlay) of the iframe, regardless of width */
+  .map-viewport iframe{
+    height: calc(100% / (1 - var(--overlay-frac))) !important;
+    /* width stays 100% from your existing rule */
   }
+
   .map-legend{
     align-self:center; display:flex; justify-content:center; gap:1rem; flex-wrap:wrap;
     text-align:center; font-size:.90em; margin:.15rem 0 0;
@@ -136,21 +135,10 @@ author_profile: false
     .tl-item .stem{ height: calc(var(--stem,110px) * .75); top:auto; } /* slightly longer stems on small screens */
   }
 
-
-  /* Make the main content column use the space that the sidebar used */
-.layout--single .page__inner{ 
-  max-width: min(1600px, 96vw) !important;  /* was ~1100–1200px; bump it up */
-}
-
-.layout--single .page__content{
-  max-width: none !important;               /* let content fill the inner width */
-}
-
-/* Some Minimal Mistakes builds use a grid for page + sidebar.
-   Ensure we’re not reserving a sidebar track. */
-.layout--single .page{ 
-  display: block !important;                /* collapse any grid to a single column */
-}
+  /* NEW */
+  .layout--single .page__inner-wrap{
+    max-width: min(92vw, 1600px);
+  }
 </style>
 
 <figure style="margin:0;">
