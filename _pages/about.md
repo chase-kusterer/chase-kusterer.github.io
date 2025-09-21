@@ -241,6 +241,24 @@ classes: wide
   pointer-events:none;
 }
 
+:root{
+  /* If you halved spacing earlier, keep that value (e.g., 180px).
+     Otherwise use whatever you set for --tl-col-min now. */
+  --tl-track: var(--tl-col-min);
+}
+
+/* Make room on the left equal to half a track… */
+.timeline{
+  padding-left: calc(var(--tl-track) / 2);
+}
+
+/* …then shift the grid left by the same amount so dot #1 center lands at x=0 */
+.timeline .tl-list{
+  margin-left: calc(var(--tl-track) / -2);
+  /* Nice-to-have: when horizontally scrolling, this keeps the first tick aligned to the edge */
+  scroll-padding-left: calc(var(--tl-track) / 2);
+}
+
 </style>
 
 <figure style="margin:0;">
