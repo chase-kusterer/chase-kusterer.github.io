@@ -36,17 +36,17 @@ author_profile: false
 
   /* ===== Map (unchanged) ===== */
   .map-shell { position: relative; width: 100%; margin: 0; }
-  /* Make the map responsive by width, keep 16:9, keep the oval mask + top crop */
   .map-viewport{
-    height: auto !important;
-    aspect-ratio: 16 / 9;   /* pick 16/9, 2/1, etc. */
-    overflow: hidden;       /* still hides the bottom part for the overlay crop */
+  position: relative;
+  height: calc(var(--map-h) * (1 - var(--overlay-frac)));
+  overflow: hidden;
+  -webkit-mask-image: radial-gradient(ellipse var(--oval-rx) var(--oval-ry)
+    at var(--oval-cx) var(--oval-cy), #000 98%, transparent 100%);
+  mask-image: radial-gradient(ellipse var(--oval-rx) var(--oval-ry)
+    at var(--oval-cx) var(--oval-cy), #000 98%, transparent 100%);
   }
-  
-  /* Show only the top (1 - overlay) of the iframe, regardless of width */
   .map-viewport iframe{
-    height: calc(100% / (1 - var(--overlay-frac))) !important;
-    /* width stays 100% from your existing rule */
+    display:block; width:100%; height: var(--map-h); border:0;
   }
 
   .map-legend{
@@ -137,7 +137,7 @@ author_profile: false
 
   /* NEW */
   .layout--single .page__inner-wrap{
-    max-width: min(92vw, 1600px);
+    max-width: min(95vw, 1400px);
   }
 </style>
 
