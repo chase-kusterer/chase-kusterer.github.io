@@ -24,7 +24,7 @@ author_profile: True
     --tl-muted:#6b7280;
     --tl-gap:  2rem;        /* baseline ↔ card gap */
     --tl-track: 200px;      /* fixed step between dots (try 180–240px) */
-    --tl-height: 320px;     /* total vertical working height of each column */
+    --tl-height: 360px;     /* total vertical working height of each column */
     --tl-gap-factor: 1.00;  /* closer to 1 = farther from the line */
 
     /* Card & tick */
