@@ -292,7 +292,7 @@ author_profile: True
       <div class="card">
         <span class="tl-pill tl-pill--pres">Publication</span>
         <div class="tl-range">2013</div>
-        <h4 class="tl-title">Ch 2 - Consumers, Ecommerce, and Media in China</h4>
+        <h4 class="tl-title">Consumers, Ecommerce, and Media in China</h4>
         <div class="tl-sub">China Business Handbook</div>
         <div class="tl-sub">US Commercial Service</div>
         <div class="tl-sub">Shanghai · China</div>
@@ -306,7 +306,7 @@ author_profile: True
         <span class="tl-pill tl-pill--work">Work</span>
         <div class="tl-range">2013-2017 · 5 years</div>
         <h4 class="tl-title">Adjunct Faculty</h4>
-        <div class="tl-sub">Hult International Business School/div>
+        <div class="tl-sub">Hult International Business School</div>
         <div class="tl-sub">Shanghai · China</div>
       </div>
     </li>
@@ -354,7 +354,7 @@ author_profile: True
         <span class="tl-pill tl-pill--work">Work</span>
         <div class="tl-range">2015-2021 · 7 years</div>
         <h4 class="tl-title">Faculty (Visiting)</h4>
-        <div class="tl-sub">Hult International Business School/div>
+        <div class="tl-sub">Hult International Business School</div>
         <div class="tl-sub">Dubai · UAE</div>
       </div>
     </li>
@@ -580,7 +580,7 @@ author_profile: True
         <span class="tl-pill tl-pill--work">Work</span>
         <div class="tl-range">2018-Present · 7+ years</div>
         <h4 class="tl-title">Faculty of Analytics</h4>
-        <div class="tl-sub">Hult International Business School/div>
+        <div class="tl-sub">Hult International Business School</div>
         <div class="tl-sub">San Francisco · USA</div>
       </div>
     </li>
@@ -632,8 +632,7 @@ author_profile: True
         <div class="tl-sub">New York City · USA</div>
       </div>
     </li>
-
-        </ol>
+    </ol>
   </div>
 </div>  <!-- FULL-BLEED END -->
 
