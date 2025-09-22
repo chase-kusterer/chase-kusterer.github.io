@@ -145,10 +145,12 @@ author_profile: True
 .layout--single .page__sidebar{ float:none; width:auto; max-width:100%; margin:0 0 1rem 0; position:static; }
 .layout--single .sidebar{ position:static; }  /* disable sticky/float */
 
-/* Full-bleed wrapper that spans the entire viewport width */
+/* full-bleed wrapper that spans the entire viewport width */
 .fullbleed{
-  width:100vw; max-width:100vw;
-  margin-left:50%; transform:translateX(-50%);
+  width:80vw; max-width:80vw;
+  margin-left:50%;
+  margin-right:50%;
+  transform:translateX(-50%);
   padding-inline: clamp(8px, 2.5vw, 24px);
 }
 
@@ -156,12 +158,12 @@ author_profile: True
 .layout--single .page__inner-wrap{ overflow: visible; }
 
 
-  /* NEW Tighten map ↔ legend spacing */
+  /* tightening map ↔ legend spacing */
   .map-overlay{ margin-top: 0 !important; }   /* was .25rem */
   .map-legend{  margin-top: 0 !important; }   /* was .15rem */
   
   /* (Optional) gentle overlap: lift the legend up into the map */
-  .map-shell { --legend-lift: 3.00rem; }       /* tweak: .25rem–1rem */
+  .map-shell { --legend-lift: 3.25rem; }       /* tweak: .25rem–1rem */
   .map-legend{ margin-top: 0 !important;
                transform: translateY(calc(-1 * var(--legend-lift)));
                line-height: 1;}
@@ -183,8 +185,6 @@ author_profile: True
         <span><span class="dot" style="background:#e11d48;"></span> Places I’ve Worked</span>
         <span><span class="dot" style="background:#2563eb;"></span> Presentations &amp; Workshops</span>
       </div>
-
-      <h2 class="h2" style="margin:.25rem 0 .35rem;">Career Timeline</h2>
     </div>
   </div> <!-- /map-shell -->
 </figure> <!-- /figure -->
