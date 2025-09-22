@@ -299,7 +299,7 @@ author_profile: True
       </div>
     </li>  
 
-    <li class="tl-item down" style="--stem: 130px;">
+    <li class="tl-item up" style="--stem: 130px;">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
@@ -323,7 +323,7 @@ author_profile: True
       </div>
     </li>
     
-    <li class="tl-item down" style="--stem: 130px;">
+    <li class="tl-item up" style="--stem: 130px;">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
@@ -347,7 +347,7 @@ author_profile: True
       </div>
     </li>
 
-    <li class="tl-item down" style="--stem: 130px;">
+    <li class="tl-item up" style="--stem: 130px;">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
@@ -371,11 +371,11 @@ author_profile: True
       </div>
     </li>
 
-    <li class="tl-item down" style="--stem: 130px;">
+    <li class="tl-item up" style="--stem: 130px;">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
-        <span class="tl-pill tl-pill--pres">Chairperson and Keynote</span>
+        <span class="tl-pill tl-pill--pres">Keynote</span>
         <div class="tl-range">2016</div>
         <h4 class="tl-title">Big Data &amp; Analytics Innovation Summit</h4>
         <div class="tl-sub">Innovation Enterprise</div>
@@ -394,7 +394,7 @@ author_profile: True
       </div>
     </li>   
 
-    <li class="tl-item down" style="--stem: 130px;">
+    <li class="tl-item up" style="--stem: 130px;">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
@@ -414,25 +414,24 @@ author_profile: True
         <div class="tl-sub">Hult International Business School</div>
         <div class="tl-sub">Manila · Philippines</div>
       </div>
-    </li>    
-
-    <li class="tl-item down" style="--stem: 130px;">
-      <span class="tick"></span>
-      <span class="stem"></span>
-      <div class="card">
-        <span class="tl-pill tl-pill--pres">Speaker</span>
-        <div class="tl-range">2016</div>
-        <h4 class="tl-title">Big Data &amp; Analytics for Banking Summit</h4>
-        <div class="tl-sub">Innovation Enterprise</div>
-        <div class="tl-sub">Hong Kong</div>
-      </div>
     </li>
 
+    <li class="tl-item up" style="--stem: 130px;">
+      <span class="tick"></span>
+      <span class="stem"></span>
+      <div class="card">
+        <span class="tl-pill tl-pill--pres">Workshop</span>
+        <div class="tl-range">2016</div>
+        <div class="tl-sub">Education First - Kids &amp; Teens</div>
+        <div class="tl-sub">Budapest · Hungary</div>
+      </div>
+    </li>  
+
     <li class="tl-item down" style="--stem: 130px;">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
-        <span class="tl-pill tl-pill--pres">Chairperson and Keynote</span>
+        <span class="tl-pill tl-pill--pres">Keynote</span>
         <div class="tl-range">2016</div>
         <h4 class="tl-title">DataX</h4>
         <div class="tl-sub">Innovation Enterprise</div>
@@ -440,18 +439,18 @@ author_profile: True
       </div>
     </li>   
 
-    <li class="tl-item up" style="--stem: 115px;">
+    <li class="tl-item up" style="--stem: 130px;">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
-        <span class="tl-pill tl-pill--work">Work</span>
-        <div class="tl-range">2016</div>
-        <h4 class="tl-title">Guest Speaker</h4>
-        <div class="tl-sub">ParisTech University</div>
-        <div class="tl-sub">Paris · France</div>
+        <span class="tl-pill tl-pill--pres">Speaker</span>
+        <div class="tl-range">2017</div>
+        <h4 class="tl-title">Big Data &amp; Analytics for Banking Summit</h4>
+        <div class="tl-sub">Innovation Enterprise</div>
+        <div class="tl-sub">Hong Kong</div>
       </div>
     </li>
-
+    
     <li class="tl-item down" style="--stem: 130px;">
       <span class="tick"></span>
       <span class="stem"></span>
@@ -464,20 +463,31 @@ author_profile: True
       </div>
     </li>
 
-    <li class="tl-item down" style="--stem: 130px;">
+    <li class="tl-item up" style="--stem: 130px;">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
-        <span class="tl-pill tl-pill--pres">Chairperson and Keynote</span>
+        <span class="tl-pill tl-pill--pres">Keynote</span>
         <div class="tl-range">2017</div>
         <h4 class="tl-title">Big Data &amp; Analytics Innovation Summit</h4>
         <div class="tl-sub">Innovation Enterprise</div>
         <div class="tl-sub">Hong Kong</div>
       </div>
-    </li>   
-
+    </li>
 
     <li class="tl-item down" style="--stem: 130px;">
+      <span class="tick"></span>
+      <span class="stem"></span>
+      <div class="card">
+        <span class="tl-pill tl-pill--pres">Workshop</span>
+        <div class="tl-range">2017</div>
+        <div class="tl-sub">Education First - Kids &amp; Teens</div>
+        <div class="tl-sub">Singapore</div>
+      </div>
+    </li>
+
+
+    <li class="tl-item up" style="--stem: 130px;">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
@@ -501,7 +511,7 @@ author_profile: True
       </div>
     </li>
 
-    <li class="tl-item down" style="--stem: 130px;">
+    <li class="tl-item up" style="--stem: 130px;">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
@@ -517,7 +527,19 @@ author_profile: True
 <!-- START 2018 -->
 <!--            -->
 
-    <li class="tl-item down" style="--stem: 130px;">
+    <li class="tl-item down" style="--stem: 115px;">
+      <span class="tick"></span>
+      <span class="stem"></span>
+      <div class="card">
+        <span class="tl-pill tl-pill--work">Work</span>
+        <div class="tl-range">2018</div>
+        <h4 class="tl-title">Guest Speaker</h4>
+        <div class="tl-sub">ParisTech University</div>
+        <div class="tl-sub">Paris · France</div>
+      </div>
+    </li>
+
+    <li class="tl-item up" style="--stem: 130px;">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
@@ -540,7 +562,7 @@ author_profile: True
       </div>
     </li>
 
-    <li class="tl-item down" style="--stem: 130px;">
+    <li class="tl-item up" style="--stem: 130px;">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
@@ -563,7 +585,7 @@ author_profile: True
       </div>
     </li>
 
-    <li class="tl-item down" style="--stem: 130px;">
+    <li class="tl-item up" style="--stem: 130px;">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
@@ -575,7 +597,7 @@ author_profile: True
       </div>
     </li>    
     
-    <li class="tl-item up" style="--stem: 115px;">
+    <li class="tl-item down" style="--stem: 115px;">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
@@ -587,7 +609,7 @@ author_profile: True
       </div>
     </li>
 
-    <li class="tl-item down" style="--stem: 130px;">
+    <li class="tl-item up" style="--stem: 130px;">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
@@ -599,7 +621,7 @@ author_profile: True
       </div>
     </li>
 
-    <li class="tl-item up" style="--stem: 115px;">
+    <li class="tl-item down" style="--stem: 115px;">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
