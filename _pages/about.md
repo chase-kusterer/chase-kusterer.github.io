@@ -185,41 +185,6 @@ author_profile: True
   .map-legend{ margin-top: 0 !important;
                transform: translateY(calc(-1 * var(--legend-lift)));
                line-height: 1;}
-
-  /* new */
-  /* --- Duration bars (Gantt-style) that span multiple dots --- */
-.tl-list{ position: relative; } /* ensure a stable stacking context */
-
-/* Base bar */
-.tl-span{
-  /* place as a grid item spanning columns; set the actual span inline via grid-column */
-  align-self: center;               /* center on the baseline row */
-  height: 8px;
-  background: var(--bar, #0ea5e9);  /* default color; override with variants */
-  border-radius: 999px;
-  z-index: 0;                       /* below ticks (z-index:2) and stems (z-index:1) */
-  pointer-events: none;
-
-  /* make the bar begin/end at dot centers (not track edges) */
-  margin-inline: calc(var(--tl-track) / 2);
-}
-
-/* Nudge the bar so it doesn’t cover the baseline */
-.tl-span.above{ transform: translateY(-14px); }
-.tl-span.below{ transform: translateY( 14px); }
-
-/* Optional: dashed/intermittent look */
-.tl-span.dashed{
-  height: 6px;
-  background: repeating-linear-gradient(
-    90deg, var(--bar, #0ea5e9) 0 14px, transparent 14px 24px
-  );
-}
-
-/* Category colors (optional helpers) */
-.tl-span--work  { --bar: #ef4444; } /* red */
-.tl-span--teach { --bar: #0ea5e9; } /* cyan */
-.tl-span--pres  { --bar: #7c3aed; } /* purple */
 </style>
 
 
@@ -248,6 +213,9 @@ author_profile: True
   <div class="timeline" aria-label="Career timeline">
   <ol class="tl-list">
 
+<!--            -->
+<!-- START 2008 -->
+<!--            -->
     <li class="tl-item up" style="--stem: 140px;">
       <span class="tick"></span>
       <span class="stem"></span>
@@ -259,7 +227,8 @@ author_profile: True
         <div class="tl-sub">Fargo · USA</div>
       </div>
     </li>
-    
+
+
     <li class="tl-item down" style="--stem: 140px;">
       <span class="tick"></span>
       <span class="stem"></span>
@@ -272,6 +241,9 @@ author_profile: True
       </div>
     </li>
 
+<!--            -->
+<!-- START 2010 -->
+<!--            -->
     <li class="tl-item up" style="--stem: 110px;">
       <span class="tick"></span>
       <span class="stem"></span>
@@ -283,7 +255,10 @@ author_profile: True
         <div class="tl-sub">Shanghai · China</div>
       </div>
     </li>
-    
+
+<!--            -->
+<!-- START 2011 -->
+<!--            -->
     <li class="tl-item down" style="--stem: 120px;">
       <span class="tick"></span>
       <span class="stem"></span>
@@ -296,6 +271,9 @@ author_profile: True
       </div>
     </li>
 
+<!--            -->
+<!-- START 2013 -->
+<!--            -->
     <li class="tl-item up" style="--stem: 110px;">
       <span class="tick"></span>
       <span class="stem"></span>
@@ -312,11 +290,36 @@ author_profile: True
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
+        <span class="tl-pill tl-pill--pres">Publication</span>
+        <div class="tl-range">2013</div>
+        <h4 class="tl-title">Ch 2 - Consumers, Ecommerce, and Media in China</h4>
+        <div class="tl-sub">China Business Handbook</div>
+        <div class="tl-sub">US Commercial Service</div>
+        <div class="tl-sub">Shanghai · China</div>
+      </div>
+    </li>  
+
+    <li class="tl-item down" style="--stem: 130px;">
+      <span class="tick"></span>
+      <span class="stem"></span>
+      <div class="card">
         <span class="tl-pill tl-pill--work">Work</span>
         <div class="tl-range">2013-2017 · 5 years</div>
         <h4 class="tl-title">Adjunct Faculty</h4>
         <div class="tl-sub">Hult International Business School/div>
         <div class="tl-sub">Shanghai · China</div>
+      </div>
+    </li>
+
+    <li class="tl-item down" style="--stem: 130px;">
+      <span class="tick"></span>
+      <span class="stem"></span>
+      <div class="card">
+        <span class="tl-pill tl-pill--pres">Speaker</span>
+        <div class="tl-range">2014</div>
+        <h4 class="tl-title">InfoSys OOH (in Mandarin)</h4>
+        <div class="tl-sub">CTR Market Research</div>
+        <div class="tl-sub">Beijing · China</div>
       </div>
     </li>
     
@@ -336,15 +339,218 @@ author_profile: True
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
+        <span class="tl-pill tl-pill--pres">Speaker</span>
+        <div class="tl-range">2015</div>
+        <h4 class="tl-title">The Fridge has Facebook</h4>
+        <div class="tl-sub">TedX</div>
+        <div class="tl-sub">Shanghai · China</div>
+      </div>
+    </li>
+
+    <li class="tl-item down" style="--stem: 130px;">
+      <span class="tick"></span>
+      <span class="stem"></span>
+      <div class="card">
         <span class="tl-pill tl-pill--work">Work</span>
-        <div class="tl-range">2015-2017 · 3+ years</div>
-        <h4 class="tl-title">Director of Advanced Analytics &amp; Research</h4>
+        <div class="tl-range">2015-2021 · 7 years</div>
+        <h4 class="tl-title">Faculty (Visiting)</h4>
+        <div class="tl-sub">Hult International Business School/div>
+        <div class="tl-sub">Dubai · UAE</div>
+      </div>
+    </li>
+
+    <li class="tl-item down" style="--stem: 130px;">
+      <span class="tick"></span>
+      <span class="stem"></span>
+      <div class="card">
+        <span class="tl-pill tl-pill--work">Work</span>
+        <div class="tl-range">2015-2017 · 2+ years</div>
         <h4 class="tl-title">Director of Marketing Analytics</h4>
+        <div class="tl-sub">Education First - Kids &amp; Teens</div>
+        <div class="tl-sub">Shanghai · China</div>
+      </div>
+    </li>
+
+    <li class="tl-item down" style="--stem: 130px;">
+      <span class="tick"></span>
+      <span class="stem"></span>
+      <div class="card">
+        <span class="tl-pill tl-pill--pres">Chairperson and Keynote</span>
+        <div class="tl-range">2016</div>
+        <h4 class="tl-title">Big Data &amp; Analytics Innovation Summit</h4>
+        <div class="tl-sub">Innovation Enterprise</div>
+        <div class="tl-sub">Shenzhen · China</div>
+      </div>
+    </li>   
+
+    <li class="tl-item down" style="--stem: 130px;">
+      <span class="tick"></span>
+      <span class="stem"></span>
+      <div class="card">
+        <span class="tl-pill tl-pill--pres">Workshop</span>
+        <div class="tl-range">2016</div>
+        <div class="tl-sub">Education First - Kids &amp; Teens</div>
+        <div class="tl-sub">Bangkok · Thailand</div>
+      </div>
+    </li>   
+
+    <li class="tl-item down" style="--stem: 130px;">
+      <span class="tick"></span>
+      <span class="stem"></span>
+      <div class="card">
+        <span class="tl-pill tl-pill--pres">Master Class</span>
+        <div class="tl-range">2016</div>
+        <div class="tl-sub">Hult International Business School</div>
+        <div class="tl-sub">Jakarta · Indonesia</div>
+      </div>
+    </li>    
+
+    <li class="tl-item down" style="--stem: 130px;">
+      <span class="tick"></span>
+      <span class="stem"></span>
+      <div class="card">
+        <span class="tl-pill tl-pill--pres">Master Class</span>
+        <div class="tl-range">2016</div>
+        <div class="tl-sub">Hult International Business School</div>
+        <div class="tl-sub">Manila · Philippines</div>
+      </div>
+    </li>    
+
+    <li class="tl-item down" style="--stem: 130px;">
+      <span class="tick"></span>
+      <span class="stem"></span>
+      <div class="card">
+        <span class="tl-pill tl-pill--pres">Speaker</span>
+        <div class="tl-range">2016</div>
+        <h4 class="tl-title">Big Data &amp; Analytics for Banking Summit</h4>
+        <div class="tl-sub">Innovation Enterprise</div>
+        <div class="tl-sub">Hong Kong</div>
+      </div>
+    </li>
+
+    <li class="tl-item down" style="--stem: 130px;">
+      <span class="tick"></span>
+      <span class="stem"></span>
+      <div class="card">
+        <span class="tl-pill tl-pill--pres">Chairperson and Keynote</span>
+        <div class="tl-range">2016</div>
+        <h4 class="tl-title">DataX</h4>
+        <div class="tl-sub">Innovation Enterprise</div>
+        <div class="tl-sub">Seoul · South Korea</div>
+      </div>
+    </li>   
+
+    <li class="tl-item up" style="--stem: 115px;">
+      <span class="tick"></span>
+      <span class="stem"></span>
+      <div class="card">
+        <span class="tl-pill tl-pill--work">Work</span>
+        <div class="tl-range">2016</div>
+        <h4 class="tl-title">Guest Speaker</h4>
+        <div class="tl-sub">ParisTech University</div>
+        <div class="tl-sub">Paris · France</div>
+      </div>
+    </li>
+
+    <li class="tl-item down" style="--stem: 130px;">
+      <span class="tick"></span>
+      <span class="stem"></span>
+      <div class="card">
+        <span class="tl-pill tl-pill--work">Work</span>
+        <div class="tl-range">2017-2018 · 1 year</div>
+        <h4 class="tl-title">Director of Advanced Analytics &amp; Research</h4>
         <div class="tl-sub">Education First - Kids and Teens</div>
         <div class="tl-sub">Shanghai · China</div>
       </div>
     </li>
 
+    <li class="tl-item down" style="--stem: 130px;">
+      <span class="tick"></span>
+      <span class="stem"></span>
+      <div class="card">
+        <span class="tl-pill tl-pill--pres">Chairperson and Keynote</span>
+        <div class="tl-range">2017</div>
+        <h4 class="tl-title">Big Data &amp; Analytics Innovation Summit</h4>
+        <div class="tl-sub">Innovation Enterprise</div>
+        <div class="tl-sub">Hong Kong</div>
+      </div>
+    </li>   
+
+
+    <li class="tl-item down" style="--stem: 130px;">
+      <span class="tick"></span>
+      <span class="stem"></span>
+      <div class="card">
+        <span class="tl-pill tl-pill--pres">Chairperson</span>
+        <div class="tl-range">2017</div>
+        <h4 class="tl-title">Chief Innovation Officer Summit</h4>
+        <div class="tl-sub">Innovation Enterprise</div>
+        <div class="tl-sub">Shanghai · China</div>
+      </div>
+    </li>   
+
+    <li class="tl-item down" style="--stem: 130px;">
+      <span class="tick"></span>
+      <span class="stem"></span>
+      <div class="card">
+        <span class="tl-pill tl-pill--pres">Speaker</span>
+        <div class="tl-range">2017</div>
+        <h4 class="tl-title">Global Marketing and Technology Innovation Summit</h4>
+        <div class="tl-sub">Innovation Enterprise</div>
+        <div class="tl-sub">Shanghai · China</div>
+      </div>
+    </li>
+
+    <li class="tl-item down" style="--stem: 130px;">
+      <span class="tick"></span>
+      <span class="stem"></span>
+      <div class="card">
+        <span class="tl-pill tl-pill--pres">Speaker</span>
+        <div class="tl-range">2017</div>
+        <h4 class="tl-title">A Jump Start to Building Internal Analytical Capabilities</h4>
+        <div class="tl-sub">American Chamber of Commerce</div>
+        <div class="tl-sub">Shanghai · China</div>
+      </div>
+    </li>   
+    
+<!--            -->
+<!-- START 2018 -->
+<!--            -->
+
+    <li class="tl-item down" style="--stem: 130px;">
+      <span class="tick"></span>
+      <span class="stem"></span>
+      <div class="card">
+        <span class="tl-pill tl-pill--pres">Workshop</span>
+        <div class="tl-range">2018</div>
+        <div class="tl-sub">Education First - Kids &amp; Teens</div>
+        <div class="tl-sub">Siem Reap · Cambodia</div>
+      </div>
+    </li>    
+
+    <li class="tl-item down" style="--stem: 130px;">
+      <span class="tick"></span>
+      <span class="stem"></span>
+      <div class="card">
+        <span class="tl-pill tl-pill--pres">Chairperson</span>
+        <div class="tl-range">2018</div>
+        <h4 class="tl-title">DataX</h4>
+        <div class="tl-sub">Innovation Enterprise</div>
+        <div class="tl-sub">Shanghai · China</div>
+      </div>
+    </li>
+
+    <li class="tl-item down" style="--stem: 130px;">
+      <span class="tick"></span>
+      <span class="stem"></span>
+      <div class="card">
+        <span class="tl-pill tl-pill--pres">Workshop</span>
+        <div class="tl-range">2018</div>
+        <div class="tl-sub">Education First - Kids &amp; Teens</div>
+        <div class="tl-sub">New Orleans · USA</div>
+      </div>
+    </li>    
+    
     <li class="tl-item down" style="--stem: 130px;">
       <span class="tick"></span>
       <span class="stem"></span>
@@ -356,27 +562,55 @@ author_profile: True
         <div class="tl-sub">San Francisco · USA</div>
       </div>
     </li>
+
+    <li class="tl-item down" style="--stem: 130px;">
+      <span class="tick"></span>
+      <span class="stem"></span>
+      <div class="card">
+        <span class="tl-pill tl-pill--pres">Publication</span>
+        <div class="tl-range">2019</div>
+        <h4 class="tl-title">From Print to Prediction - </h4>
+        <h4 class="tl-title">A Beginner's Guide to Data Analysis in Python</h4>
+        <div class="tl-sub">San Francisco · USA</div>
+      </div>
+    </li>    
     
     <li class="tl-item up" style="--stem: 115px;">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
         <span class="tl-pill tl-pill--work">Work</span>
-        <div class="tl-range">2022, 2025</div>
+        <div class="tl-range">2022</div>
         <h4 class="tl-title">Faculty (Visiting)</h4>
-        <div class="tl-sub">Hult · New York City</div>
+        <div class="tl-sub">Hult International Business School</div>
+        <div class="tl-sub">New York City · USA</div>
       </div>
     </li>
 
-  <!--New - timeline bars -->
-  <!-- Example 1: WORK spanning dots 2 → 4 (inclusive), drawn just above the line -->
-  <!-- grid-column end is exclusive, so 2/5 covers 2,3,4 -->
-  <li class="tl-span tl-span--work above"
-      style="grid-column: 2 / 5;" aria-hidden="true"></li>
+    <li class="tl-item down" style="--stem: 130px;">
+      <span class="tick"></span>
+      <span class="stem"></span>
+      <div class="card">
+        <span class="tl-pill tl-pill--pres">Panel Host</span>
+        <div class="tl-range">2025</div>
+        <h4 class="tl-title">Autodesk Analytics in Action</h4>
+        <div class="tl-sub">AutoDesk</div>
+        <div class="tl-sub">San Francisco · USA</div>
+      </div>
+    </li>
 
-  <!-- Example 2: PRESENTATIONS spanning dots 3 → 5, dashed, drawn below the line -->
-  <li class="tl-span tl-span--pres below dashed"
-      style="grid-column: 3 / 6;" aria-hidden="true"></li>
+    <li class="tl-item up" style="--stem: 115px;">
+      <span class="tick"></span>
+      <span class="stem"></span>
+      <div class="card">
+        <span class="tl-pill tl-pill--work">Work</span>
+        <div class="tl-range">2025</div>
+        <h4 class="tl-title">Faculty (Visiting)</h4>
+        <div class="tl-sub">Hult International Business School</div>
+        <div class="tl-sub">New York City · USA</div>
+      </div>
+    </li>
+
         </ol>
   </div>
 </div>  <!-- FULL-BLEED END -->
