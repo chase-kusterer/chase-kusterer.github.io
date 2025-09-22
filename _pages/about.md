@@ -229,7 +229,7 @@ author_profile: True
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
-        <span class="tl-pill--work">Work</span>
+        <span class="tl-pill tl-pill--work">Work</span>
         <div class="tl-range">2008–2009 · 1 year</div>
         <h4 class="tl-title">Assistant of Student Affairs</h4>
         <div class="tl-sub">Shantou University Business School</div>
@@ -253,7 +253,7 @@ author_profile: True
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
-        <span class="tl-pill--work">Work</span>
+        <span class="tl-pill tl-pill--work">Work</span>
         <div class="tl-range">2011 · 6 months</div>
         <h4 class="tl-title">Special Assistant to the CFO</h4>
         <div class="tl-sub">China US Strategy Capital Group, Ltd.</div>
@@ -265,7 +265,7 @@ author_profile: True
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
-        <span class="tl-pill--work">Work</span>
+        <span class="tl-pill tl-pill--work">Work</span>
         <div class="tl-range">2011-2014 · 3+ years</div>
         <h4 class="tl-title">Media Intelligence Client Manager</h4>
         <div class="tl-sub">CTR Market Research</div>
@@ -277,7 +277,7 @@ author_profile: True
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
-        <span class="tl-pill--work">Work</span>
+        <span class="tl-pill tl-pill--work">Work</span>
         <div class="tl-range">2013-2017 · 5 years</div>
         <h4 class="tl-title">Adjunct Faculty</h4>
         <div class="tl-sub">Hult International Business School/div>
@@ -301,7 +301,7 @@ author_profile: True
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
-        <span class="tl-pill--work">Work</span>
+        <span class="tl-pill tl-pill--work">Work</span>
         <div class="tl-range">2015-2017 · 3+ years</div>
         <h4 class="tl-title">Director of Advanced Analytics &amp; Research</h4>
         <h4 class="tl-title">Director of Marketing Analytics</h4>
@@ -314,7 +314,7 @@ author_profile: True
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
-        <span class="tl-pill--work">Work</span>
+        <span class="tl-pill tl-pill--work">Work</span>
         <div class="tl-range">2018-Present · 7+ years</div>
         <h4 class="tl-title">Faculty of Analytics</h4>
         <div class="tl-sub">Hult International Business School/div>
@@ -326,7 +326,7 @@ author_profile: True
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
-        <span class="tl-pill--work">Work</span>
+        <span class="tl-pill tl-pill--work">Work</span>
         <div class="tl-range">2022, 2025</div>
         <h4 class="tl-title">Faculty (Visiting)</h4>
         <div class="tl-sub">Hult · New York City</div>
