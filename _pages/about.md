@@ -185,6 +185,41 @@ author_profile: True
   .map-legend{ margin-top: 0 !important;
                transform: translateY(calc(-1 * var(--legend-lift)));
                line-height: 1;}
+
+  /* new */
+  /* --- Duration bars (Gantt-style) that span multiple dots --- */
+.tl-list{ position: relative; } /* ensure a stable stacking context */
+
+/* Base bar */
+.tl-span{
+  /* place as a grid item spanning columns; set the actual span inline via grid-column */
+  align-self: center;               /* center on the baseline row */
+  height: 8px;
+  background: var(--bar, #0ea5e9);  /* default color; override with variants */
+  border-radius: 999px;
+  z-index: 0;                       /* below ticks (z-index:2) and stems (z-index:1) */
+  pointer-events: none;
+
+  /* make the bar begin/end at dot centers (not track edges) */
+  margin-inline: calc(var(--tl-track) / 2);
+}
+
+/* Nudge the bar so it doesn’t cover the baseline */
+.tl-span.above{ transform: translateY(-14px); }
+.tl-span.below{ transform: translateY( 14px); }
+
+/* Optional: dashed/intermittent look */
+.tl-span.dashed{
+  height: 6px;
+  background: repeating-linear-gradient(
+    90deg, var(--bar, #0ea5e9) 0 14px, transparent 14px 24px
+  );
+}
+
+/* Category colors (optional helpers) */
+.tl-span--work  { --bar: #ef4444; } /* red */
+.tl-span--teach { --bar: #0ea5e9; } /* cyan */
+.tl-span--pres  { --bar: #7c3aed; } /* purple */
 </style>
 
 
@@ -333,6 +368,15 @@ author_profile: True
       </div>
     </li>
 
+  <!--New - timeline bars -->
+  <!-- Example 1: WORK spanning dots 2 → 4 (inclusive), drawn just above the line -->
+  <!-- grid-column end is exclusive, so 2/5 covers 2,3,4 -->
+  <li class="tl-span tl-span--work above"
+      style="grid-column: 2 / 5;" aria-hidden="true"></li>
+
+  <!-- Example 2: PRESENTATIONS spanning dots 3 → 5, dashed, drawn below the line -->
+  <li class="tl-span tl-span--pres below dashed"
+      style="grid-column: 3 / 6;" aria-hidden="true"></li>
         </ol>
   </div>
 </div>  <!-- FULL-BLEED END -->
