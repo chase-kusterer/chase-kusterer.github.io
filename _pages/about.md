@@ -125,12 +125,8 @@ author_profile: True
   .tl-range{   font-size:.80rem; color:var(--tl-muted); margin:.15rem 0 .35rem; }
   .tl-title{   margin:0; font-size:1.10rem; line-height:1.25; font-weight:700; }
   .tl-sub{     margin:.15rem 0 0; color:var(--tl-muted); }
-  .tl-edu{    display:inline-block; padding:.2rem .5rem; border-radius:999px;
+  .tl-pill{    display:inline-block; padding:.2rem .5rem; border-radius:999px;
                background:#caff00; color:#0f172a; font-weight:600; font-size:.75rem; }
-  .tl-work{   display:inline-block; padding:.2rem .5rem; border-radius:999px;
-               background:#f54927; color:#000000; font-weight:600; font-size:.75rem;
-  .tl-pres{   display:inline-block; padding:.2rem .5rem; border-radius:999px;
-               background:#4734E0; color:#FFFFFF; font-weight:600; font-size:.75rem;}
     
 
   @media (max-width: 640px){
@@ -204,7 +200,7 @@ author_profile: True
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
-        <span class="tl-edu">Education</span>
+        <span class="tl-pill">Education</span>
         <div class="tl-range">2008–2009 · 1 year</div>
         <h4 class="tl-title">Assistant of Student Affairs</h4>
         <div class="tl-sub">Shantou University Business School</div>
