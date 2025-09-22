@@ -157,7 +157,6 @@ author_profile: True
 
 </style>
 
-<div class="fullbleed">  <!-- FULL-BLEED START -->
 <figure style="margin:0;">
   <div class="map-shell">
     <div class="map-viewport">
@@ -179,6 +178,7 @@ author_profile: True
 </figure> <!-- /figure -->
 
 <!-- Timeline -->
+<div class="fullbleed">  <!-- FULL-BLEED START -->
 <div class="timeline" aria-label="Career timeline">
   <ol class="tl-list">
     
