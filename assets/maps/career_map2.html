@@ -50,8 +50,7 @@
   position: relative;
 }
 #map_38aeee7d88381084d80d1393780a5281::after {
-  content: "";
-  position: absolute; inset: 0;
+  content: "";/* was 60vh → 33% larger */  position: absolute; inset: 0;
   pointer-events: none;
   border-radius: 50% / 105.55555555555556%; /* approx aspect hint */
   border: 2px solid rgba(255,255,255,0.15);
@@ -102,13 +101,13 @@
 </body>
 <script>
     
-    
+            <!-- from 2 to 3 after resize -->
             var map_38aeee7d88381084d80d1393780a5281 = L.map(
                 "map_38aeee7d88381084d80d1393780a5281",
                 {
                     center: [33.25704835483369, 31.09475782070367],
                     crs: L.CRS.EPSG3857,
-                    zoom: 2,
+                    zoom: 3,
                     zoomControl: true,
                     preferCanvas: false,
                 }
