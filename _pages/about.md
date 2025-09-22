@@ -152,12 +152,12 @@ author_profile: True
   padding-inline: clamp(8px, 2.5vw, 24px);
 }
 
-/* (Optional) ensure nothing clips the full-bleed 
-.layout--single .page__inner-wrap{ overflow: visible; } */
+/* (Optional) ensure nothing clips the full-bleed */
+.layout--single .page__inner-wrap{ overflow: visible; }
 
 </style>
 
-
+<div class="fullbleed">  <!-- FULL-BLEED START -->
 <figure style="margin:0;">
   <div class="map-shell">
     <div class="map-viewport">
@@ -177,13 +177,6 @@ author_profile: True
     </div>
   </div> <!-- /map-shell -->
 </figure> <!-- /figure -->
-
-<h3>Professional Highlights</h3>
-<ul>
-  <li>10-time Faculty of the Year</li>
-  <li>Author of <em>From Print to Prediction: A Beginner’s Guide to Data Analysis in Python</em></li>
-  <li>Quoted in <em>The New York Times</em></li>
-</ul>
 
 <!-- Timeline -->
 <div class="timeline" aria-label="Career timeline">
@@ -236,4 +229,27 @@ author_profile: True
       <div class="card">
         <div class="tl-range">2022, 2025</div>
         <h4 class="tl-title">Faculty (Visiting)</h4>
-        <div class="tl-su
+        <div class="tl-sub">Hult · New York City</div>
+      </div>
+    </li>
+
+    <li class="tl-item down" style="--stem: 120px;">
+      <span class="tick"></span>
+      <span class="stem"></span>
+      <div class="card">
+      <div class="tl-range">2022, 2025</div>
+      <h4 class="tl-title">Faculty (Visiting)</h4>
+      <div class="tl-sub">Hult · New York City</div>
+      </div>
+      </li>
+        </ol>
+  </div>
+</div>  <!-- FULL-BLEED END -->
+
+
+<h3>Professional Highlights</h3>
+<ul>
+  <li>10-time Faculty of the Year</li>
+  <li>Author of <em>From Print to Prediction: A Beginner’s Guide to Data Analysis in Python</em></li>
+  <li>Quoted in <em>The New York Times</em></li>
+</ul>
