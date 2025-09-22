@@ -22,7 +22,7 @@ author_profile: True
     --tl-line: #0f172a33;
     --tl-dot:  #0f172a;
     --tl-muted:#6b7280;
-    --tl-gap:  2.5rem;        /* baseline ↔ card gap */
+    --tl-gap:  2rem;        /* baseline ↔ card gap */
     --tl-track: 200px;      /* fixed step between dots (try 180–240px) */
     --tl-height: 280px;     /* total vertical working height of each column */
     --tl-gap-factor: 1.00;  /* closer to 1 = farther from the line */
@@ -130,8 +130,21 @@ author_profile: True
   .tl-range{   font-size:.80rem; color:var(--tl-muted); margin:.15rem 0 .35rem; }
   .tl-title{   margin:0; font-size:1.10rem; line-height:1.25; font-weight:700; }
   .tl-sub{     margin:.15rem 0 0; color:var(--tl-muted); }
-  .tl-pill{    display:inline-block; padding:.2rem .5rem; border-radius:999px;
-               background:#caff00; color:#0f172a; font-weight:600; font-size:.75rem; }
+  .tl-pill{
+    --pill-bg:#caff00;   /* default bg */
+    --pill-fg:#0f172a;   /* default fg */
+    display:inline-block;
+    padding:.2rem .5rem;
+    border-radius:999px;
+    font-weight:600;
+    font-size:.75rem;
+    line-height:1.2;
+    background:var(--pill-bg);
+    color:var(--pill-fg);
+  }
+  /* pill modifiers */
+  .tl-pill--work{ --pill-bg:#f54927; --pill-fg:#ffffff; }
+  .tl-pill--pres{ --pill-bg:#4734E0; --pill-fg:#ffffff; }
     
 
   @media (max-width: 640px){
