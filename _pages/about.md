@@ -128,7 +128,7 @@ author_profile: True
   /* Text styles */
   .tl-eyebrow{ font-size:.70rem; letter-spacing:.03em; text-transform:uppercase; color:var(--tl-muted); }
   .tl-range{   font-size:.80rem; color:var(--tl-muted); margin:.15rem 0 .35rem; }
-  .tl-title{   margin:0; font-size:1.10rem; line-height:1.25; font-weight:700; }
+  .tl-title{   margin:0; font-size:var(--tl-title-size, 1.10rem); line-height:1.25; font-weight:700; hyphens: auto; overflow-wrap: anywhere;}
   .tl-sub{     margin:.15rem 0 0; color:var(--tl-muted); }
   .tl-pill{
     --pill-bg:#caff00;   /* default bg */
@@ -293,8 +293,8 @@ author_profile: True
         <span class="tl-pill tl-pill--pres">Publication</span>
         <div class="tl-range">2013</div>
         <h4 class="tl-title">Consumers, Ecommerce, and Media in China</h4>
-        <div class="tl-sub">China Business Handbook · US Commercial Service</div>
-        <div class="tl-sub">Shanghai · China</div>
+        <div class="tl-sub">China Business Handbook</div>
+        <div class="tl-sub">US Commercial Service</div>
       </div>
     </li>  
 
@@ -509,7 +509,7 @@ author_profile: True
       <div class="card">
         <span class="tl-pill tl-pill--pres">Speaker</span>
         <div class="tl-range">2017</div>
-        <h5 class="tl-title">Global Marketing and Technology Innovation Summit</h5>
+        <h4 class="tl-title" style="--tl-title-size:.95rem;">Global Marketing and Technology Innovation Summit</h4>
         <div class="tl-sub">Innovation Enterprise</div>
         <div class="tl-sub">Shanghai · China</div>
       </div>
@@ -521,7 +521,7 @@ author_profile: True
       <div class="card">
         <span class="tl-pill tl-pill--pres">Speaker</span>
         <div class="tl-range">2017</div>
-        <h5 class="tl-title">A Jump Start to Building Internal Analytical Capabilities</h5>
+        <h4 class="tl-title" style="--tl-title-size:.95rem;">A Jump Start to Building Internal Analytical Capabilities</h4>
         <div class="tl-sub">American Chamber of Commerce</div>
         <div class="tl-sub">Shanghai · China</div>
       </div>
