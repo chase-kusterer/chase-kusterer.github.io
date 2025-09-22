@@ -130,7 +130,7 @@ author_profile: True
   .tl-work{   display:inline-block; padding:.2rem .5rem; border-radius:999px;
                background:#f54927; color:#000000; font-weight:600; font-size:.75rem;
   .tl-pres{   display:inline-block; padding:.2rem .5rem; border-radius:999px;
-               background:#4734E0; color:#FFFFFF; font-weight:600; font-size:.75rem;
+               background:#4734E0; color:#FFFFFF; font-weight:600; font-size:.75rem;}
     
 
   @media (max-width: 640px){
@@ -168,7 +168,7 @@ author_profile: True
   .map-legend{  margin-top: 0 !important; }   /* was .15rem */
   
   /* (Optional) gentle overlap: lift the legend up into the map */
-  .map-shell { --legend-lift: 3.00rem; }       /* tweak: .25rem–1rem */
+  .map-shell { --legend-lift: 3.25rem; }       /* tweak: .25rem–1rem */
   .map-legend{ margin-top: 0 !important;
                transform: translateY(calc(-1 * var(--legend-lift)));
                line-height: 1;}
