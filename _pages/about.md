@@ -22,12 +22,10 @@ author_profile: True
     --tl-line: #0f172a33;
     --tl-dot:  #0f172a;
     --tl-muted:#6b7280;
-    --tl-gap:  12px;        /* baseline ↔ card gap (before the 50% reduction) */
-
-    /* Spacing + geometry (tune these 3 first) */
+    --tl-gap:  1rem;        /* baseline ↔ card gap (before the 50% reduction) */
     --tl-track: 200px;      /* fixed step between dots (try 180–240px) */
     --tl-height: 280px;     /* total vertical working height of each column */
-    --tl-gap-factor: .5;    /* 0.5 = cards 50% closer to baseline */
+    --tl-gap-factor: .85;   /* closer to 1 = farther from the line */
 
     /* Card & tick */
     --tl-card-offset: 12px; /* space from tick to card’s left edge */
