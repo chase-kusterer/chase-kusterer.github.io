@@ -141,6 +141,23 @@ author_profile: True
   }
 </style>
 
+/* second style block for longer timeline */
+<style>
+/* Stack the author profile ABOVE the content (so no left column steals width) */
+.layout--single .page__sidebar{ float:none; width:auto; max-width:100%; margin:0 0 1rem 0; position:static; }
+.layout--single .sidebar{ position:static; }  /* disable sticky/float */
+
+/* Full-bleed wrapper that spans the entire viewport width */
+.fullbleed{
+  width:100vw; max-width:100vw;
+  margin-left:50%; transform:translateX(-50%);
+  padding-inline: clamp(8px, 2.5vw, 24px);
+}
+
+/* (Optional) ensure nothing clips the full-bleed */
+.layout--single .page__inner-wrap{ overflow: visible; }
+</style>
+
 <figure style="margin:0;">
   <div class="map-shell">
     <div class="map-viewport">
