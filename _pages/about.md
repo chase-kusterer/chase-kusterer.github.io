@@ -293,8 +293,7 @@ author_profile: True
         <span class="tl-pill tl-pill--pres">Publication</span>
         <div class="tl-range">2013</div>
         <h4 class="tl-title">Consumers, Ecommerce, and Media in China</h4>
-        <div class="tl-sub">China Business Handbook</div>
-        <div class="tl-sub">US Commercial Service</div>
+        <div class="tl-sub">China Business Handbook · US Commercial Service</div>
         <div class="tl-sub">Shanghai · China</div>
       </div>
     </li>  
@@ -389,6 +388,7 @@ author_profile: True
       <div class="card">
         <span class="tl-pill tl-pill--pres">Workshop</span>
         <div class="tl-range">2016</div>
+        <h4 class="tl-title">Regional Division Conference</h4>
         <div class="tl-sub">Education First - Kids &amp; Teens</div>
         <div class="tl-sub">Bangkok · Thailand</div>
       </div>
@@ -400,6 +400,7 @@ author_profile: True
       <div class="card">
         <span class="tl-pill tl-pill--pres">Master Class</span>
         <div class="tl-range">2016</div>
+        <h4 class="tl-title">International Recruitment Seminar</h4>
         <div class="tl-sub">Hult International Business School</div>
         <div class="tl-sub">Jakarta · Indonesia</div>
       </div>
@@ -411,6 +412,7 @@ author_profile: True
       <div class="card">
         <span class="tl-pill tl-pill--pres">Master Class</span>
         <div class="tl-range">2016</div>
+        <h4 class="tl-title">International Recruitment Seminar</h4>
         <div class="tl-sub">Hult International Business School</div>
         <div class="tl-sub">Manila · Philippines</div>
       </div>
@@ -422,6 +424,7 @@ author_profile: True
       <div class="card">
         <span class="tl-pill tl-pill--pres">Workshop</span>
         <div class="tl-range">2016</div>
+        <h4 class="tl-title">Global Division Conference</h4>
         <div class="tl-sub">Education First - Kids &amp; Teens</div>
         <div class="tl-sub">Budapest · Hungary</div>
       </div>
@@ -481,6 +484,7 @@ author_profile: True
       <div class="card">
         <span class="tl-pill tl-pill--pres">Workshop</span>
         <div class="tl-range">2017</div>
+        <h4 class="tl-title">Regional Division Conference</h4>
         <div class="tl-sub">Education First - Kids &amp; Teens</div>
         <div class="tl-sub">Singapore</div>
       </div>
@@ -505,7 +509,7 @@ author_profile: True
       <div class="card">
         <span class="tl-pill tl-pill--pres">Speaker</span>
         <div class="tl-range">2017</div>
-        <h4 class="tl-title">Global Marketing and Technology Innovation Summit</h4>
+        <h5 class="tl-title">Global Marketing and Technology Innovation Summit</h5>
         <div class="tl-sub">Innovation Enterprise</div>
         <div class="tl-sub">Shanghai · China</div>
       </div>
@@ -517,7 +521,7 @@ author_profile: True
       <div class="card">
         <span class="tl-pill tl-pill--pres">Speaker</span>
         <div class="tl-range">2017</div>
-        <h4 class="tl-title">A Jump Start to Building Internal Analytical Capabilities</h4>
+        <h5 class="tl-title">A Jump Start to Building Internal Analytical Capabilities</h5>
         <div class="tl-sub">American Chamber of Commerce</div>
         <div class="tl-sub">Shanghai · China</div>
       </div>
@@ -545,6 +549,7 @@ author_profile: True
       <div class="card">
         <span class="tl-pill tl-pill--pres">Workshop</span>
         <div class="tl-range">2018</div>
+        <h4 class="tl-title">Regional Division Conference</h4>
         <div class="tl-sub">Education First - Kids &amp; Teens</div>
         <div class="tl-sub">Siem Reap · Cambodia</div>
       </div>
@@ -568,6 +573,7 @@ author_profile: True
       <div class="card">
         <span class="tl-pill tl-pill--pres">Workshop</span>
         <div class="tl-range">2018</div>
+        <h4 class="tl-title">Global Division Conference</h4>
         <div class="tl-sub">Education First - Kids &amp; Teens</div>
         <div class="tl-sub">New Orleans · USA</div>
       </div>
