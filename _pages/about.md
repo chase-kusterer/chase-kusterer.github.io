@@ -509,7 +509,7 @@ author_profile: True
       <div class="card">
         <span class="tl-pill tl-pill--pres">Speaker</span>
         <div class="tl-range">2017</div>
-        <h4 class="tl-title" style="font-size:.75rem !important;">Global Marketing and Technology Innovation Summit</h4>
+        <h4 class="tl-title">Global Marketing and Tech Innovation Summit</h4>
         <div class="tl-sub">Innovation Enterprise</div>
         <div class="tl-sub">Shanghai · China</div>
       </div>
@@ -521,7 +521,7 @@ author_profile: True
       <div class="card">
         <span class="tl-pill tl-pill--pres">Speaker</span>
         <div class="tl-range">2017</div>
-        <h4 class="tl-title" style="font-size:.75rem !important;">A Jump Start to Building Internal Analytical Capabilities</h4>
+        <h4 class="tl-title">A Jump Start to Internal Analytical Capabilities</h4>
         <div class="tl-sub">American Chamber of Commerce</div>
         <div class="tl-sub">Shanghai · China</div>
       </div>
