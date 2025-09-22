@@ -24,7 +24,7 @@ author_profile: True
     --tl-muted:#6b7280;
     --tl-gap:  2rem;        /* baseline ↔ card gap */
     --tl-track: 200px;      /* fixed step between dots (try 180–240px) */
-    --tl-height: 320px;     /* 280 total vertical working height of each column */
+    --tl-height: 320px;     /* total vertical working height of each column */
     --tl-gap-factor: 1.00;  /* closer to 1 = farther from the line */
 
     /* Card & tick */
@@ -153,8 +153,7 @@ author_profile: True
   @media (max-width: 800px){
     .tl-item .stem{ height: calc(var(--stem,110px) * .75); top:auto; } /* slightly longer stems on small screens */
   }
-
-  /* NEW */
+  
   .layout--single .page__inner-wrap{
     max-width: min(95vw, 1400px);
   }
@@ -213,25 +212,28 @@ author_profile: True
 <div class="fullbleed">  <!-- FULL-BLEED START -->
   <div class="timeline" aria-label="Career timeline">
   <ol class="tl-list">
-    
+
     <li class="tl-item up" style="--stem: 140px;">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
         <span class="tl-pill">Education</span>
-        <div class="tl-range">2008–2009 · 1 year</div>
-        <h4 class="tl-title">Assistant of Student Affairs</h4>
-        <div class="tl-sub">Shantou University Business School</div>
+        <div class="tl-range">2004–2008 · 4 years</div>
+        <h4 class="tl-title">Bachelor's of Business Administration</h4>
+        <div class="tl-sub">North Dakota State University</div>
+        <div class="tl-sub">Fargo · USA</div>
       </div>
     </li>
-
-    <li class="tl-item down" style="--stem: 120px;">
+    
+    <li class="tl-item down" style="--stem: 140px;">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
-        <div class="tl-range">2009–2018 · 9 years</div>
-        <h4 class="tl-title">Director / Adjunct Professor</h4>
-        <div class="tl-sub">EF Education First · Hult International Business School</div>
+        <span class="tl-pill--work">Work</span>
+        <div class="tl-range">2008–2009 · 1 year</div>
+        <h4 class="tl-title">Assistant of Student Affairs</h4>
+        <div class="tl-sub">Shantou University Business School</div>
+        <div class="tl-sub">Shantou · China</div>
       </div>
     </li>
 
@@ -239,9 +241,35 @@ author_profile: True
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
-        <div class="tl-range">2016</div>
-        <h4 class="tl-title">Chair &amp; Keynote Speaker</h4>
-        <div class="tl-sub">DataX · Shenzhen &amp; Seoul</div>
+        <span class="tl-pill">Education</span>
+        <div class="tl-range">2010 · 4 months</div>
+        <h4 class="tl-title">Chinese Language Certificate</h4>
+        <div class="tl-sub">Donghua University</div>
+        <div class="tl-sub">Shanghai · China</div>
+      </div>
+    </li>
+    
+    <li class="tl-item down" style="--stem: 120px;">
+      <span class="tick"></span>
+      <span class="stem"></span>
+      <div class="card">
+        <span class="tl-pill--work">Work</span>
+        <div class="tl-range">2011 · 6 months</div>
+        <h4 class="tl-title">Special Assistant to the CFO</h4>
+        <div class="tl-sub">China US Strategy Capital Group, Ltd.</div>
+        <div class="tl-sub">Shanghai · China</div>
+      </div>
+    </li>
+
+    <li class="tl-item up" style="--stem: 110px;">
+      <span class="tick"></span>
+      <span class="stem"></span>
+      <div class="card">
+        <span class="tl-pill--work">Work</span>
+        <div class="tl-range">2011-2014 · 3+ years</div>
+        <h4 class="tl-title">Media Intelligence Client Manager</h4>
+        <div class="tl-sub">CTR Market Research</div>
+        <div class="tl-sub">Shanghai · China</div>
       </div>
     </li>
 
@@ -249,31 +277,62 @@ author_profile: True
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
-        <div class="tl-range">2018–2025 · 7 years</div>
-        <h4 class="tl-title">Faculty of Analytics</h4>
-        <div class="tl-sub">Hult International Business School · San Francisco</div>
+        <span class="tl-pill--work">Work</span>
+        <div class="tl-range">2013-2017 · 5 years</div>
+        <h4 class="tl-title">Adjunct Faculty</h4>
+        <div class="tl-sub">Hult International Business School/div>
+        <div class="tl-sub">Shanghai · China</div>
+      </div>
+    </li>
+    
+    <li class="tl-item down" style="--stem: 130px;">
+      <span class="tick"></span>
+      <span class="stem"></span>
+      <div class="card">
+        <span class="tl-pill">Education</span>
+        <div class="tl-range">2014-2016 · 2 years</div>
+        <h4 class="tl-title">Master's of Predictive Analytics</h4>
+        <div class="tl-sub">Northwestern University</div>
+        <div class="tl-sub">Chicago/Evanston · USA</div>
       </div>
     </li>
 
+    <li class="tl-item down" style="--stem: 130px;">
+      <span class="tick"></span>
+      <span class="stem"></span>
+      <div class="card">
+        <span class="tl-pill--work">Work</span>
+        <div class="tl-range">2015-2017 · 3+ years</div>
+        <h4 class="tl-title">Director of Advanced Analytics &amp; Research</h4>
+        <h4 class="tl-title">Director of Marketing Analytics</h4>
+        <div class="tl-sub">Education First - Kids and Teens</div>
+        <div class="tl-sub">Shanghai · China</div>
+      </div>
+    </li>
+
+    <li class="tl-item down" style="--stem: 130px;">
+      <span class="tick"></span>
+      <span class="stem"></span>
+      <div class="card">
+        <span class="tl-pill--work">Work</span>
+        <div class="tl-range">2018-Present · 7+ years</div>
+        <h4 class="tl-title">Faculty of Analytics</h4>
+        <div class="tl-sub">Hult International Business School/div>
+        <div class="tl-sub">San Francisco · USA</div>
+      </div>
+    </li>
+    
     <li class="tl-item up" style="--stem: 115px;">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
+        <span class="tl-pill--work">Work</span>
         <div class="tl-range">2022, 2025</div>
         <h4 class="tl-title">Faculty (Visiting)</h4>
         <div class="tl-sub">Hult · New York City</div>
       </div>
     </li>
 
-    <li class="tl-item down" style="--stem: 120px;">
-      <span class="tick"></span>
-      <span class="stem"></span>
-      <div class="card">
-      <div class="tl-range">2022, 2025</div>
-      <h4 class="tl-title">Faculty (Visiting)</h4>
-      <div class="tl-sub">Hult · New York City</div>
-      </div>
-      </li>
         </ol>
   </div>
 </div>  <!-- FULL-BLEED END -->
