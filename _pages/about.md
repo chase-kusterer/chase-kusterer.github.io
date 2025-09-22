@@ -4,14 +4,14 @@ title: "About"
 layout: single
 classes: wide
 sidebar: null
-author_profile: False
+author_profile: True
 ---
 <h2 class="h2" style="margin:.25rem 0 .35rem;">My Career Journey</h2>
 
 <style>
   :root{
     /* Map */
-    --map-h: 80vh; /* was 60vh → 33% larger */
+    --map-h: 60vh;
     --overlay-frac: .42;
     --oval-rx: 50%;
     --oval-ry: 42%;
@@ -155,6 +155,14 @@ author_profile: False
 /* (Optional) ensure nothing clips the full-bleed */
 .layout--single .page__inner-wrap{ overflow: visible; }
 
+
+  /* NEW Tighten map ↔ legend spacing */
+  .map-overlay{ margin-top: 0 !important; }   /* was .25rem */
+  .map-legend{  margin-top: 0 !important; }   /* was .15rem */
+  
+  /* (Optional) gentle overlap: lift the legend up into the map */
+  .map-shell { --legend-lift: .50rem; }       /* tweak: .25rem–1rem */
+  .map-legend{ transform: translateY(calc(-1 * var(--legend-lift))); }
 </style>
 
 
