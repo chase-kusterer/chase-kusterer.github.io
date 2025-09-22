@@ -161,8 +161,10 @@ author_profile: True
   .map-legend{  margin-top: 0 !important; }   /* was .15rem */
   
   /* (Optional) gentle overlap: lift the legend up into the map */
-  .map-shell { --legend-lift: .50rem; }       /* tweak: .25rem–1rem */
-  .map-legend{ transform: translateY(calc(-1 * var(--legend-lift))); }
+  .map-shell { --legend-lift: 1.25rem; }       /* tweak: .25rem–1rem */
+  .map-legend{ margin-top: 0 !important;
+               transform: translateY(calc(-1 * var(--legend-lift)));
+               line-height: 1;}
 </style>
 
 
