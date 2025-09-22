@@ -22,10 +22,10 @@ author_profile: True
     --tl-line: #0f172a33;
     --tl-dot:  #0f172a;
     --tl-muted:#6b7280;
-    --tl-gap:  1.5rem;        /* baseline ↔ card gap */
+    --tl-gap:  3rem;        /* baseline ↔ card gap */
     --tl-track: 200px;      /* fixed step between dots (try 180–240px) */
     --tl-height: 280px;     /* total vertical working height of each column */
-    --tl-gap-factor: 1.00;   /* closer to 1 = farther from the line */
+    --tl-gap-factor: 1.00;  /* closer to 1 = farther from the line */
 
     /* Card & tick */
     --tl-card-offset: 12px; /* space from tick to card’s left edge */
@@ -102,10 +102,17 @@ author_profile: True
   /* Stems are 50% of original; under dot, over baseline */
   .tl-item .stem{ position:absolute; left:50%; width:2px; background:var(--tl-line);
                   transform: translateX(-50%); z-index:1; }
-  .tl-item.up   .stem{ height: calc(var(--stem, 110px) * .5);
-                       top: calc(50% - (var(--stem,110px) * .5)); }
-  .tl-item.down .stem{ height: calc(var(--stem, 110px) * .5);
-                       top: 50%; }
+  .tl-item.up   .stem{
+                  position:absolute; left:50%; width:2px; background:var(--tl-line);
+                  height: calc((var(--stem, 110px) * .5) + (var(--tl-gap) * var(--tl-gap-factor)));
+                  top:    calc(50% - ((var(--stem, 110px) * .5) + (var(--tl-gap) * var(--tl-gap-factor))));
+                  transform: translateX(-50%);
+                  }
+  .tl-item.down .stem{
+                  position:absolute; left:50%; width:2px; background:var(--tl-line);
+                  height: calc((var(--stem, 110px) * .5) + (var(--tl-gap) * var(--tl-gap-factor)));
+                  top: 50%; transform: translateX(-50%);
+                  }
 
   /* Cards: start at tick line, 50% closer to baseline */
   .tl-item.up   .card{ position:absolute; left:50%;
