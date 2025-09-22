@@ -22,7 +22,7 @@ author_profile: True
     --tl-line: #0f172a33;
     --tl-dot:  #0f172a;
     --tl-muted:#6b7280;
-    --tl-gap:  5rem;        /* baseline ↔ card gap (before the 50% reduction) */
+    --tl-gap:  1.5rem;        /* baseline ↔ card gap */
     --tl-track: 200px;      /* fixed step between dots (try 180–240px) */
     --tl-height: 280px;     /* total vertical working height of each column */
     --tl-gap-factor: 1.00;   /* closer to 1 = farther from the line */
