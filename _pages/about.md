@@ -208,7 +208,12 @@ author_profile: True
 </figure> <!-- /figure -->
 
 
+<!-------------->
+<!--          -->
 <!-- Timeline -->
+<!--  START   -->
+<!--          -->
+<!-------------->
 <div class="fullbleed">  <!-- FULL-BLEED START -->
   <div class="timeline" aria-label="Career timeline">
   <ol class="tl-list">
@@ -229,7 +234,7 @@ author_profile: True
     </li>
 
 
-    <li class="tl-item down" style="--stem: 140px;">
+    <li class="tl-item down" style="--stem: 140px;" data-key="shantou-china">>
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
@@ -244,7 +249,7 @@ author_profile: True
 <!--            -->
 <!-- START 2010 -->
 <!--            -->
-    <li class="tl-item up" style="--stem: 110px;">
+    <li class="tl-item up" style="--stem: 110px;" data-key="shanghai-china">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
@@ -642,10 +647,143 @@ author_profile: True
   </div>
 </div>  <!-- FULL-BLEED END -->
 
+<!-------------->
+<!--          -->
+<!-- Timeline -->
+<!--   END    -->
+<!--          -->
+<!-------------->
 
+
+<!-------------->
+<!--          -->
+<!-- Selector -->
+<!--   START  -->
+<!--          -->
+<!-------------->
+<script>
+(function(){
+  const mapFrame = document.querySelector('.map-viewport iframe');
+  const tlList   = document.querySelector('.timeline .tl-list');
+  const itemsByKey = {};
+
+  // slug helper shared by parent + iframe
+  function slug(s){
+    return String(s).toLowerCase()
+      .replace(/<[^>]+>/g,'')      // strip tags
+      .replace(/&[^;]+;/g,' ')     // strip entities
+      .replace(/[^a-z0-9]+/g,'-')  // non-alnum → dash
+      .replace(/^-+|-+$/g,'');     // trim dashes
+  }
+
+  // index timeline items and add click -> map message
+  document.querySelectorAll('.timeline .tl-item[data-key]').forEach(el=>{
+    const key = el.getAttribute('data-key').trim().toLowerCase();
+    itemsByKey[key] = el;
+    el.addEventListener('click', ()=>{
+      if (mapFrame?.contentWindow) {
+        mapFrame.contentWindow.postMessage({type:'showCity', key}, '*');
+      }
+      activate(key);
+    });
+  });
+
+  // center + highlight a timeline item
+  function activate(key){
+    document.querySelectorAll('.timeline .tl-item.is-active')
+      .forEach(el=>el.classList.remove('is-active'));
+    const el = itemsByKey[key];
+    if (!el || !tlList) return;
+    el.classList.add('is-active');
+    const target = el.offsetLeft - (tlList.clientWidth - el.clientWidth)/2;
+    tlList.scrollTo({left: Math.max(0,target), behavior:'smooth'});
+  }
+
+  // when iframe loads, inject code to index markers & handle messages
+  mapFrame?.addEventListener('load', ()=>{
+    const w = mapFrame.contentWindow, d = w.document;
+    const code = `
+      (function(){
+        function slug(s){
+          return String(s).toLowerCase()
+            .replace(/<[^>]+>/g,'')
+            .replace(/&[^;]+;/g,' ')
+            .replace(/[^a-z0-9]+/g,'-')
+            .replace(/^-+|-+$/g,'');
+        }
+        function getMap(){
+          for (const k in window){
+            try{ if (window[k] instanceof window.L.Map) return window[k]; }catch(e){}
+          }
+          return null;
+        }
+        const map = getMap(); if(!map) return;
+        const markersByKey = {};
+        map.eachLayer(function(layer){
+          if (layer && layer instanceof window.L.Marker){
+            let txt = '';
+            try{
+              if (layer.getTooltip && layer.getTooltip()) txt = layer.getTooltip().getContent();
+              else if (layer.getPopup && layer.getPopup()) txt = layer.getPopup().getContent();
+            }catch(e){}
+            if(!txt && layer._icon && layer._icon.title) txt = layer._icon.title;
+            const firstLine = String(txt).split('<br')[0];
+            const key = slug(firstLine);
+            if (key){ layer.__key = key; markersByKey[key] = layer; }
+            layer.on('click', function(){
+              try{ if(layer.getTooltip){ layer.openTooltip(); } }catch(e){}
+              window.parent.postMessage({type:'mapClick', key: layer.__key}, '*');
+            });
+          }
+        });
+        window.addEventListener('message', function(ev){
+          const data = ev.data||{};
+          if (data.type==='showCity' && data.key && markersByKey[data.key]){
+            const m = markersByKey[data.key];
+            try{ m.openTooltip && m.openTooltip(); }catch(e){}
+            try{ map.setView(m.getLatLng(), map.getZoom(), {animate:true}); }catch(e){}
+          }
+        });
+        window.__markersByKey = markersByKey; // for debugging
+      })();`;
+    const s = d.createElement('script');
+    s.type = 'text/javascript';
+    s.textContent = code;
+    d.body.appendChild(s);
+  });
+
+  // map -> timeline messages
+  window.addEventListener('message', (ev)=>{
+    const data = ev.data || {};
+    if (data.type === 'mapClick' && data.key){ activate(data.key); }
+  });
+})();
+</script>
+
+<!-------------->
+<!--          -->
+<!-- Selector -->
+<!--   END    -->
+<!--          -->
+<!-------------->
+
+
+<!---------------->
+<!--            -->
+<!-- Highlights -->
+<!--   START    -->
+<!--            -->
+<!---------------->
 <h3>Professional Highlights</h3>
 <ul>
   <li>10-time Faculty of the Year</li>
   <li>Author of <em>From Print to Prediction: A Beginner’s Guide to Data Analysis in Python</em></li>
   <li>Quoted in <em>The New York Times</em></li>
 </ul>
+
+<!---------------->
+<!--            -->
+<!-- Highlights -->
+<!--    END     -->
+<!--            -->
+<!---------------->
