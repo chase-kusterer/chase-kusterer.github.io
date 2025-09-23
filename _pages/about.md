@@ -1,3 +1,12 @@
+<!-- box highlight -->
+<style>
+.tl-item.is-active .tick{
+  box-shadow: 0 0 0 3px #60a5fa, 0 0 0 6px rgba(96,165,250,.35);
+}
+</style>
+
+
+
 ---
 permalink: /about/
 title: "About"
@@ -166,8 +175,8 @@ author_profile: True
 /* full-bleed wrapper that spans the entire viewport width */
 .fullbleed{
   width:80vw; max-width:80vw;
-  margin-left:25%;
-  margin-right:25%;
+  margin-left:40%;
+  margin-right:40%;
   transform:translateX(-50%);
   padding-inline: clamp(8px, 2.5vw, 24px);
 }
