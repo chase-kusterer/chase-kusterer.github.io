@@ -669,40 +669,40 @@ author_profile: True
 (function(){
   const mapFrame = document.querySelector('.map-viewport iframe');
 
-  // … keep your existing slug(), timeline indexing, activate(), postMessage wiring …
-
   mapFrame?.addEventListener('load', ()=>{
     const w = mapFrame.contentWindow, d = w.document;
 
-    // 2a) Ensure tooltip/popup panes are above our overlay
+    // Read the oval settings from the OUTER page's :root
+    const rs = getComputedStyle(document.documentElement);
+    const RX = rs.getPropertyValue('--oval-rx').trim() || '50%';
+    const RY = rs.getPropertyValue('--oval-ry').trim() || '42%';
+    const CX = rs.getPropertyValue('--oval-cx').trim() || '50%';
+    const CY = rs.getPropertyValue('--oval-cy').trim() || '50%';
+
+    // Make the iframe page fully transparent and keep tooltip/popup panes on top
     const style = d.createElement('style');
     style.textContent = `
+      html, body{ background: transparent !important; }
       .leaflet-container{ background: transparent !important; }
       .leaflet-tooltip-pane{ z-index: 650 !important; }
       .leaflet-popup-pane  { z-index: 700 !important; }
+
+      /* Mask ONLY map content panes to an oval — tooltips/popups are NOT masked */
+      .leaflet-tile-pane,
+      .leaflet-overlay-pane,
+      .leaflet-shadow-pane,
+      .leaflet-marker-pane{
+        /* show inside the oval, hide outside */
+        -webkit-mask-image: radial-gradient(ellipse ${RX} ${RY} at ${CX} ${CY}, #000 98%, transparent 100%);
+        mask-image: radial-gradient(ellipse ${RX} ${RY} at ${CX} ${CY}, #000 98%, transparent 100%);
+        mask-mode: luminance;
+        mask-repeat: no-repeat;
+        mask-position: center;
+      }
     `;
     d.head.appendChild(style);
 
-    // 2b) Create a visual oval overlay ABOVE tiles/markers but BELOW tooltips/popups
-    const container = d.querySelector('.leaflet-container');
-    if (container){
-      const cs = w.getComputedStyle(container);
-      if (cs.position === 'static') container.style.position = 'relative';
-
-      const oval = d.createElement('div');
-      oval.className = 'oval-mask-overlay';
-      Object.assign(oval.style, {
-        position: 'absolute',
-        inset: '0',
-        pointerEvents: 'none',     // never block clicks
-        zIndex: '640',             // > markers(600), < tooltips(650)/popups(700)
-        /* Center transparent oval, white outside. Adjust radii % to taste. */
-        background: 'radial-gradient(ellipse 50% 42% at 50% 50%, transparent 98%, #fff 99%)'
-      });
-      container.appendChild(oval);
-    }
-
-    // 2c) Inject the marker indexing + single-tooltip logic (your existing code)
+    /* -------- keep your existing marker index + single-tooltip logic -------- */
     const code = `
       (function(){
         function ready(fn){ if (document.readyState !== 'loading') fn(); else document.addEventListener('DOMContentLoaded', fn); }
