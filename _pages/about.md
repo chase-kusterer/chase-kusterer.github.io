@@ -12,9 +12,9 @@ author_profile: True
   :root{
     /* Map */
     --map-h: 60vh;
-    --overlay-frac: .30;
-    --oval-rx: 80%;
-    --oval-ry: 71%;
+    --overlay-frac: .42;
+    --oval-rx: 50%;
+    --oval-ry: 42%;
     --oval-cx: 50%;
     --oval-cy: 50%;
 
@@ -32,26 +32,23 @@ author_profile: True
     --tl-dot-size: 12px;    /* dot size (keep in sync with .tick) */
   }
 
-  /* ===== Map ===== */
+  /* ===== Map (unchanged) ===== */
   .map-shell { position: relative; width: 100%; margin: 0; }
   .map-viewport{
   position: relative;
   height: calc(var(--map-h) * (1 - var(--overlay-frac)));
   overflow: hidden;
   -webkit-mask-image: radial-gradient(ellipse var(--oval-rx) var(--oval-ry)
-    at var(--oval-cx) var(--oval-cy), #000 99.2%, transparent 100%) !important;
+    at var(--oval-cx) var(--oval-cy), #000 98%, transparent 100%);
   mask-image: radial-gradient(ellipse var(--oval-rx) var(--oval-ry)
-    at var(--oval-cx) var(--oval-cy), #000 99.2%, transparent 100%) !important;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
+    at var(--oval-cx) var(--oval-cy), #000 98%, transparent 100%);
   }
   .map-viewport iframe{
     display:block; width:100%; height: var(--map-h); border:0;
   }
 
   .map-legend{
-    align-self:
-      center; display:flex; justify-content:center; gap:1rem; flex-wrap:wrap;
+    align-self:center; display:flex; justify-content:center; gap:1rem; flex-wrap:wrap;
     text-align:center; font-size:.90em; margin:.15rem 0 0; pointer-events: none;
   }
   .map-legend .dot{
@@ -681,12 +678,12 @@ author_profile: True
   document.querySelectorAll('.timeline .tl-item[data-key]').forEach(el=>{
     const key = el.getAttribute('data-key').trim().toLowerCase();
     itemsByKey[key] = el;
-    el.addEventListener('click', ()=>{
-      if (mapFrame?.contentWindow) {
-        mapFrame.contentWindow.postMessage({type:'showCity', key, pan:false}, '*');
-      }
-      activate(key);
-    });
+el.addEventListener('click', ()=>{
+  if (mapFrame?.contentWindow) {
+    mapFrame.contentWindow.postMessage({type:'showCity', key, pan:false}, '*');
+  }
+  activate(key);
+});
   });
 
   function activate(key){
@@ -758,20 +755,20 @@ author_profile: True
           
             currentKey = key;
           }
-
-// map click → still pan (default true)
-layer.on('click', function(){
-  openForKey(this.__key); // pans
-  window.parent.postMessage({type:'mapClick', key: this.__key}, '*');
-});
-
-// parent → map (timeline click) — pass through the pan flag
-window.addEventListener('message', function(ev){
-  var data = ev.data || {};
-  if (data.type === 'showCity' && data.key){
-    openForKey(data.key, data.pan); // data.pan is false from timeline
-  }
-});
+          
+          // map click → still pan (default true)
+          layer.on('click', function(){
+            openForKey(this.__key); // pans
+            window.parent.postMessage({type:'mapClick', key: this.__key}, '*');
+          });
+          
+          // parent → map (timeline click) — pass through the pan flag
+          window.addEventListener('message', function(ev){
+            var data = ev.data || {};
+            if (data.type === 'showCity' && data.key){
+              openForKey(data.key, data.pan); // data.pan is false from timeline
+            }
+          });  
 
           function indexLayer(layer){
             try{
