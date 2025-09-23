@@ -11,7 +11,7 @@ author_profile: True
 <style>
   :root{
     /* Map */
-    --map-h: 60vh;
+    --map-h: 100vh;
     --overlay-frac: .42;
     --oval-rx: 50%;
     --oval-ry: 42%;
