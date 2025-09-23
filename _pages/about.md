@@ -166,8 +166,8 @@ author_profile: True
 /* full-bleed wrapper that spans the entire viewport width */
 .fullbleed{
   width:80vw; max-width:80vw;
-  margin-left:40%;
-  margin-right:40%;
+  margin-left:50%;
+  margin-right:50%;
   transform:translateX(-50%);
   padding-inline: clamp(8px, 2.5vw, 24px);
 }
@@ -679,22 +679,13 @@ author_profile: True
     const key = el.getAttribute('data-key').trim().toLowerCase();
     itemsByKey[key] = el;
     el.addEventListener('click', ()=>{
-    const isActive = el.classList.toggle('is-active');  // toggle highlight
-  
-    // tell the iframe to show or hide the tooltip for this key
-    mapFrame?.contentWindow?.postMessage(
-      { type: isActive ? 'showCity' : 'hideCity', key },
-      '*'
-    );
-  
-    // center only when turning on
-    if (isActive) {
-      const target = el.offsetLeft - (tlList.clientWidth - el.clientWidth)/2;
-      tlList.scrollTo({ left: Math.max(0, target), behavior: 'smooth' });
-    }
+      if (mapFrame?.contentWindow) {
+        mapFrame.contentWindow.postMessage({type:'showCity', key}, '*');
+      }
+      activate(key);
+    });
   });
 
-    
   function activate(key){
     document.querySelectorAll('.timeline .tl-item.is-active')
       .forEach(el=>el.classList.remove('is-active'));
@@ -707,15 +698,9 @@ author_profile: True
 
   // map -> timeline
   window.addEventListener('message', (ev)=>{
-  const { type, key, opened } = ev.data || {};
-  if (type === 'mapClick' && key){
-    if (opened) {
-      activate(key);
-    } else {
-      itemsByKey[key]?.classList.remove('is-active');
-    }
-  }
-});
+    const data = ev.data || {};
+    if (data.type === 'mapClick' && data.key){ activate(data.key); }
+  });
 
   mapFrame?.addEventListener('load', ()=>{
     const w = mapFrame.contentWindow, d = w.document;
@@ -742,50 +727,8 @@ author_profile: True
           }
           if (!map) return;
 
-          // 🔒 Disable all user panning/zooming
-          try{
-            map.dragging && map.dragging.disable();
-            map.scrollWheelZoom && map.scrollWheelZoom.disable();
-            map.doubleClickZoom && map.doubleClickZoom.disable();
-            map.touchZoom && map.touchZoom.disable();
-            map.boxZoom && map.boxZoom.disable();
-            map.keyboard && map.keyboard.disable();
-            if (map.zoomControl) map.removeControl(map.zoomControl); // remove +/- UI if present
-          }catch(e){}
-          
-          // 🧱 Also block any programmatic movement (Leaflet or your code)
-          var noPan = function(){ return this || map; };
-          ['panBy','panInside','panInsideBounds','panTo','setView','flyTo','flyToBounds']
-            .forEach(function(m){ if (map[m]) map[m] = noPan; });
-          
-          // (Optional) if any popups try to auto-pan, neuter that too
-          if (L && L.Popup && L.Popup.prototype && L.Popup.prototype._adjustPan){
-            L.Popup.prototype._adjustPan = function(){ /* no-op: no auto-pan */ };
-          }
-
           var markersByKey = {};
           var currentKey = null;  // ← track what’s open now
-
-          function closeCurrent(){
-              try{ map.closeTooltip(); }catch(e){}
-              try{ map.closePopup(); }catch(e){}
-              if (currentKey && markersByKey[currentKey]){
-                try{ markersByKey[currentKey].closeTooltip && markersByKey[currentKey].closeTooltip(); }catch(e){}
-                try{ markersByKey[currentKey].closePopup   && markersByKey[currentKey].closePopup();   }catch(e){}
-              }
-              currentKey = null;
-            }
-            
-            function toggleForKey(key){
-              if (!key) return false;
-              if (currentKey === key){
-                closeCurrent();
-                return false; // now closed
-              } else {
-                openForKey(key); // your existing opener
-                return true;     // now open
-              }
-            }
 
           // open exactly one thing at a time
           function openForKey(key){
@@ -806,7 +749,7 @@ author_profile: True
             try {
               var center = layer.getLatLng ? layer.getLatLng()
                          : (layer.getBounds ? layer.getBounds().getCenter() : null);
-            //  if (center) map.setView(center, map.getZoom(), {animate:true});
+              if (center) map.setView(center, map.getZoom(), {animate:true});
             } catch(e){}
             currentKey = key;
           }
@@ -831,10 +774,10 @@ author_profile: True
 
                 // map click → parent, but also enforce single open here
                 if (layer.on){
-                layer.on('click', function(){
-                  var opened = toggleForKey(this.__key);
-                  window.parent.postMessage({ type:'mapClick', key:this.__key, opened: opened }, '*');
-                });
+                  layer.on('click', function(){
+                    openForKey(this.__key);  // ← close others, open this
+                    window.parent.postMessage({type:'mapClick', key: this.__key}, '*');
+                  });
                 }
               }
 
@@ -854,11 +797,8 @@ author_profile: True
           // parent → map (timeline click)
           window.addEventListener('message', function(ev){
             var data = ev.data || {};
-            if (data.type === 'showCity'  && data.key) { openForKey(data.key); }
-            if (data.type === 'hideCity'  && data.key) { if (currentKey === data.key) closeCurrent(); }
-            if (data.type === 'toggleCity'&& data.key) {
-              var opened = toggleForKey(data.key);
-              window.parent.postMessage({ type:'mapClick', key:data.key, opened: opened }, '*');
+            if (data.type === 'showCity' && data.key){
+              openForKey(data.key);  // ← ensures only one is open
             }
           });
 
