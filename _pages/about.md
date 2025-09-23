@@ -1,3 +1,4 @@
+
 ---
 permalink: /about/
 title: "About"
@@ -678,12 +679,12 @@ author_profile: True
   document.querySelectorAll('.timeline .tl-item[data-key]').forEach(el=>{
     const key = el.getAttribute('data-key').trim().toLowerCase();
     itemsByKey[key] = el;
-el.addEventListener('click', ()=>{
-  if (mapFrame?.contentWindow) {
-    mapFrame.contentWindow.postMessage({type:'showCity', key, pan:false}, '*');
-  }
-  activate(key);
-});
+    el.addEventListener('click', ()=>{
+      if (mapFrame?.contentWindow) {
+        mapFrame.contentWindow.postMessage({type:'showCity', key}, '*');
+      }
+      activate(key);
+    });
   });
 
   function activate(key){
@@ -731,44 +732,28 @@ el.addEventListener('click', ()=>{
           var currentKey = null;  // ← track what’s open now
 
           // open exactly one thing at a time
-          // make panning optional
-          function openForKey(key, doPan){
+          function openForKey(key){
             if (!key || !markersByKey[key]) return;
+            // close any existing tooltip/popup first
             try { map.closeTooltip(); } catch(e){}
             try { map.closePopup(); }   catch(e){}
             if (currentKey && markersByKey[currentKey] && currentKey !== key){
-              try { markersByKey[currentKey].closeTooltip && markersByKey[currentKey].closeTooltip(); }catch(e){}
-              try { markersByKey[currentKey].closePopup   && markersByKey[currentKey].closePopup(); }catch(e){}
+              try { markersByKey[currentKey].closeTooltip && markersByKey[currentKey].closeTooltip(); } catch(e){}
+              try { markersByKey[currentKey].closePopup   && markersByKey[currentKey].closePopup(); }   catch(e){}
             }
             var layer = markersByKey[key];
-            try{
+            try {
+              // open whichever the layer has
               if (layer.getTooltip && layer.getTooltip()) layer.openTooltip();
               else if (layer.getPopup && layer.getPopup()) layer.openPopup();
-            }catch(e){}
-          
-            // only pan if doPan !== false (default = true)
-            try{
+            } catch(e){}
+            try {
               var center = layer.getLatLng ? layer.getLatLng()
                          : (layer.getBounds ? layer.getBounds().getCenter() : null);
-              if (center && doPan !== false) map.setView(center, map.getZoom(), {animate:true});
-            }catch(e){}
-          
+              if (center) map.setView(center, map.getZoom(), {animate:true});
+            } catch(e){}
             currentKey = key;
           }
-          
-          // map click → still pan (default true)
-          layer.on('click', function(){
-            openForKey(this.__key); // pans
-            window.parent.postMessage({type:'mapClick', key: this.__key}, '*');
-          });
-          
-          // parent → map (timeline click) — pass through the pan flag
-          window.addEventListener('message', function(ev){
-            var data = ev.data || {};
-            if (data.type === 'showCity' && data.key){
-              openForKey(data.key, data.pan); // data.pan is false from timeline
-            }
-          });  
 
           function indexLayer(layer){
             try{
