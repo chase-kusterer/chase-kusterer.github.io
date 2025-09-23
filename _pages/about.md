@@ -1,12 +1,3 @@
-<!-- box highlight -->
-<style>
-.tl-item.is-active .tick{
-  box-shadow: 0 0 0 3px #60a5fa, 0 0 0 6px rgba(96,165,250,.35);
-}
-</style>
-
-
-
 ---
 permalink: /about/
 title: "About"
