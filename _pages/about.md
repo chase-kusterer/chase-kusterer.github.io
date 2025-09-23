@@ -39,9 +39,11 @@ author_profile: True
   height: calc(var(--map-h) * (1 - var(--overlay-frac)));
   overflow: hidden;
   -webkit-mask-image: radial-gradient(ellipse var(--oval-rx) var(--oval-ry)
-    at var(--oval-cx) var(--oval-cy), #000 99.2%, transparent 100%);
+    at var(--oval-cx) var(--oval-cy), #000 99.2%, transparent 100%) !important;
   mask-image: radial-gradient(ellipse var(--oval-rx) var(--oval-ry)
-    at var(--oval-cx) var(--oval-cy), #000 99.2%, transparent 100%);
+    at var(--oval-cx) var(--oval-cy), #000 99.2%, transparent 100%) !important;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
   }
   .map-viewport iframe{
     display:block; width:100%; height: var(--map-h); border:0;
