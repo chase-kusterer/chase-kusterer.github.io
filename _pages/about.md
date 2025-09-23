@@ -11,10 +11,10 @@ author_profile: True
 <style>
   :root{
     /* Map */
-    --map-h: 78vh;
+    --map-h: 60vh;
     --overlay-frac: .42;
-    --oval-rx: 50%;
-    --oval-ry: 42%;
+    --oval-rx: 52%;
+    --oval-ry: 44.5%;
     --oval-cx: 50%;
     --oval-cy: 50%;
 
@@ -39,16 +39,17 @@ author_profile: True
   height: calc(var(--map-h) * (1 - var(--overlay-frac)));
   overflow: hidden;
   -webkit-mask-image: radial-gradient(ellipse var(--oval-rx) var(--oval-ry)
-    at var(--oval-cx) var(--oval-cy), #000 98%, transparent 100%);
+    at var(--oval-cx) var(--oval-cy), #000 99.2%, transparent 100%);
   mask-image: radial-gradient(ellipse var(--oval-rx) var(--oval-ry)
-    at var(--oval-cx) var(--oval-cy), #000 98%, transparent 100%);
+    at var(--oval-cx) var(--oval-cy), #000 99.2%, transparent 100%);
   }
   .map-viewport iframe{
     display:block; width:100%; height: var(--map-h); border:0;
   }
 
   .map-legend{
-    align-self:center; display:flex; justify-content:center; gap:1rem; flex-wrap:wrap;
+    align-self:
+      center; display:flex; justify-content:center; gap:1rem; flex-wrap:wrap;
     text-align:center; font-size:.90em; margin:.15rem 0 0; pointer-events: none;
   }
   .map-legend .dot{
