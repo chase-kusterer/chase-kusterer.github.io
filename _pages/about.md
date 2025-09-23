@@ -166,8 +166,8 @@ author_profile: True
 /* full-bleed wrapper that spans the entire viewport width */
 .fullbleed{
   width:80vw; max-width:80vw;
-  margin-left:50%;
-  margin-right:50%;
+  margin-left:25%;
+  margin-right:25%;
   transform:translateX(-50%);
   padding-inline: clamp(8px, 2.5vw, 24px);
 }
@@ -727,6 +727,27 @@ author_profile: True
           }
           if (!map) return;
 
+          // 🔒 Disable all user panning/zooming
+          try{
+            map.dragging && map.dragging.disable();
+            map.scrollWheelZoom && map.scrollWheelZoom.disable();
+            map.doubleClickZoom && map.doubleClickZoom.disable();
+            map.touchZoom && map.touchZoom.disable();
+            map.boxZoom && map.boxZoom.disable();
+            map.keyboard && map.keyboard.disable();
+            if (map.zoomControl) map.removeControl(map.zoomControl); // remove +/- UI if present
+          }catch(e){}
+          
+          // 🧱 Also block any programmatic movement (Leaflet or your code)
+          var noPan = function(){ return this || map; };
+          ['panBy','panInside','panInsideBounds','panTo','setView','flyTo','flyToBounds']
+            .forEach(function(m){ if (map[m]) map[m] = noPan; });
+          
+          // (Optional) if any popups try to auto-pan, neuter that too
+          if (L && L.Popup && L.Popup.prototype && L.Popup.prototype._adjustPan){
+            L.Popup.prototype._adjustPan = function(){ /* no-op: no auto-pan */ };
+          }
+
           var markersByKey = {};
           var currentKey = null;  // ← track what’s open now
 
@@ -749,7 +770,7 @@ author_profile: True
             try {
               var center = layer.getLatLng ? layer.getLatLng()
                          : (layer.getBounds ? layer.getBounds().getCenter() : null);
-              if (center) map.setView(center, map.getZoom(), {animate:true});
+            //  if (center) map.setView(center, map.getZoom(), {animate:true});
             } catch(e){}
             currentKey = key;
           }
