@@ -679,13 +679,22 @@ author_profile: True
     const key = el.getAttribute('data-key').trim().toLowerCase();
     itemsByKey[key] = el;
     el.addEventListener('click', ()=>{
-      if (mapFrame?.contentWindow) {
-        mapFrame.contentWindow.postMessage({type:'showCity', key}, '*');
-      }
-      activate(key);
-    });
+    const isActive = el.classList.toggle('is-active');  // toggle highlight
+  
+    // tell the iframe to show or hide the tooltip for this key
+    mapFrame?.contentWindow?.postMessage(
+      { type: isActive ? 'showCity' : 'hideCity', key },
+      '*'
+    );
+  
+    // center only when turning on
+    if (isActive) {
+      const target = el.offsetLeft - (tlList.clientWidth - el.clientWidth)/2;
+      tlList.scrollTo({ left: Math.max(0, target), behavior: 'smooth' });
+    }
   });
 
+    
   function activate(key){
     document.querySelectorAll('.timeline .tl-item.is-active')
       .forEach(el=>el.classList.remove('is-active'));
@@ -698,9 +707,15 @@ author_profile: True
 
   // map -> timeline
   window.addEventListener('message', (ev)=>{
-    const data = ev.data || {};
-    if (data.type === 'mapClick' && data.key){ activate(data.key); }
-  });
+  const { type, key, opened } = ev.data || {};
+  if (type === 'mapClick' && key){
+    if (opened) {
+      activate(key);
+    } else {
+      itemsByKey[key]?.classList.remove('is-active');
+    }
+  }
+});
 
   mapFrame?.addEventListener('load', ()=>{
     const w = mapFrame.contentWindow, d = w.document;
@@ -751,6 +766,27 @@ author_profile: True
           var markersByKey = {};
           var currentKey = null;  // ← track what’s open now
 
+          function closeCurrent(){
+              try{ map.closeTooltip(); }catch(e){}
+              try{ map.closePopup(); }catch(e){}
+              if (currentKey && markersByKey[currentKey]){
+                try{ markersByKey[currentKey].closeTooltip && markersByKey[currentKey].closeTooltip(); }catch(e){}
+                try{ markersByKey[currentKey].closePopup   && markersByKey[currentKey].closePopup();   }catch(e){}
+              }
+              currentKey = null;
+            }
+            
+            function toggleForKey(key){
+              if (!key) return false;
+              if (currentKey === key){
+                closeCurrent();
+                return false; // now closed
+              } else {
+                openForKey(key); // your existing opener
+                return true;     // now open
+              }
+            }
+
           // open exactly one thing at a time
           function openForKey(key){
             if (!key || !markersByKey[key]) return;
@@ -795,10 +831,10 @@ author_profile: True
 
                 // map click → parent, but also enforce single open here
                 if (layer.on){
-                  layer.on('click', function(){
-                    openForKey(this.__key);  // ← close others, open this
-                    window.parent.postMessage({type:'mapClick', key: this.__key}, '*');
-                  });
+                layer.on('click', function(){
+                  var opened = toggleForKey(this.__key);
+                  window.parent.postMessage({ type:'mapClick', key:this.__key, opened: opened }, '*');
+                });
                 }
               }
 
@@ -818,8 +854,11 @@ author_profile: True
           // parent → map (timeline click)
           window.addEventListener('message', function(ev){
             var data = ev.data || {};
-            if (data.type === 'showCity' && data.key){
-              openForKey(data.key);  // ← ensures only one is open
+            if (data.type === 'showCity'  && data.key) { openForKey(data.key); }
+            if (data.type === 'hideCity'  && data.key) { if (currentKey === data.key) closeCurrent(); }
+            if (data.type === 'toggleCity'&& data.key) {
+              var opened = toggleForKey(data.key);
+              window.parent.postMessage({ type:'mapClick', key:data.key, opened: opened }, '*');
             }
           });
 
