@@ -166,8 +166,8 @@ author_profile: True
 /* full-bleed wrapper that spans the entire viewport width */
 .fullbleed{
   width:80vw; max-width:80vw;
-  margin-left:50%;
-  margin-right:50%;
+  margin-left:65%;
+  margin-right:65%;
   transform:translateX(-50%);
   padding-inline: clamp(8px, 2.5vw, 24px);
 }
