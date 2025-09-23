@@ -12,7 +12,7 @@ author_profile: True
   :root{
     /* Map */
     --map-h: 60vh;
-    --overlay-frac: .42;
+    --overlay-frac: .30;
     --oval-rx: 80%;
     --oval-ry: 71%;
     --oval-cx: 50%;
