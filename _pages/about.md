@@ -49,7 +49,7 @@ author_profile: True
 
   .map-legend{
     align-self:center; display:flex; justify-content:center; gap:1rem; flex-wrap:wrap;
-    text-align:center; font-size:.90em; margin:.15rem 0 0;
+    text-align:center; font-size:.90em; margin:.15rem 0 0; pointer-events: none;
   }
   .map-legend .dot{
     width:10px; height:10px; border-radius:50%; display:inline-block;
@@ -668,24 +668,26 @@ author_profile: True
 
   // slug helper shared by parent + iframe
   function slug(s){
-    return String(s).toLowerCase()
+    return String(s || '').toLowerCase()
       .replace(/<[^>]+>/g,'')      // strip tags
       .replace(/&[^;]+;/g,' ')     // strip entities
       .replace(/[^a-z0-9]+/g,'-')  // non-alnum → dash
       .replace(/^-+|-+$/g,'');     // trim dashes
   }
 
-  // index timeline items and add click -> map message
-  document.querySelectorAll('.timeline .tl-item[data-key]').forEach(el=>{
+  // Index timeline items (only those with data-key)
+  const tlEls = document.querySelectorAll('.timeline .tl-item[data-key]');
+  tlEls.forEach(el=>{
     const key = el.getAttribute('data-key').trim().toLowerCase();
     itemsByKey[key] = el;
     el.addEventListener('click', ()=>{
-      if (mapFrame?.contentWindow) {
+      if (mapFrame && mapFrame.contentWindow) {
         mapFrame.contentWindow.postMessage({type:'showCity', key}, '*');
       }
       activate(key);
     });
   });
+  console.log('[TL] indexed keys:', Object.keys(itemsByKey));
 
   // center + highlight a timeline item
   function activate(key){
@@ -698,66 +700,128 @@ author_profile: True
     tlList.scrollTo({left: Math.max(0,target), behavior:'smooth'});
   }
 
-  // when iframe loads, inject code to index markers & handle messages
-  mapFrame?.addEventListener('load', ()=>{
-    const w = mapFrame.contentWindow, d = w.document;
+  // parent listens to clicks coming back from the map
+  window.addEventListener('message', (ev)=>{
+    const data = ev.data || {};
+    if (data.type === 'mapClick' && data.key){
+      console.log('[MAP→TL] click for', data.key);
+      activate(data.key);
+    }
+  });
+
+  // inject code into the iframe after it loads
+  if (!mapFrame) {
+    console.warn('[MAP] iframe not found');
+    return;
+  }
+
+  mapFrame.addEventListener('load', ()=>{
+    const w = mapFrame.contentWindow;
+    const d = w.document;
+
     const code = `
       (function(){
+        function ready(fn){
+          if (document.readyState !== 'loading') fn();
+          else document.addEventListener('DOMContentLoaded', fn);
+        }
         function slug(s){
-          return String(s).toLowerCase()
+          return String(s || '').toLowerCase()
             .replace(/<[^>]+>/g,'')
             .replace(/&[^;]+;/g,' ')
             .replace(/[^a-z0-9]+/g,'-')
             .replace(/^-+|-+$/g,'');
         }
-        function getMap(){
-          for (const k in window){
-            try{ if (window[k] instanceof window.L.Map) return window[k]; }catch(e){}
+        ready(function(){
+          var L = window.L;
+          if (!L){ console.warn('[IFRAME] Leaflet L not found'); return; }
+
+          // find the Leaflet map instance exposed by Folium
+          var map = null;
+          for (var k in window){
+            try { if (window[k] instanceof L.Map){ map = window[k]; break; } }
+            catch(e){}
           }
-          return null;
-        }
-        const map = getMap(); if(!map) return;
-        const markersByKey = {};
-        map.eachLayer(function(layer){
-          if (layer && layer instanceof window.L.Marker){
-            let txt = '';
+          if (!map){ console.warn('[IFRAME] Leaflet map not found'); return; }
+
+          var markersByKey = {};
+
+          // recursively index anything that looks clickable with a position
+          function indexLayer(layer){
             try{
+              // pull some identifying text (tooltip, popup, title)
+              var txt = '';
               if (layer.getTooltip && layer.getTooltip()) txt = layer.getTooltip().getContent();
               else if (layer.getPopup && layer.getPopup()) txt = layer.getPopup().getContent();
+              else if (layer.options && layer.options.title) txt = layer.options.title;
+
+              var firstLine = String(txt || '').split('<br')[0];
+              var key = slug(firstLine);
+
+              // get a position if available (Markers, CircleMarkers, etc.)
+              var pos = null;
+              if (layer.getLatLng)       pos = layer.getLatLng();
+              else if (layer.getBounds)  { try{ pos = layer.getBounds().getCenter(); }catch(e){} }
+
+              var isPointish = !!pos;
+
+              if (key && isPointish){
+                layer.__key = key;
+                markersByKey[key] = layer;
+
+                if (layer.on){
+                  layer.on('click', function(){
+                    try { this.openTooltip && this.openTooltip(); } catch(e){}
+                    window.parent.postMessage({type:'mapClick', key: this.__key}, '*');
+                  });
+                }
+              }
+
+              // recurse into groups/geojson
+              if (layer.eachLayer){ layer.eachLayer(indexLayer); }
             }catch(e){}
-            if(!txt && layer._icon && layer._icon.title) txt = layer._icon.title;
-            const firstLine = String(txt).split('<br')[0];
-            const key = slug(firstLine);
-            if (key){ layer.__key = key; markersByKey[key] = layer; }
-            layer.on('click', function(){
-              try{ if(layer.getTooltip){ layer.openTooltip(); } }catch(e){}
-              window.parent.postMessage({type:'mapClick', key: layer.__key}, '*');
-            });
           }
-        });
-        window.addEventListener('message', function(ev){
-          const data = ev.data||{};
-          if (data.type==='showCity' && data.key && markersByKey[data.key]){
-            const m = markersByKey[data.key];
-            try{ m.openTooltip && m.openTooltip(); }catch(e){}
-            try{ map.setView(m.getLatLng(), map.getZoom(), {animate:true}); }catch(e){}
+
+          function buildIndex(){
+            try{ map.eachLayer(indexLayer); }catch(e){}
+            console.log('[IFRAME] indexed keys:', Object.keys(markersByKey));
           }
+
+          // wait until map is ready, then index; re-index once more a tick later
+          map.whenReady(function(){
+            buildIndex();
+            setTimeout(buildIndex, 250);
+          });
+
+          // parent → map: focus and open tooltip
+          window.addEventListener('message', function(ev){
+            var data = ev.data || {};
+            if (data.type === 'showCity' && data.key && markersByKey[data.key]){
+              var m = markersByKey[data.key];
+              try { m.openTooltip && m.openTooltip(); } catch(e){}
+              try {
+                var center = m.getLatLng ? m.getLatLng() :
+                             (m.getBounds ? m.getBounds().getCenter() : null);
+                if (center) map.setView(center, map.getZoom(), {animate:true});
+              } catch(e){}
+            }
+          });
+
+          // expose for debugging in the iframe console
+          window.__markersByKey = markersByKey;
         });
-        window.__markersByKey = markersByKey; // for debugging
-      })();`;
+      })();
+    `;
+
     const s = d.createElement('script');
     s.type = 'text/javascript';
     s.textContent = code;
     d.body.appendChild(s);
-  });
-
-  // map -> timeline messages
-  window.addEventListener('message', (ev)=>{
-    const data = ev.data || {};
-    if (data.type === 'mapClick' && data.key){ activate(data.key); }
+    console.log('[PARENT] injected map indexer');
   });
 })();
 </script>
+
 
 <!-------------->
 <!--          -->
