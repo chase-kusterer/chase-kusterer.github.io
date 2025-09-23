@@ -668,82 +668,49 @@ author_profile: True
 <script>
 (function(){
   const mapFrame = document.querySelector('.map-viewport iframe');
-  const tlList   = document.querySelector('.timeline .tl-list');
-  const itemsByKey = {};
 
-  function slug(s){
-    return String(s || '').toLowerCase()
-      .replace(/<[^>]+>/g,'')
-      .replace(/&[^;]+;/g,' ')
-      .replace(/[^a-z0-9]+/g,'-')
-      .replace(/^-+|-+$/g,'');
-  }
-
-  // index timeline items
-  document.querySelectorAll('.timeline .tl-item[data-key]').forEach(el=>{
-    const key = el.getAttribute('data-key').trim().toLowerCase();
-    itemsByKey[key] = el;
-    el.addEventListener('click', ()=>{
-      mapFrame?.contentWindow?.postMessage({type:'showCity', key}, '*');
-      activate(key);
-    });
-  });
-
-  function activate(key){
-    document.querySelectorAll('.timeline .tl-item.is-active').forEach(el=>el.classList.remove('is-active'));
-    const el = itemsByKey[key]; if (!el || !tlList) return;
-    el.classList.add('is-active');
-    const target = el.offsetLeft - (tlList.clientWidth - el.clientWidth)/2;
-    tlList.scrollTo({left: Math.max(0,target), behavior:'smooth'});
-  }
-
-  window.addEventListener('message', (ev)=>{
-    const data = ev.data || {};
-    if (data.type === 'mapClick' && data.key){ activate(data.key); }
-  });
+  // … keep your existing slug(), timeline indexing, activate(), postMessage wiring …
 
   mapFrame?.addEventListener('load', ()=>{
     const w = mapFrame.contentWindow, d = w.document;
 
-    // ⬅ add oval clip CSS INSIDE the iframe: clip map panes, NOT tooltip/popup panes
+    // 2a) Ensure tooltip/popup panes are above our overlay
     const style = d.createElement('style');
     style.textContent = `
       .leaflet-container{ background: transparent !important; }
-      /* Clip only the map visuals to an ellipse; leave tooltip/popup panes free */
-      .leaflet-tile-pane,
-      .leaflet-overlay-pane,
-      .leaflet-shadow-pane,
-      .leaflet-marker-pane{
-        -webkit-clip-path: ellipse(50% 42% at 50% 50%);
-        clip-path: ellipse(50% 42% at 50% 50%);
-      }
-      .leaflet-tooltip-pane,
-      .leaflet-popup-pane{
-        overflow: visible !important;
-        z-index: 10000;
-        -webkit-clip-path: none !important;
-        clip-path: none !important;
-      }
+      .leaflet-tooltip-pane{ z-index: 650 !important; }
+      .leaflet-popup-pane  { z-index: 700 !important; }
     `;
     d.head.appendChild(style);
 
+    // 2b) Create a visual oval overlay ABOVE tiles/markers but BELOW tooltips/popups
+    const container = d.querySelector('.leaflet-container');
+    if (container){
+      const cs = w.getComputedStyle(container);
+      if (cs.position === 'static') container.style.position = 'relative';
+
+      const oval = d.createElement('div');
+      oval.className = 'oval-mask-overlay';
+      Object.assign(oval.style, {
+        position: 'absolute',
+        inset: '0',
+        pointerEvents: 'none',     // never block clicks
+        zIndex: '640',             // > markers(600), < tooltips(650)/popups(700)
+        /* Center transparent oval, white outside. Adjust radii % to taste. */
+        background: 'radial-gradient(ellipse 50% 42% at 50% 50%, transparent 98%, #fff 99%)'
+      });
+      container.appendChild(oval);
+    }
+
+    // 2c) Inject the marker indexing + single-tooltip logic (your existing code)
     const code = `
       (function(){
-        function ready(fn){
-          if (document.readyState !== 'loading') fn();
-          else document.addEventListener('DOMContentLoaded', fn);
-        }
-        function slug(s){
-          return String(s || '').toLowerCase()
-            .replace(/<[^>]+>/g,'')
-            .replace(/&[^;]+;/g,' ')
-            .replace(/[^a-z0-9]+/g,'-')
-            .replace(/^-+|-+$/g,'');
-        }
+        function ready(fn){ if (document.readyState !== 'loading') fn(); else document.addEventListener('DOMContentLoaded', fn); }
+        function slug(s){ return String(s||'').toLowerCase().replace(/<[^>]+>/g,'').replace(/&[^;]+;/g,' ').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,''); }
         ready(function(){
           var L = window.L; if (!L) return;
           var map = null;
-          for (var k in window){ try { if (window[k] instanceof L.Map){ map = window[k]; break; } } catch(e){} }
+          for (var k in window){ try{ if (window[k] instanceof L.Map){ map = window[k]; break; } }catch(e){} }
           if (!map) return;
 
           var markersByKey = {};
@@ -751,21 +718,20 @@ author_profile: True
 
           function openForKey(key){
             if (!key || !markersByKey[key]) return;
-            try { map.closeTooltip(); map.closePopup(); } catch(e){}
+            try{ map.closeTooltip(); map.closePopup(); }catch(e){}
             if (currentKey && markersByKey[currentKey] && currentKey !== key){
-              try { markersByKey[currentKey].closeTooltip && markersByKey[currentKey].closeTooltip(); } catch(e){}
-              try { markersByKey[currentKey].closePopup   && markersByKey[currentKey].closePopup(); }   catch(e){}
+              try{ markersByKey[currentKey].closeTooltip && markersByKey[currentKey].closeTooltip(); }catch(e){}
+              try{ markersByKey[currentKey].closePopup   && markersByKey[currentKey].closePopup(); }catch(e){}
             }
             var layer = markersByKey[key];
-            try {
+            try{
               if (layer.getTooltip && layer.getTooltip()) layer.openTooltip();
               else if (layer.getPopup && layer.getPopup()) layer.openPopup();
-            } catch(e){}
-            try {
-              var center = layer.getLatLng ? layer.getLatLng()
-                         : (layer.getBounds ? layer.getBounds().getCenter() : null);
-              if (center) map.setView(center, map.getZoom(), {animate:true});
-            } catch(e){}
+            }catch(e){}
+            try{
+              var c = layer.getLatLng ? layer.getLatLng() : (layer.getBounds ? layer.getBounds().getCenter() : null);
+              if (c) map.setView(c, map.getZoom(), {animate:true});
+            }catch(e){}
             currentKey = key;
           }
 
@@ -775,7 +741,8 @@ author_profile: True
               if (layer.getTooltip && layer.getTooltip()) txt = layer.getTooltip().getContent();
               else if (layer.getPopup && layer.getPopup()) txt = layer.getPopup().getContent();
               else if (layer.options && layer.options.title) txt = layer.options.title;
-              var first = String(txt || '').split('<br')[0];
+
+              var first = String(txt||'').split('<br')[0];
               var key = slug(first);
 
               var pos = null;
@@ -794,8 +761,7 @@ author_profile: True
             }catch(e){}
           }
 
-          function buildIndex(){ try { map.eachLayer(indexLayer); } catch(e){} }
-
+          function buildIndex(){ try{ map.eachLayer(indexLayer); }catch(e){} }
           map.whenReady(function(){ buildIndex(); setTimeout(buildIndex, 250); });
 
           window.addEventListener('message', function(ev){
