@@ -37,7 +37,7 @@ author_profile: True
   .map-viewport{
   position: relative;
   height: calc(var(--map-h) * (1 - var(--overlay-frac)));
-  overflow: hidden;
+  overflow: visible;
   -webkit-mask-image: radial-gradient(ellipse var(--oval-rx) var(--oval-ry)
     at var(--oval-cx) var(--oval-cy), #000 99.2%, transparent 100%);
   mask-image: radial-gradient(ellipse var(--oval-rx) var(--oval-ry)
