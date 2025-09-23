@@ -233,8 +233,7 @@ author_profile: True
       </div>
     </li>
 
-
-    <li class="tl-item down" style="--stem: 140px;" data-key="shantou-china">>
+    <li class="tl-item down" style="--stem: 140px;" data-key="shantou-china">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
