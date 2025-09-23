@@ -13,8 +13,8 @@ author_profile: True
     /* Map */
     --map-h: 60vh;
     --overlay-frac: .42;
-    --oval-rx: 52%;
-    --oval-ry: 44.5%;
+    --oval-rx: 80%;
+    --oval-ry: 71%;
     --oval-cx: 50%;
     --oval-cy: 50%;
 
@@ -37,7 +37,7 @@ author_profile: True
   .map-viewport{
   position: relative;
   height: calc(var(--map-h) * (1 - var(--overlay-frac)));
-  overflow: visible;
+  overflow: hidden;
   -webkit-mask-image: radial-gradient(ellipse var(--oval-rx) var(--oval-ry)
     at var(--oval-cx) var(--oval-cy), #000 99.2%, transparent 100%);
   mask-image: radial-gradient(ellipse var(--oval-rx) var(--oval-ry)
