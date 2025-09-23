@@ -11,7 +11,7 @@ author_profile: True
 <style>
   :root{
     /* Map */
-    --map-h: 100vh;
+    --map-h: 78vh;
     --overlay-frac: .42;
     --oval-rx: 50%;
     --oval-ry: 42%;
@@ -32,7 +32,7 @@ author_profile: True
     --tl-dot-size: 12px;    /* dot size (keep in sync with .tick) */
   }
 
-  /* ===== Map (unchanged) ===== */
+  /* ===== Map ===== */
   .map-shell { position: relative; width: 100%; margin: 0; }
   .map-viewport{
   position: relative;
