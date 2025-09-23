@@ -666,30 +666,26 @@ author_profile: True
   const tlList   = document.querySelector('.timeline .tl-list');
   const itemsByKey = {};
 
-  // slug helper shared by parent + iframe
   function slug(s){
     return String(s || '').toLowerCase()
-      .replace(/<[^>]+>/g,'')      // strip tags
-      .replace(/&[^;]+;/g,' ')     // strip entities
-      .replace(/[^a-z0-9]+/g,'-')  // non-alnum → dash
-      .replace(/^-+|-+$/g,'');     // trim dashes
+      .replace(/<[^>]+>/g,'')
+      .replace(/&[^;]+;/g,' ')
+      .replace(/[^a-z0-9]+/g,'-')
+      .replace(/^-+|-+$/g,'');
   }
 
-  // Index timeline items (only those with data-key)
-  const tlEls = document.querySelectorAll('.timeline .tl-item[data-key]');
-  tlEls.forEach(el=>{
+  // index timeline items
+  document.querySelectorAll('.timeline .tl-item[data-key]').forEach(el=>{
     const key = el.getAttribute('data-key').trim().toLowerCase();
     itemsByKey[key] = el;
     el.addEventListener('click', ()=>{
-      if (mapFrame && mapFrame.contentWindow) {
+      if (mapFrame?.contentWindow) {
         mapFrame.contentWindow.postMessage({type:'showCity', key}, '*');
       }
       activate(key);
     });
   });
-  console.log('[TL] indexed keys:', Object.keys(itemsByKey));
 
-  // center + highlight a timeline item
   function activate(key){
     document.querySelectorAll('.timeline .tl-item.is-active')
       .forEach(el=>el.classList.remove('is-active'));
@@ -700,25 +696,14 @@ author_profile: True
     tlList.scrollTo({left: Math.max(0,target), behavior:'smooth'});
   }
 
-  // parent listens to clicks coming back from the map
+  // map -> timeline
   window.addEventListener('message', (ev)=>{
     const data = ev.data || {};
-    if (data.type === 'mapClick' && data.key){
-      console.log('[MAP→TL] click for', data.key);
-      activate(data.key);
-    }
+    if (data.type === 'mapClick' && data.key){ activate(data.key); }
   });
 
-  // inject code into the iframe after it loads
-  if (!mapFrame) {
-    console.warn('[MAP] iframe not found');
-    return;
-  }
-
-  mapFrame.addEventListener('load', ()=>{
-    const w = mapFrame.contentWindow;
-    const d = w.document;
-
+  mapFrame?.addEventListener('load', ()=>{
+    const w = mapFrame.contentWindow, d = w.document;
     const code = `
       (function(){
         function ready(fn){
@@ -733,95 +718,100 @@ author_profile: True
             .replace(/^-+|-+$/g,'');
         }
         ready(function(){
-          var L = window.L;
-          if (!L){ console.warn('[IFRAME] Leaflet L not found'); return; }
+          var L = window.L; if (!L) return;
 
-          // find the Leaflet map instance exposed by Folium
+          // find map
           var map = null;
           for (var k in window){
-            try { if (window[k] instanceof L.Map){ map = window[k]; break; } }
-            catch(e){}
+            try { if (window[k] instanceof L.Map){ map = window[k]; break; } } catch(e){}
           }
-          if (!map){ console.warn('[IFRAME] Leaflet map not found'); return; }
+          if (!map) return;
 
           var markersByKey = {};
+          var currentKey = null;  // ← track what’s open now
 
-          // recursively index anything that looks clickable with a position
+          // open exactly one thing at a time
+          function openForKey(key){
+            if (!key || !markersByKey[key]) return;
+            // close any existing tooltip/popup first
+            try { map.closeTooltip(); } catch(e){}
+            try { map.closePopup(); }   catch(e){}
+            if (currentKey && markersByKey[currentKey] && currentKey !== key){
+              try { markersByKey[currentKey].closeTooltip && markersByKey[currentKey].closeTooltip(); } catch(e){}
+              try { markersByKey[currentKey].closePopup   && markersByKey[currentKey].closePopup(); }   catch(e){}
+            }
+            var layer = markersByKey[key];
+            try {
+              // open whichever the layer has
+              if (layer.getTooltip && layer.getTooltip()) layer.openTooltip();
+              else if (layer.getPopup && layer.getPopup()) layer.openPopup();
+            } catch(e){}
+            try {
+              var center = layer.getLatLng ? layer.getLatLng()
+                         : (layer.getBounds ? layer.getBounds().getCenter() : null);
+              if (center) map.setView(center, map.getZoom(), {animate:true});
+            } catch(e){}
+            currentKey = key;
+          }
+
           function indexLayer(layer){
             try{
-              // pull some identifying text (tooltip, popup, title)
               var txt = '';
               if (layer.getTooltip && layer.getTooltip()) txt = layer.getTooltip().getContent();
               else if (layer.getPopup && layer.getPopup()) txt = layer.getPopup().getContent();
               else if (layer.options && layer.options.title) txt = layer.options.title;
 
-              var firstLine = String(txt || '').split('<br')[0];
-              var key = slug(firstLine);
+              var first = String(txt || '').split('<br')[0];
+              var key = slug(first);
 
-              // get a position if available (Markers, CircleMarkers, etc.)
               var pos = null;
-              if (layer.getLatLng)       pos = layer.getLatLng();
-              else if (layer.getBounds)  { try{ pos = layer.getBounds().getCenter(); }catch(e){} }
+              if (layer.getLatLng) pos = layer.getLatLng();
+              else if (layer.getBounds){ try{ pos = layer.getBounds().getCenter(); }catch(e){} }
 
-              var isPointish = !!pos;
-
-              if (key && isPointish){
+              if (key && pos){
                 layer.__key = key;
                 markersByKey[key] = layer;
 
+                // map click → parent, but also enforce single open here
                 if (layer.on){
                   layer.on('click', function(){
-                    try { this.openTooltip && this.openTooltip(); } catch(e){}
+                    openForKey(this.__key);  // ← close others, open this
                     window.parent.postMessage({type:'mapClick', key: this.__key}, '*');
                   });
                 }
               }
 
-              // recurse into groups/geojson
-              if (layer.eachLayer){ layer.eachLayer(indexLayer); }
+              if (layer.eachLayer) layer.eachLayer(indexLayer);
             }catch(e){}
           }
 
           function buildIndex(){
-            try{ map.eachLayer(indexLayer); }catch(e){}
-            console.log('[IFRAME] indexed keys:', Object.keys(markersByKey));
+            try { map.eachLayer(indexLayer); } catch(e){}
           }
 
-          // wait until map is ready, then index; re-index once more a tick later
           map.whenReady(function(){
             buildIndex();
-            setTimeout(buildIndex, 250);
+            setTimeout(buildIndex, 250); // in case layers add late
           });
 
-          // parent → map: focus and open tooltip
+          // parent → map (timeline click)
           window.addEventListener('message', function(ev){
             var data = ev.data || {};
-            if (data.type === 'showCity' && data.key && markersByKey[data.key]){
-              var m = markersByKey[data.key];
-              try { m.openTooltip && m.openTooltip(); } catch(e){}
-              try {
-                var center = m.getLatLng ? m.getLatLng() :
-                             (m.getBounds ? m.getBounds().getCenter() : null);
-                if (center) map.setView(center, map.getZoom(), {animate:true});
-              } catch(e){}
+            if (data.type === 'showCity' && data.key){
+              openForKey(data.key);  // ← ensures only one is open
             }
           });
 
-          // expose for debugging in the iframe console
-          window.__markersByKey = markersByKey;
+          window.__markersByKey = markersByKey; // debug
         });
-      })();
-    `;
-
+      })();`;
     const s = d.createElement('script');
     s.type = 'text/javascript';
     s.textContent = code;
     d.body.appendChild(s);
-    console.log('[PARENT] injected map indexer');
   });
 })();
 </script>
-
 
 <!-------------->
 <!--          -->
