@@ -31,17 +31,22 @@ author_profile: True
     --tl-card-offset: 12px; /* space from tick to card’s left edge */
     --tl-dot-size: 12px;    /* dot size (keep in sync with .tick) */
   }
+  /* -webkit-mask-image: radial-gradient(ellipse var(--oval-rx) var(--oval-ry)
+    at var(--oval-cx) var(--oval-cy), #000 98%, transparent 100%);
+  mask-image: radial-gradient(ellipse var(--oval-rx) var(--oval-ry)
+    at var(--oval-cx) var(--oval-cy), #000 98%, transparent 100%);*/
 
-  /* ===== Map (unchanged) ===== */
+  /* mask-image: radial-gradient(ellipse var(--oval-rx) var(--oval-ry)
+    at var(--oval-cx) var(--oval-cy), #000 98%, transparent 100%);*/
+  
+  /* ===== Map ===== */
   .map-shell { position: relative; width: 100%; margin: 0; }
   .map-viewport{
   position: relative;
   height: calc(var(--map-h) * (1 - var(--overlay-frac)));
   overflow: hidden;
-  -webkit-mask-image: radial-gradient(ellipse var(--oval-rx) var(--oval-ry)
-    at var(--oval-cx) var(--oval-cy), #000 98%, transparent 100%);
-  mask-image: radial-gradient(ellipse var(--oval-rx) var(--oval-ry)
-    at var(--oval-cx) var(--oval-cy), #000 98%, transparent 100%);
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
   }
   .map-viewport iframe{
     display:block; width:100%; height: var(--map-h); border:0;
@@ -679,24 +684,19 @@ author_profile: True
     const key = el.getAttribute('data-key').trim().toLowerCase();
     itemsByKey[key] = el;
     el.addEventListener('click', ()=>{
-      if (mapFrame?.contentWindow) {
-        mapFrame.contentWindow.postMessage({type:'showCity', key}, '*');
-      }
+      mapFrame?.contentWindow?.postMessage({type:'showCity', key}, '*');
       activate(key);
     });
   });
 
   function activate(key){
-    document.querySelectorAll('.timeline .tl-item.is-active')
-      .forEach(el=>el.classList.remove('is-active'));
-    const el = itemsByKey[key];
-    if (!el || !tlList) return;
+    document.querySelectorAll('.timeline .tl-item.is-active').forEach(el=>el.classList.remove('is-active'));
+    const el = itemsByKey[key]; if (!el || !tlList) return;
     el.classList.add('is-active');
     const target = el.offsetLeft - (tlList.clientWidth - el.clientWidth)/2;
     tlList.scrollTo({left: Math.max(0,target), behavior:'smooth'});
   }
 
-  // map -> timeline
   window.addEventListener('message', (ev)=>{
     const data = ev.data || {};
     if (data.type === 'mapClick' && data.key){ activate(data.key); }
@@ -704,6 +704,29 @@ author_profile: True
 
   mapFrame?.addEventListener('load', ()=>{
     const w = mapFrame.contentWindow, d = w.document;
+
+    // ⬅ add oval clip CSS INSIDE the iframe: clip map panes, NOT tooltip/popup panes
+    const style = d.createElement('style');
+    style.textContent = `
+      .leaflet-container{ background: transparent !important; }
+      /* Clip only the map visuals to an ellipse; leave tooltip/popup panes free */
+      .leaflet-tile-pane,
+      .leaflet-overlay-pane,
+      .leaflet-shadow-pane,
+      .leaflet-marker-pane{
+        -webkit-clip-path: ellipse(50% 42% at 50% 50%);
+        clip-path: ellipse(50% 42% at 50% 50%);
+      }
+      .leaflet-tooltip-pane,
+      .leaflet-popup-pane{
+        overflow: visible !important;
+        z-index: 10000;
+        -webkit-clip-path: none !important;
+        clip-path: none !important;
+      }
+    `;
+    d.head.appendChild(style);
+
     const code = `
       (function(){
         function ready(fn){
@@ -719,30 +742,22 @@ author_profile: True
         }
         ready(function(){
           var L = window.L; if (!L) return;
-
-          // find map
           var map = null;
-          for (var k in window){
-            try { if (window[k] instanceof L.Map){ map = window[k]; break; } } catch(e){}
-          }
+          for (var k in window){ try { if (window[k] instanceof L.Map){ map = window[k]; break; } } catch(e){} }
           if (!map) return;
 
           var markersByKey = {};
-          var currentKey = null;  // ← track what’s open now
+          var currentKey = null;
 
-          // open exactly one thing at a time
           function openForKey(key){
             if (!key || !markersByKey[key]) return;
-            // close any existing tooltip/popup first
-            try { map.closeTooltip(); } catch(e){}
-            try { map.closePopup(); }   catch(e){}
+            try { map.closeTooltip(); map.closePopup(); } catch(e){}
             if (currentKey && markersByKey[currentKey] && currentKey !== key){
               try { markersByKey[currentKey].closeTooltip && markersByKey[currentKey].closeTooltip(); } catch(e){}
               try { markersByKey[currentKey].closePopup   && markersByKey[currentKey].closePopup(); }   catch(e){}
             }
             var layer = markersByKey[key];
             try {
-              // open whichever the layer has
               if (layer.getTooltip && layer.getTooltip()) layer.openTooltip();
               else if (layer.getPopup && layer.getPopup()) layer.openPopup();
             } catch(e){}
@@ -760,7 +775,6 @@ author_profile: True
               if (layer.getTooltip && layer.getTooltip()) txt = layer.getTooltip().getContent();
               else if (layer.getPopup && layer.getPopup()) txt = layer.getPopup().getContent();
               else if (layer.options && layer.options.title) txt = layer.options.title;
-
               var first = String(txt || '').split('<br')[0];
               var key = slug(first);
 
@@ -771,40 +785,28 @@ author_profile: True
               if (key && pos){
                 layer.__key = key;
                 markersByKey[key] = layer;
-
-                // map click → parent, but also enforce single open here
-                if (layer.on){
-                  layer.on('click', function(){
-                    openForKey(this.__key);  // ← close others, open this
-                    window.parent.postMessage({type:'mapClick', key: this.__key}, '*');
-                  });
-                }
+                layer.on && layer.on('click', function(){
+                  openForKey(this.__key);
+                  window.parent.postMessage({type:'mapClick', key: this.__key}, '*');
+                });
               }
-
-              if (layer.eachLayer) layer.eachLayer(indexLayer);
+              layer.eachLayer && layer.eachLayer(indexLayer);
             }catch(e){}
           }
 
-          function buildIndex(){
-            try { map.eachLayer(indexLayer); } catch(e){}
-          }
+          function buildIndex(){ try { map.eachLayer(indexLayer); } catch(e){} }
 
-          map.whenReady(function(){
-            buildIndex();
-            setTimeout(buildIndex, 250); // in case layers add late
-          });
+          map.whenReady(function(){ buildIndex(); setTimeout(buildIndex, 250); });
 
-          // parent → map (timeline click)
           window.addEventListener('message', function(ev){
             var data = ev.data || {};
-            if (data.type === 'showCity' && data.key){
-              openForKey(data.key);  // ← ensures only one is open
-            }
+            if (data.type === 'showCity' && data.key){ openForKey(data.key); }
           });
 
-          window.__markersByKey = markersByKey; // debug
+          window.__markersByKey = markersByKey;
         });
-      })();`;
+      })();
+    `;
     const s = d.createElement('script');
     s.type = 'text/javascript';
     s.textContent = code;
