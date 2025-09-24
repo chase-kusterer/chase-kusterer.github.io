@@ -93,6 +93,8 @@ author_profile: True
       --gap: .75rem;                       /* matches your .chips gap */
       --speed: 35s;                        /* slower = larger number */
       --gutter: calc(var(--tl-track) / 2); /* padding variable */
+      --fadeL: 32px;  /* left fade width */
+      --fadeR: 8%;    /* right fade width */
       position: relative;
       overflow: hidden;
       margin-top: .25rem;     /* stays tight under legend */
@@ -101,17 +103,17 @@ author_profile: True
       -webkit-mask-image: linear-gradient(
           to right,
           transparent 0,
-          transparent calc(var(--gutter) - 1px),
-          #000        calc(var(--gutter) + 0px),
-          #000        calc(100% - 8%),
+          transparent calc(var(--gutter) - var(--fadeL)),
+          #000        var(--gutter),
+          #000        calc(100% - var(--fadeR)),
           transparent 100%
-        );
+          );
         mask-image: linear-gradient(
           to right,
           transparent 0,
-          transparent calc(var(--gutter) - 1px),
-          #000        calc(var(--gutter) + 0px),
-          #000        calc(100% - 8%),
+          transparent calc(var(--gutter) - var(--fadeL)),
+          #000        var(--gutter),
+          #000        calc(100% - var(--fadeR)),
           transparent 100%
         );
     }
