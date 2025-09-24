@@ -1,12 +1,11 @@
 ---
 permalink: /about/
-title: "About"
+title: "My Career Journey"
 layout: single
 classes: wide
 sidebar: null
 author_profile: True
 ---
-<h2 class="h2" style="margin:.25rem 0 .35rem;">My Career Journey</h2>
 
 <style>
   :root{
@@ -128,8 +127,8 @@ author_profile: True
   /* ===== Timeline (clean, single set of rules) ===== */
   .timeline{
     position: relative;
-    margin: 0.5rem 0 0.5rem; /* distance between map and timeline */
-    padding: 0.75rem 0 0.75rem;  /* ~one extra line on top for “up” cards */
+    margin: 1.0rem 0 1.0rem; /* distance between map and timeline */
+    padding: 1.5rem 0 1.5rem;  /* ~one extra line on top for “up” cards */
     background: transparent;
     isolation: isolate;
   }
