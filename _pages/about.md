@@ -128,8 +128,8 @@ author_profile: True
   /* ===== Timeline (clean, single set of rules) ===== */
   .timeline{
     position: relative;
-    margin: 0.25rem 0 2rem;    /* distance between map and timeline */
-    padding: 2.0rem 0 2.5rem; /* ~one extra line on top for “up” cards */
+    margin: 0.25rem 0 0.25rem;    /* distance between map and timeline */
+    padding: 0.5rem 0 0.5rem; /* ~one extra line on top for “up” cards */
     background: transparent;
     isolation: isolate;
   }
@@ -281,6 +281,7 @@ author_profile: True
         <!--       -->
         <!-- chips -->
         <!--       -->
+  <div class="fullbleed">  <!-- FULL-BLEED START -->
     <div class="chip-marquee" aria-label="Expertise">
       <div class="chips chip-track">
       <!-- set #1 -->
@@ -313,6 +314,7 @@ author_profile: True
         
       </div> <!-- /chips chip-track -->
       </div> <!-- /chip-marquee -->
+      </div  <!-- FULL-BLEED END -->
       </div> <!-- /map-overlay -->
 
   </div> <!-- /map-shell -->
@@ -931,24 +933,3 @@ author_profile: True
 <!--   END    -->
 <!--          -->
 <!-------------->
-
-
-<!---------------->
-<!--            -->
-<!-- Highlights -->
-<!--   START    -->
-<!--            -->
-<!---------------->
-<h3>Professional Highlights</h3>
-<ul>
-  <li>10-time Faculty of the Year</li>
-  <li>Author of <em>From Print to Prediction: A Beginner’s Guide to Data Analysis in Python</em></li>
-  <li>Quoted in <em>The New York Times</em></li>
-</ul>
-
-<!---------------->
-<!--            -->
-<!-- Highlights -->
-<!--    END     -->
-<!--            -->
-<!---------------->
