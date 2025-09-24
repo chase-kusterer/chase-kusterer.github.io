@@ -89,8 +89,7 @@ author_profile: true
 
     {% comment %}
       Try common places people store portfolio items.
-      - Collection “projects” (/_projects)
-      - Collection “portfolio” (/_portfolio)
+      - Collection “portfolio” (/_pages/portfolio)
       - Category “portfolio” (posts)
     {% endcomment %}
     {% assign items = site.projects %}
@@ -109,7 +108,7 @@ author_profile: true
             {%- comment -%}
               Fallback: try assets/images/teasers/<slug>.jpg
             {%- endcomment -%}
-            {%- assign guess = 'assets/images/teasers/' | append: item.slug | append: '.jpg' -%}
+            {%- assign guess = 'assets/images/teasers/' | append: item.slug | append: '.png' -%}
             {%- assign teaser = guess -%}
           {%- endif -%}
 
@@ -129,17 +128,12 @@ author_profile: true
   <!-- Card 2: Textbook (link) -->
   <a class="card card--link" href="https://chase-kusterer.github.io/projects/textbook/">
     <div class="card__heading">
-      <span>Textbook</span>
+      <span>From Print to Prediction</span>
+      <span>A Beginner's Guide to Data Analysis in Python</span>
       <span class="card__cta">Open →</span>
     </div>
-    <p>A beginner-friendly Python + analytics textbook with hands-on notebooks and practical examples.</p>
+    <p>This interactive book is designed for readers from less-technical backgrounds. You’ll write and run code in each chapter and learn core concepts through short stories and hands-on exercises.</p>
   </a>
-
-  <!-- Card 3: Learning Tools (no link yet) -->
-  <section class="card" aria-label="Learning Tools">
-    <div class="card__heading"><span>Learning Tools</span></div>
-    <p>Interactive demos and utilities for class and self-study. (Link coming soon.)</p>
-  </section>
 
   <!-- Card 4: My Career Journey (link) -->
   <a class="card card--link" href="{{ '/about/' | relative_url }}">
