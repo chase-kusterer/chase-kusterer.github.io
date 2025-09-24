@@ -32,7 +32,7 @@ author_profile: True
     --tl-dot-size: 12px;    /* dot size (keep in sync with .tick) */
   }
 
-  /* ===== Map (unchanged) ===== */
+  /* ===== Map ===== */
   .map-shell { position: relative; width: 100%; margin: 0; }
   .map-viewport{
   position: relative;
@@ -202,6 +202,7 @@ author_profile: True
       <div class="map-legend" role="group" aria-label="Map legend">
         <span><span class="dot" style="background:#e11d48;"></span> Places I’ve Worked</span>
         <span><span class="dot" style="background:#2563eb;"></span> Presentations &amp; Workshops</span>
+        <span><span class="dot" style="background:#caff00;"></span> Education</span>
       </div>
     </div>
   </div> <!-- /map-shell -->
