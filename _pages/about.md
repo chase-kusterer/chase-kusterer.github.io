@@ -83,7 +83,7 @@ author_profile: True
     
     /* If you still see a tiny gap and want the chips tucked up:
        uncomment the next line to lift the chips slightly. */
-    /* .chips{ transform: translateY(calc(-1 * (var(--legend-lift) - .5rem))); } */
+    .chips{ transform: translateY(calc(-1 * (var(--legend-lift) - .5rem))); }
 
 
   
@@ -245,11 +245,17 @@ author_profile: True
         <!--       -->
       <div class="chips" aria-label="Expertise">
         <span class="chip">10-Time Faculty of the Year</span>
+        <span class="chip">Machine Learning</span>
+        <span class="chip">AI</span>
         <span class="chip">Python</span>
         <span class="chip">SQL</span>
         <span class="chip">R</span>
         <span class="chip">HTML5</span>
         <span class="chip">CSS</span>
+        <span class="chip">Jupyter</span>
+        <span class="chip">scikit-learn</span>
+        <span class="chip">PyTorch</span>
+        <span class="chip">Bilingual</span>
       </div>
   </div>
 
