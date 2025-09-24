@@ -10,7 +10,7 @@ author_profile: True
 <style>
   :root{
     /* Map */
-    --map-h: 60vh;
+    --map-h: clamp(320px, 60svh, 680px);
     --overlay-frac: .42;
     --oval-rx: 50%;
     --oval-ry: 42%;
@@ -21,10 +21,10 @@ author_profile: True
     --tl-line: #0f172a33;
     --tl-dot:  #0f172a;
     --tl-muted:#6b7280;
-    --tl-gap:  2rem;        /* baseline ↔ card gap */
-    --tl-track: 200px;      /* fixed step between dots (try 180–240px) */
-    --tl-height: 360px;     /* total vertical working height of each column */
-    --tl-gap-factor: 1.00;  /* closer to 1 = farther from the line */
+    --tl-gap:  2rem;                        /* baseline ↔ card gap */
+    --tl-track: clamp(160px, 16vw, 260px);  /* dot-to-dot step */
+    --tl-height: clamp(280px, 38vh, 460px); /* column working height */
+    --tl-gap-factor: 1.00;                 /* closer to 1 = farther from the line */
 
     /* Card & tick */
     --tl-card-offset: 12px; /* space from tick to card’s left edge */
@@ -274,11 +274,31 @@ author_profile: True
 
 /* full-bleed wrapper that spans the entire viewport width */
 .fullbleed{
+  container-type: inline-size;      /* NEW: enables @container */
   width:80vw; max-width:80vw;
   margin-left:35%;
   margin-right:35%;
   transform:translateX(-50%);
   padding-inline: clamp(8px, 2.5vw, 24px);
+}
+
+/* fullbleed container properties */
+/* timeline scales down gracefully under ~800px container width */
+@container (max-width: 800px){
+  .timeline{
+    --tl-track:  clamp(150px, 28cqi, 220px);
+    --tl-height: clamp(260px, 42cqi, 380px);
+    --tl-gap:    1.25rem;
+  }
+  .tl-item .card{ width: clamp(220px, 70cqi, 380px); }
+}
+
+/* Give more breathing room on very wide containers */
+@container (min-width: 1200px){
+  .timeline{
+    --tl-track:  clamp(220px, 14cqi, 300px);
+    --tl-height: clamp(340px, 36cqi, 520px);
+  }
 }
 
 /* (Optional) ensure nothing clips the full-bleed */
