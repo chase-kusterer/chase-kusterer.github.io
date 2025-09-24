@@ -90,8 +90,9 @@ author_profile: True
   
     /* Marquee wrapper (viewport) */
     .chip-marquee{
-      --gap: .75rem;          /* matches your .chips gap */
-      --speed: 35s;           /* slower = larger number */
+      --gap: .75rem;                       /* matches your .chips gap */
+      --speed: 35s;                        /* slower = larger number */
+      --gutter: calc(var(--tl-track) / 2); /* padding variable */
       position: relative;
       overflow: hidden;
       margin-top: .25rem;     /* stays tight under legend */
@@ -100,7 +101,7 @@ author_profile: True
               mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
 
       /* matching the timeline’s left whitespace */
-      padding-left: calc(var(--tl-track) / 2);
+      padding-left: var(--gutter);
     }
     
     /* Moving track (just your .chips, animated) */
@@ -109,10 +110,6 @@ author_profile: True
       gap: var(--gap);
       width: max-content;             /* shrink to content */
       animation: chip-marquee var(--speed) linear infinite;
-
-      /* matching the timeline’s left whitespace */
-      padding-left: calc(var(--tl-track) / 2);
-      
     }
     
     /* pause on hover */
@@ -125,8 +122,8 @@ author_profile: True
     
     /* keyframes: move half the duplicated track width */
     @keyframes chip-marquee{
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }  /* requires content duplicated once */
+      from { transform: translateX(var(--gutter, 0px)); }
+      to   { transform: translateX(calc(-50% + var(--gutter, 0px))); } /* requires content duplicated once */
     }
 
 
