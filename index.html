@@ -1,6 +1,4 @@
 ---
-# You don't need to edit this file, it's empty on purpose.
-# Edit theme's home layout instead if you wanna make some changes
 # See: https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 layout: single
 title: ""
@@ -12,11 +10,14 @@ author_profile: true
   /* ====== Home cards grid ====== */
   .home-cards{
     display:grid;
-    grid-template-columns: repeat(2, minmax(0,1fr));
+    grid-template-columns: repeat(4, minmax(0,1fr)); /* 4 across */
     gap: clamp(16px, 2.5vw, 28px);
     margin: clamp(8px, 2vw, 16px) 0;
   }
-  @media (max-width: 900px){
+  @media (max-width: 1200px){
+    .home-cards{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+  }
+  @media (max-width: 700px){
     .home-cards{ grid-template-columns: 1fr; }
   }
 
