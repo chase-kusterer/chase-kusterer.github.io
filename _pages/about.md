@@ -9,8 +9,11 @@ author_profile: True
 
 <style>
   :root{
+
+    --ui-scale: .8;  /* emulating former 80% build; set to 1 when done */
+    
     /* Map */
-    --map-h: clamp(320px, 60svh, 680px);
+    --map-h: calc(clamp(320px, 60svh, 680px) * var(--ui-scale));
     --overlay-frac: .42;
     --oval-rx: 50%;
     --oval-ry: 42%;
@@ -21,14 +24,14 @@ author_profile: True
     --tl-line: #0f172a33;
     --tl-dot:  #0f172a;
     --tl-muted:#6b7280;
-    --tl-gap:  2rem;                        /* baseline ↔ card gap */
-    --tl-track: clamp(160px, 16vw, 260px);  /* dot-to-dot step */
-    --tl-height: clamp(280px, 38vh, 460px); /* column working height */
-    --tl-gap-factor: 1.00;                 /* closer to 1 = farther from the line */
+    --tl-gap:  2rem;                                                 /* baseline ↔ card gap */
+    --tl-track:  calc(clamp(160px, 16vw, 260px) * var(--ui-scale));  /* dot-to-dot step */
+    --tl-height: calc(clamp(280px, 38vh, 460px) * var(--ui-scale));  /* column working height */
+    --tl-gap-factor: 1.00;                                           /* closer to 1 = farther from the line */
 
     /* Card & tick */
-    --tl-card-offset: 12px; /* space from tick to card’s left edge */
-    --tl-dot-size: 12px;    /* dot size (keep in sync with .tick) */
+    --tl-card-offset: calc(12px * var(--ui-scale)); /* space from tick to card’s left edge */
+    --tl-dot-size: calc(12px * var(--ui-scale));    /* dot size (keep in sync with .tick) */
   }
 
   /* ===== Map ===== */
@@ -68,7 +71,7 @@ author_profile: True
     
     .chip{
       display:inline-block;
-      padding:.45rem 1rem;      /* pill padding */
+      padding:.calc(.45rem * var(--ui-scale)) calc(1rem * var(--ui-scale));      /* pill padding */
       border-radius:9999px;     /* fully rounded */
       background:#f3f4f6;       /* light gray like screenshot */
       border:1px solid #e5e7eb; /* subtle edge */
@@ -77,7 +80,9 @@ author_profile: True
       font-weight:700;
       line-height:1;
       white-space:nowrap;       /* keep each pill on one line */
-      font-size:clamp(.85rem,.9vw,1rem);
+      font-size: clamp(calc(.85rem * var(--ui-scale)),
+                       calc(.9vw * var(--ui-scale)),
+                       calc(1rem * var(--ui-scale)));
     }
     
     /* If you still see a tiny gap and want the chips tucked up:
@@ -211,11 +216,12 @@ author_profile: True
   /* sensible width for cards (responsive but bounded) */
   .tl-item .card{ width: clamp(260px, 26vw, 400px); max-width: 48ch; }
 
-  /* NEW: arrow nudges */
+  /* arrow nudges */
   .tl-nudge{
     position:absolute; top:50%;
     transform:translateY(-50%);
-    width:38px; height:38px;
+    width:  calc(38px * var(--ui-scale));
+    height: calc(38px * var(--ui-scale));
     border-radius:9999px;
     border:1px solid #e5e7eb;
     background: rgba(255,255,255,.9);
@@ -226,7 +232,9 @@ author_profile: True
   .tl-nudge--left  { left:.5rem; }
   .tl-nudge--right { right:.5rem; }
   .tl-nudge:hover  { background:#fff; }
-  .tl-nudge svg    { display:block; }
+  .tl-nudge svg    { display:block; 
+                     width:  calc(18px * var(--ui-scale));
+                     height: calc(18px * var(--ui-scale)); }
   
   /* optional: hide on very small screens */
   @media (max-width: 480px){
