@@ -221,7 +221,7 @@ author_profile: True
 <!--            -->
 <!-- START 2008 -->
 <!--            -->
-    <li class="tl-item up" style="--stem: 140px;">
+    <li class="tl-item up" style="--stem: 140px;" data-key="fargo-usa">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
@@ -263,7 +263,7 @@ author_profile: True
 <!--            -->
 <!-- START 2011 -->
 <!--            -->
-    <li class="tl-item down" style="--stem: 120px;">
+    <li class="tl-item down" style="--stem: 120px;" data-key="shanghai-china">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
@@ -278,7 +278,7 @@ author_profile: True
 <!--            -->
 <!-- START 2013 -->
 <!--            -->
-    <li class="tl-item up" style="--stem: 110px;">
+    <li class="tl-item up" style="--stem: 110px;" data-key="shanghai-china">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
@@ -290,7 +290,7 @@ author_profile: True
       </div>
     </li>
 
-    <li class="tl-item down" style="--stem: 130px;">
+    <li class="tl-item down" style="--stem: 130px;" data-key="shanghai-china">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
@@ -302,7 +302,7 @@ author_profile: True
       </div>
     </li>  
 
-    <li class="tl-item up" style="--stem: 130px;">
+    <li class="tl-item up" style="--stem: 130px;" data-key="shanghai-china">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
@@ -314,7 +314,7 @@ author_profile: True
       </div>
     </li>
 
-    <li class="tl-item down" style="--stem: 130px;">
+    <li class="tl-item down" style="--stem: 130px;" data-key="beijing-china">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
@@ -326,7 +326,7 @@ author_profile: True
       </div>
     </li>
     
-    <li class="tl-item up" style="--stem: 130px;">
+    <li class="tl-item up" style="--stem: 130px;" data-key="chicago-usa">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
@@ -338,7 +338,7 @@ author_profile: True
       </div>
     </li>
 
-    <li class="tl-item down" style="--stem: 130px;">
+    <li class="tl-item down" style="--stem: 130px;" data-key="shanghai-china">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
@@ -350,7 +350,7 @@ author_profile: True
       </div>
     </li>
 
-    <li class="tl-item up" style="--stem: 130px;">
+    <li class="tl-item up" style="--stem: 130px;" data-key="dubai-uae">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
@@ -362,7 +362,7 @@ author_profile: True
       </div>
     </li>
 
-    <li class="tl-item down" style="--stem: 130px;">
+    <li class="tl-item down" style="--stem: 130px;" data-key="shanghai-china">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
@@ -374,7 +374,7 @@ author_profile: True
       </div>
     </li>
 
-    <li class="tl-item up" style="--stem: 130px;">
+    <li class="tl-item up" style="--stem: 130px;" data-key="shenzhen-china">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
@@ -386,7 +386,7 @@ author_profile: True
       </div>
     </li>   
 
-    <li class="tl-item down" style="--stem: 130px;">
+    <li class="tl-item down" style="--stem: 130px;" data-key="bangkok-thailand">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
@@ -398,7 +398,7 @@ author_profile: True
       </div>
     </li>   
 
-    <li class="tl-item up" style="--stem: 130px;">
+    <li class="tl-item up" style="--stem: 130px;" data-key="jakarta-indonesia">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
@@ -410,7 +410,7 @@ author_profile: True
       </div>
     </li>    
 
-    <li class="tl-item down" style="--stem: 130px;">
+    <li class="tl-item down" style="--stem: 130px;" data-key="manila-philippines">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
@@ -422,7 +422,7 @@ author_profile: True
       </div>
     </li>
 
-    <li class="tl-item up" style="--stem: 130px;">
+    <li class="tl-item up" style="--stem: 130px;" data-key="budapest-hungary">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
@@ -434,7 +434,7 @@ author_profile: True
       </div>
     </li>  
 
-    <li class="tl-item down" style="--stem: 130px;">
+    <li class="tl-item down" style="--stem: 130px;" data-key="seoul-south-korea">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
@@ -446,7 +446,7 @@ author_profile: True
       </div>
     </li>   
 
-    <li class="tl-item up" style="--stem: 130px;">
+    <li class="tl-item up" style="--stem: 130px;" data-key="hong-kong">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
@@ -458,7 +458,7 @@ author_profile: True
       </div>
     </li>
     
-    <li class="tl-item down" style="--stem: 130px;">
+    <li class="tl-item down" style="--stem: 130px;" data-key="shanghai-china">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
@@ -470,7 +470,7 @@ author_profile: True
       </div>
     </li>
 
-    <li class="tl-item up" style="--stem: 130px;">
+    <li class="tl-item up" style="--stem: 130px;" data-key="hong-kong">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
@@ -482,7 +482,7 @@ author_profile: True
       </div>
     </li>
 
-    <li class="tl-item down" style="--stem: 130px;">
+    <li class="tl-item down" style="--stem: 130px;" data-key="singapore">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
@@ -495,7 +495,7 @@ author_profile: True
     </li>
 
 
-    <li class="tl-item up" style="--stem: 130px;">
+    <li class="tl-item up" style="--stem: 130px;" data-key="shanghai-china">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
@@ -507,7 +507,7 @@ author_profile: True
       </div>
     </li>   
 
-    <li class="tl-item down" style="--stem: 130px;">
+    <li class="tl-item down" style="--stem: 130px;" data-key="shanghai-china">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
@@ -519,7 +519,7 @@ author_profile: True
       </div>
     </li>
 
-    <li class="tl-item up" style="--stem: 130px;">
+    <li class="tl-item up" style="--stem: 130px;" data-key="shanghai-china">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
@@ -535,7 +535,7 @@ author_profile: True
 <!-- START 2018 -->
 <!--            -->
 
-    <li class="tl-item down" style="--stem: 115px;">
+    <li class="tl-item down" style="--stem: 115px;" data-key="paris-france">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
@@ -547,7 +547,7 @@ author_profile: True
       </div>
     </li>
 
-    <li class="tl-item up" style="--stem: 130px;">
+    <li class="tl-item up" style="--stem: 130px;" data-key="siem-reap-cambodia">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
@@ -559,7 +559,7 @@ author_profile: True
       </div>
     </li>    
 
-    <li class="tl-item down" style="--stem: 130px;">
+    <li class="tl-item down" style="--stem: 130px;" data-key="shanghai-china">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
@@ -571,7 +571,7 @@ author_profile: True
       </div>
     </li>
 
-    <li class="tl-item up" style="--stem: 130px;">
+    <li class="tl-item up" style="--stem: 130px;" data-key="new-orleans-usa">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
@@ -583,7 +583,7 @@ author_profile: True
       </div>
     </li>    
     
-    <li class="tl-item down" style="--stem: 130px;">
+    <li class="tl-item down" style="--stem: 130px;" data-key="san-francisco-usa">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
@@ -595,7 +595,7 @@ author_profile: True
       </div>
     </li>
 
-    <li class="tl-item up" style="--stem: 130px;">
+    <li class="tl-item up" style="--stem: 130px;" data-key="san-francisco-usa">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
@@ -607,7 +607,7 @@ author_profile: True
       </div>
     </li>    
     
-    <li class="tl-item down" style="--stem: 115px;">
+    <li class="tl-item down" style="--stem: 115px;" data-key="new-york-city-usa">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
@@ -619,7 +619,7 @@ author_profile: True
       </div>
     </li>
 
-    <li class="tl-item up" style="--stem: 130px;">
+    <li class="tl-item up" style="--stem: 130px;" data-key="san-francisco-usa">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
@@ -631,7 +631,7 @@ author_profile: True
       </div>
     </li>
 
-    <li class="tl-item down" style="--stem: 115px;">
+    <li class="tl-item down" style="--stem: 115px;" data-key="new-york-city-usa">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
