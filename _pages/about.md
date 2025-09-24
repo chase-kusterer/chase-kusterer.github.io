@@ -314,10 +314,10 @@ author_profile: True
         
       </div> <!-- /chips chip-track -->
       </div> <!-- /chip-marquee -->
-      </div  <!-- FULL-BLEED END -->
+      </div>  <!-- FULL-BLEED END -->
       </div> <!-- /map-overlay -->
 
-  </div> <!-- /map-shell -->
+  </div>  <!-- /map-shell -->
 </figure> <!-- /figure -->
 
 
