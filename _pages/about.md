@@ -128,8 +128,8 @@ author_profile: True
   /* ===== Timeline (clean, single set of rules) ===== */
   .timeline{
     position: relative;
-    margin: 0.25rem 0 0.25rem;    /* distance between map and timeline */
-    padding: 0.5rem 0 0.5rem; /* ~one extra line on top for “up” cards */
+    margin: 0.5rem 0 0.5rem; /* distance between map and timeline */
+    padding: 0.75rem 0 0.75rem;  /* ~one extra line on top for “up” cards */
     background: transparent;
     isolation: isolate;
   }
@@ -249,7 +249,7 @@ author_profile: True
   .map-overlay{ margin-top: 0 !important; }   /* was .25rem */
   .map-legend{  margin-top: 0 !important; }   /* was .15rem */
   
-  /* (Optional) gentle overlap: lift the legend up into the map */
+  /* gentle overlap: lift the legend up into the map */
   .map-shell { --legend-lift: 3.25rem; }       /* tweak: .25rem–1rem */
   .map-legend{ margin-top: 0 !important;
                transform: translateY(calc(-1 * var(--legend-lift)));
@@ -314,7 +314,7 @@ author_profile: True
         
       </div> <!-- /chips chip-track -->
       </div> <!-- /chip-marquee -->
-      </div>  <!-- FULL-BLEED END -->
+      </div> <!-- FULL-BLEED END -->
       </div> <!-- /map-overlay -->
 
   </div>  <!-- /map-shell -->
