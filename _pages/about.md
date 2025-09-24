@@ -109,6 +109,9 @@ author_profile: True
       gap: var(--gap);
       width: max-content;             /* shrink to content */
       animation: chip-marquee var(--speed) linear infinite;
+      
+      /* matching the timeline’s left whitespace */
+      padding-left: calc(var(--tl-track) / 2);
     }
     
     /* pause on hover */
@@ -290,6 +293,7 @@ author_profile: True
         <span class="chip">10-Time Faculty of the Year</span>
         <span class="chip">Machine Learning</span>
         <span class="chip">AI</span>
+        <span class="chip">Analytics</span>
         <span class="chip">Python</span>
         <span class="chip">SQL</span>
         <span class="chip">R</span>
