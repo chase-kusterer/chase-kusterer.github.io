@@ -64,6 +64,9 @@ author_profile: True
       justify-content:center;   /* center the whole row */
       gap:.75rem;               /* space between pills */
       margin:.15rem 0 0;        /* keep it tight to the legend */
+      
+      /* matching the timeline’s left whitespace */
+      padding-left: calc(var(--tl-track) / 2);
     }
     
     .chip{
@@ -110,8 +113,6 @@ author_profile: True
       width: max-content;             /* shrink to content */
       animation: chip-marquee var(--speed) linear infinite;
       
-      /* matching the timeline’s left whitespace */
-      padding-left: calc(var(--tl-track) / 2);
     }
     
     /* pause on hover */
