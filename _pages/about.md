@@ -59,8 +59,8 @@ author_profile: True
   /* ===== Timeline (clean, single set of rules) ===== */
   .timeline{
     position: relative;
-    margin: 1.5rem 0 2rem;
-    padding: 3.2rem 0 2.5rem; /* ~one extra line on top for “up” cards */
+    margin: 0.25rem 0 2rem;    /* distance between map and timeline */
+    padding: 2.8rem 0 2.5rem; /* ~one extra line on top for “up” cards */
     background: transparent;
     isolation: isolate;
   }
