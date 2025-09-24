@@ -760,7 +760,7 @@ author_profile: True
     </li>
     </ol>
 
-  /* scroll buttons */
+  <!-- scroll buttons -->
   <button class="tl-nudge tl-nudge--left"  aria-label="Scroll timeline left"  type="button">
     <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
       <path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
