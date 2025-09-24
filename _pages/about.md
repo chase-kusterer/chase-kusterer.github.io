@@ -92,7 +92,7 @@ author_profile: True
     /* Marquee wrapper (viewport) */
     .chip-marquee{
       --gap: .75rem;          /* matches your .chips gap */
-      --speed: 28s;           /* slower = larger number */
+      --speed: 35s;           /* slower = larger number */
       position: relative;
       overflow: hidden;
       margin-top: .25rem;     /* stays tight under legend */
