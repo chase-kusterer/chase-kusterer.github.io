@@ -64,9 +64,6 @@ author_profile: True
       justify-content:center;   /* center the whole row */
       gap:.75rem;               /* space between pills */
       margin:.15rem 0 0;        /* keep it tight to the legend */
-      
-      /* matching the timeline’s left whitespace */
-      padding-left: calc(var(--tl-track) / 2);
     }
     
     .chip{
@@ -112,6 +109,9 @@ author_profile: True
       gap: var(--gap);
       width: max-content;             /* shrink to content */
       animation: chip-marquee var(--speed) linear infinite;
+
+      /* matching the timeline’s left whitespace */
+      padding-left: calc(var(--tl-track) / 2);
       
     }
     
@@ -197,10 +197,33 @@ author_profile: True
                        top:    calc(50% + (var(--tl-gap) * var(--tl-gap-factor)));
                        margin-left: var(--tl-card-offset); text-align:left; }
 
-  /* Optional: sensible width for cards (responsive but bounded) */
+  /* sensible width for cards (responsive but bounded) */
   .tl-item .card{ width: clamp(260px, 26vw, 400px); max-width: 48ch; }
 
-  /* Text styles */
+  /* NEW: arrow nudges */
+  .tl-nudge{
+    position:absolute; top:50%;
+    transform:translateY(-50%);
+    width:38px; height:38px;
+    border-radius:9999px;
+    border:1px solid #e5e7eb;
+    background: rgba(255,255,255,.9);
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+    display:grid; place-items:center;
+    cursor:pointer; z-index:5;   /* above ticks/stems */
+  }
+  .tl-nudge--left  { left:.5rem; }
+  .tl-nudge--right { right:.5rem; }
+  .tl-nudge:hover  { background:#fff; }
+  .tl-nudge svg    { display:block; }
+  
+  /* optional: hide on very small screens */
+  @media (max-width: 480px){
+    .tl-nudge{ display:none; }
+  }
+
+  
+  /* text styles */
   .tl-eyebrow{ font-size:.70rem; letter-spacing:.03em; text-transform:uppercase; color:var(--tl-muted); }
   .tl-range{   font-size:.80rem; color:var(--tl-muted); margin:.15rem 0 .35rem; }
   .tl-title{   margin:0; font-size:var(--tl-title-size, 1.10rem); line-height:1.25; font-weight:700; hyphens: auto; overflow-wrap: anywhere;}
@@ -798,6 +821,28 @@ author_profile: True
 (function(){
   const mapFrame = document.querySelector('.map-viewport iframe');
   const tlList   = document.querySelector('.timeline .tl-list');
+  
+  // nudge buttons
+  const leftBtn  = document.querySelector('.timeline .tl-nudge--left');
+  const rightBtn = document.querySelector('.timeline .tl-nudge--right');
+  
+  // read --tl-track (defaults to 200 if not found)
+  const rootStyles = getComputedStyle(document.documentElement);
+  const step = parseInt(rootStyles.getPropertyValue('--tl-track')) || 200;
+  
+  function updateNudges(){
+    if (!tlList || !leftBtn || !rightBtn) return;
+    const max = tlList.scrollWidth - tlList.clientWidth - 1;
+    const x   = tlList.scrollLeft;
+    leftBtn.style.visibility  = x <= 2 ? 'hidden' : 'visible';
+    rightBtn.style.visibility = x >= max ? 'hidden' : 'visible';
+  }
+  leftBtn?.addEventListener('click',  ()=> tlList?.scrollBy({ left: -step*2, behavior:'smooth' }));
+  rightBtn?.addEventListener('click', ()=> tlList?.scrollBy({ left:  step*2, behavior:'smooth' }));
+  tlList?.addEventListener('scroll', updateNudges);
+  window.addEventListener('resize', updateNudges);
+  updateNudges();
+
   const itemsByKey = {};
 
   function slug(s){
