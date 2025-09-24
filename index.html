@@ -106,7 +106,7 @@ author_profile: true
           {%- assign teaser = item.teaser | default: item.image | default: item.thumbnail -%}
           {%- if teaser == nil or teaser == '' -%}
             {%- comment -%}
-              Fallback: try assets/images/teasers/<slug>.jpg
+              Fallback: try assets/images/teasers/<slug>.png
             {%- endcomment -%}
             {%- assign guess = 'assets/images/teasers/' | append: item.slug | append: '.png' -%}
             {%- assign teaser = guess -%}
@@ -128,8 +128,7 @@ author_profile: true
   <!-- Card 2: Textbook (link) -->
   <a class="card card--link" href="https://chase-kusterer.github.io/projects/textbook/">
     <div class="card__heading">
-      <span>From Print to Prediction</span>
-      <span>A Beginner's Guide to Data Analysis in Python</span>
+      <span>From Print to Prediction <br> A Beginner's Guide to Data Analysis in Python</span>
       <span class="card__cta">Open →</span>
     </div>
     <p>This interactive book is designed for readers from less-technical backgrounds. You’ll write and run code in each chapter and learn core concepts through short stories and hands-on exercises.</p>
