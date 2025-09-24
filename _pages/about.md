@@ -129,7 +129,7 @@ author_profile: True
   .timeline{
     position: relative;
     margin: 0.25rem 0 2rem;    /* distance between map and timeline */
-    padding: 2.8rem 0 2.5rem; /* ~one extra line on top for “up” cards */
+    padding: 2.0rem 0 2.5rem; /* ~one extra line on top for “up” cards */
     background: transparent;
     isolation: isolate;
   }
