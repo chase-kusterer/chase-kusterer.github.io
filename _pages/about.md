@@ -98,6 +98,9 @@ author_profile: True
       /* subtle edge fade so pills enter/exit gracefully */
       -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
               mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+
+      /* matching the timeline’s left whitespace */
+      padding-left: calc(var(--tl-track) / 2);
     }
     
     /* Moving track (just your .chips, animated) */
