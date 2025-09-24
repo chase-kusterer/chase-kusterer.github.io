@@ -318,44 +318,6 @@ author_profile: True
         <span><span class="dot" style="background:#FFD700;"></span> Education</span>
       </div>
 
-        <!--       -->
-        <!-- chips -->
-        <!--       -->
-  <div class="fullbleed">  <!-- FULL-BLEED START -->
-    <div class="chip-marquee" aria-label="Expertise">
-      <div class="chips chip-track">
-      <!-- set #1 -->
-        <span class="chip">10-Time Faculty of the Year</span>
-        <span class="chip">Machine Learning</span>
-        <span class="chip">AI</span>
-        <span class="chip">Analytics</span>
-        <span class="chip">Python</span>
-        <span class="chip">SQL</span>
-        <span class="chip">R</span>
-        <span class="chip">HTML5</span>
-        <span class="chip">CSS</span>
-        <span class="chip">Jupyter</span>
-        <span class="chip">scikit-learn</span>
-        <span class="chip">PyTorch</span>
-        <span class="chip">Bilingual</span>
-
-        <!-- set #2 (duplicate for seamless scroll) -->
-        <span class="chip">10-Time Faculty of the Year</span>
-        <span class="chip">Machine Learning</span>
-        <span class="chip">AI</span>
-        <span class="chip">Python</span>
-        <span class="chip">SQL</span>
-        <span class="chip">R</span>
-        <span class="chip">HTML5</span>
-        <span class="chip">CSS</span>
-        <span class="chip">Jupyter</span>
-        <span class="chip">scikit-learn</span>
-        <span class="chip">PyTorch</span>
-        <span class="chip">Bilingual</span>
-        
-      </div> <!-- /chips chip-track -->
-      </div> <!-- /chip-marquee -->
-      </div> <!-- FULL-BLEED END -->
       </div> <!-- /map-overlay -->
 
   </div>  <!-- /map-shell -->
@@ -821,6 +783,44 @@ author_profile: True
 <!--          -->
 <!-------------->
 
+        <!--       -->
+        <!-- chips -->
+        <!--       -->
+  <div class="fullbleed">  <!-- FULL-BLEED START -->
+    <div class="chip-marquee" aria-label="Expertise">
+      <div class="chips chip-track">
+      <!-- set #1 -->
+        <span class="chip">10-Time Faculty of the Year</span>
+        <span class="chip">Machine Learning</span>
+        <span class="chip">AI</span>
+        <span class="chip">Analytics</span>
+        <span class="chip">Python</span>
+        <span class="chip">SQL</span>
+        <span class="chip">R</span>
+        <span class="chip">HTML5</span>
+        <span class="chip">CSS</span>
+        <span class="chip">Jupyter</span>
+        <span class="chip">scikit-learn</span>
+        <span class="chip">PyTorch</span>
+        <span class="chip">Bilingual</span>
+
+        <!-- set #2 (duplicate for seamless scroll) -->
+        <span class="chip">10-Time Faculty of the Year</span>
+        <span class="chip">Machine Learning</span>
+        <span class="chip">AI</span>
+        <span class="chip">Python</span>
+        <span class="chip">SQL</span>
+        <span class="chip">R</span>
+        <span class="chip">HTML5</span>
+        <span class="chip">CSS</span>
+        <span class="chip">Jupyter</span>
+        <span class="chip">scikit-learn</span>
+        <span class="chip">PyTorch</span>
+        <span class="chip">Bilingual</span>
+        
+      </div> <!-- /chips chip-track -->
+      </div> <!-- /chip-marquee -->
+      </div> <!-- FULL-BLEED END -->
 
 <!-------------->
 <!--          -->
