@@ -220,8 +220,7 @@ author_profile: True
   .tl-nudge{
     position:absolute; top:50%;
     transform:translateY(-50%);
-    width:  calc(38px * var(--ui-scale));
-    height: calc(38px * var(--ui-scale));
+    width:  38px;
     border-radius:9999px;
     border:1px solid #e5e7eb;
     background: rgba(255,255,255,.9);
@@ -232,9 +231,7 @@ author_profile: True
   .tl-nudge--left  { left:.5rem; }
   .tl-nudge--right { right:.5rem; }
   .tl-nudge:hover  { background:#fff; }
-  .tl-nudge svg    { display:block; 
-                     width:  calc(18px * var(--ui-scale));
-                     height: calc(18px * var(--ui-scale)); }
+  .tl-nudge svg    { display:block;}
   
   /* optional: hide on very small screens */
   @media (max-width: 480px){
