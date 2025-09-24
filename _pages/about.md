@@ -197,12 +197,13 @@ author_profile: True
         title="Career Map" loading="lazy"></iframe>
     </div>
 
-    <!-- Transparent overlay area = normal page content -->
+    <!-- map legend content -->
+    <!-- transparent overlay area = normal page content -->
     <div class="map-overlay">
       <div class="map-legend" role="group" aria-label="Map legend">
         <span><span class="dot" style="background:#e11d48;"></span> Places I’ve Worked</span>
         <span><span class="dot" style="background:#2563eb;"></span> Presentations &amp; Workshops</span>
-        <span><span class="dot" style="background:#caff00;"></span> Education</span>
+        <span><span class="dot" style="background:#FFD700;"></span> Education</span>
       </div>
     </div>
   </div> <!-- /map-shell -->
