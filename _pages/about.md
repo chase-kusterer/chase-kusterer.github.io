@@ -56,6 +56,37 @@ author_profile: True
     box-shadow:0 0 0 2px #fff, 0 0 0 3px #e5e7eb;
   }
 
+    /*                       */
+    /* chip row under legend */
+    /*                       */
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;   /* center the whole row */
+      gap:.75rem;               /* space between pills */
+      margin:.15rem 0 0;        /* keep it tight to the legend */
+    }
+    
+    .chip{
+      display:inline-block;
+      padding:.45rem 1rem;      /* pill padding */
+      border-radius:9999px;     /* fully rounded */
+      background:#f3f4f6;       /* light gray like screenshot */
+      border:1px solid #e5e7eb; /* subtle edge */
+      box-shadow:0 1px 0 rgba(0,0,0,.02) inset;
+      color:#111827;
+      font-weight:700;
+      line-height:1;
+      white-space:nowrap;       /* keep each pill on one line */
+      font-size:clamp(.85rem,.9vw,1rem);
+    }
+    
+    /* If you still see a tiny gap and want the chips tucked up:
+       uncomment the next line to lift the chips slightly. */
+    /* .chips{ transform: translateY(calc(-1 * (var(--legend-lift) - .5rem))); } */
+
+
+  
   /* ===== Timeline (clean, single set of rules) ===== */
   .timeline{
     position: relative;
@@ -222,39 +253,10 @@ author_profile: True
       </div>
   </div>
 
-      
-    </div>
   </div> <!-- /map-shell -->
 </figure> <!-- /figure -->
 
-    <!--                       -->
-    <!-- chip row under legend -->
-    <!--                       -->
-    .chips{
-      display:flex;
-      flex-wrap:wrap;
-      justify-content:center;   /* center the whole row */
-      gap:.75rem;               /* space between pills */
-      margin:.15rem 0 0;        /* keep it tight to the legend */
-    }
-    
-    .chip{
-      display:inline-block;
-      padding:.45rem 1rem;      /* pill padding */
-      border-radius:9999px;     /* fully rounded */
-      background:#f3f4f6;       /* light gray like screenshot */
-      border:1px solid #e5e7eb; /* subtle edge */
-      box-shadow:0 1px 0 rgba(0,0,0,.02) inset;
-      color:#111827;
-      font-weight:700;
-      line-height:1;
-      white-space:nowrap;       /* keep each pill on one line */
-      font-size:clamp(.85rem,.9vw,1rem);
-    }
-    
-    /* If you still see a tiny gap and want the chips tucked up:
-       uncomment the next line to lift the chips slightly. */
-    /* .chips{ transform: translateY(calc(-1 * (var(--legend-lift) - .5rem))); } */
+
 
 <!-------------->
 <!--          -->
