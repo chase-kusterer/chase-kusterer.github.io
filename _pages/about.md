@@ -196,19 +196,65 @@ author_profile: True
         src="{{ '/assets/maps/career_map2.html' | relative_url }}"
         title="Career Map" loading="lazy"></iframe>
     </div>
+    
 
-    <!-- map legend content -->
     <!-- transparent overlay area = normal page content -->
     <div class="map-overlay">
+        <!--                    -->
+        <!-- map legend content -->
+        <!--                    -->
       <div class="map-legend" role="group" aria-label="Map legend">
         <span><span class="dot" style="background:#e11d48;"></span> Places I’ve Worked</span>
         <span><span class="dot" style="background:#2563eb;"></span> Presentations &amp; Workshops</span>
         <span><span class="dot" style="background:#FFD700;"></span> Education</span>
       </div>
+
+        <!--       -->
+        <!-- chips -->
+        <!--       -->
+      <div class="chips" aria-label="Expertise">
+        <span class="chip">10-Time Faculty of the Year</span>
+        <span class="chip">Python</span>
+        <span class="chip">SQL</span>
+        <span class="chip">R</span>
+        <span class="chip">HTML5</span>
+        <span class="chip">CSS</span>
+      </div>
+  </div>
+
+      
     </div>
   </div> <!-- /map-shell -->
 </figure> <!-- /figure -->
 
+    <!--                       -->
+    <!-- chip row under legend -->
+    <!--                       -->
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;   /* center the whole row */
+      gap:.75rem;               /* space between pills */
+      margin:.15rem 0 0;        /* keep it tight to the legend */
+    }
+    
+    .chip{
+      display:inline-block;
+      padding:.45rem 1rem;      /* pill padding */
+      border-radius:9999px;     /* fully rounded */
+      background:#f3f4f6;       /* light gray like screenshot */
+      border:1px solid #e5e7eb; /* subtle edge */
+      box-shadow:0 1px 0 rgba(0,0,0,.02) inset;
+      color:#111827;
+      font-weight:700;
+      line-height:1;
+      white-space:nowrap;       /* keep each pill on one line */
+      font-size:clamp(.85rem,.9vw,1rem);
+    }
+    
+    /* If you still see a tiny gap and want the chips tucked up:
+       uncomment the next line to lift the chips slightly. */
+    /* .chips{ transform: translateY(calc(-1 * (var(--legend-lift) - .5rem))); } */
 
 <!-------------->
 <!--          -->
