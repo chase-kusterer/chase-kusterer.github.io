@@ -93,7 +93,7 @@ author_profile: True
       --gap: .75rem;                       /* matches your .chips gap */
       --speed: 35s;                        /* slower = larger number */
       --gutter: calc(var(--tl-track) / 2); /* padding variable */
-      --fadeL: 64px;  /* left fade width */
+      --fadeL: 0px;  /* left fade width */
       --fadeR: 8%;    /* right fade width */
       position: relative;
       overflow: hidden;
