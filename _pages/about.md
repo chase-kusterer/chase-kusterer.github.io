@@ -82,8 +82,46 @@ author_profile: True
     }
     
     /* If you still see a tiny gap and want the chips tucked up:
-       uncomment the next line to lift the chips slightly. */
-    .chips{ transform: translateY(calc(-1 * (var(--legend-lift) - .5rem))); }
+       uncomment the next line to lift the chips slightly. 
+    .chips{ transform: translateY(calc(-1 * (var(--legend-lift) - .5rem))); } */
+
+    /*                       */
+    /* additional chip rules */
+    /*                       */
+  
+    /* Marquee wrapper (viewport) */
+    .chip-marquee{
+      --gap: .75rem;          /* matches your .chips gap */
+      --speed: 28s;           /* slower = larger number */
+      position: relative;
+      overflow: hidden;
+      margin-top: .25rem;     /* stays tight under legend */
+      /* subtle edge fade so pills enter/exit gracefully */
+      -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+              mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+    }
+    
+    /* Moving track (just your .chips, animated) */
+    .chip-track{
+      display: inline-flex;
+      gap: var(--gap);
+      width: max-content;             /* shrink to content */
+      animation: chip-marquee var(--speed) linear infinite;
+    }
+    
+    /* pause on hover */
+    .chip-marquee:hover .chip-track{ animation-play-state: paused; }
+    
+    /* accessibility: honor reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      .chip-track{ animation: none; }
+    }
+    
+    /* keyframes: move half the duplicated track width */
+    @keyframes chip-marquee{
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }  /* requires content duplicated once */
+    }
 
 
   
@@ -243,7 +281,9 @@ author_profile: True
         <!--       -->
         <!-- chips -->
         <!--       -->
-      <div class="chips" aria-label="Expertise">
+    <div class="chip-marquee" aria-label="Expertise">
+      <div class="chips chip-track">
+      <!-- set #1 -->
         <span class="chip">10-Time Faculty of the Year</span>
         <span class="chip">Machine Learning</span>
         <span class="chip">AI</span>
@@ -256,8 +296,24 @@ author_profile: True
         <span class="chip">scikit-learn</span>
         <span class="chip">PyTorch</span>
         <span class="chip">Bilingual</span>
-      </div>
-  </div>
+
+        <!-- set #2 (duplicate for seamless scroll) -->
+        <span class="chip">10-Time Faculty of the Year</span>
+        <span class="chip">Machine Learning</span>
+        <span class="chip">AI</span>
+        <span class="chip">Python</span>
+        <span class="chip">SQL</span>
+        <span class="chip">R</span>
+        <span class="chip">HTML5</span>
+        <span class="chip">CSS</span>
+        <span class="chip">Jupyter</span>
+        <span class="chip">scikit-learn</span>
+        <span class="chip">PyTorch</span>
+        <span class="chip">Bilingual</span>
+        
+      </div> <!-- /chips chip-track -->
+      </div> <!-- /chip-marquee -->
+      </div> <!-- /map-overlay -->
 
   </div> <!-- /map-shell -->
 </figure> <!-- /figure -->
