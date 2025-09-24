@@ -100,7 +100,7 @@ author_profile: True
               mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
 
       /* matching the timeline’s left whitespace */
-      padding-left: calc(var(--tl-track) * 2);
+      padding-left: calc(var(--tl-track) / 2);
     }
     
     /* Moving track (just your .chips, animated) */
@@ -759,6 +759,19 @@ author_profile: True
       </div>
     </li>
     </ol>
+
+  /* scroll buttons */
+  <button class="tl-nudge tl-nudge--left"  aria-label="Scroll timeline left"  type="button">
+    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+      <path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  <button class="tl-nudge tl-nudge--right" aria-label="Scroll timeline right" type="button">
+    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+      <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
   </div>
 </div>  <!-- FULL-BLEED END -->
 
