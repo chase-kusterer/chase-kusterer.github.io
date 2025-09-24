@@ -96,12 +96,24 @@ author_profile: True
       position: relative;
       overflow: hidden;
       margin-top: .25rem;     /* stays tight under legend */
-      /* subtle edge fade so pills enter/exit gracefully */
-      -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
-              mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
-
-      /* matching the timeline’s left whitespace */
-      padding-left: var(--gutter);
+      
+      /* hard left cutoff at the same gutter as the timeline */
+      -webkit-mask-image: linear-gradient(
+          to right,
+          transparent 0,
+          transparent calc(var(--gutter) - 1px),
+          #000        calc(var(--gutter) + 0px),
+          #000        calc(100% - 8%),
+          transparent 100%
+        );
+        mask-image: linear-gradient(
+          to right,
+          transparent 0,
+          transparent calc(var(--gutter) - 1px),
+          #000        calc(var(--gutter) + 0px),
+          #000        calc(100% - 8%),
+          transparent 100%
+        );
     }
     
     /* Moving track (just your .chips, animated) */
@@ -122,8 +134,8 @@ author_profile: True
     
     /* keyframes: move half the duplicated track width */
     @keyframes chip-marquee{
-      from { transform: translateX(var(--gutter, 0px)); }
-      to   { transform: translateX(calc(-50% + var(--gutter, 0px))); } /* requires content duplicated once */
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); } /* requires duplicated content */
     }
 
 
