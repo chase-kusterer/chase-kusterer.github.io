@@ -16,7 +16,9 @@ author_profile: True
     --oval-ry: 42%;
     --oval-cx: 50%;
     --oval-cy: 50%;
-    --legend-overlap: clamp(6px, calc(var(--map-h) * 0.03), 18px); /* proximity controls are further below */
+
+    /* Legend overlap that adapts to map size (closer to map) */
+    --legend-overlap: clamp(4px, calc(var(--map-h) * 0.02), 14px);
 
     /* Timeline */
     --tl-line: #0f172a33;
@@ -50,7 +52,7 @@ author_profile: True
             mask-image: radial-gradient(
       ellipse var(--oval-rx) var(--oval-ry) at var(--oval-cx) var(--oval-cy),
       #000 98%, transparent 100%);
-    z-index: 1; /* legend will sit above this */
+    z-index: 1; /* legend sits above this */
   }
   .map-viewport iframe{
     display:block; width:100%; height: var(--map-h); border:0;
@@ -60,7 +62,7 @@ author_profile: True
   .legend-proxy{
     position: absolute;      /* anchored relative to .map-shell (the map) */
     left: 50%;
-    bottom: calc(var(--legend-overlap) * 1.25); /* larger numbers make legend closer to map */
+    bottom: calc(var(--legend-overlap) * 3.00); /* closer to the map edge */
     transform: translateX(-50%);
     z-index: 10;             /* above the map & page overlays */
 
@@ -87,48 +89,14 @@ author_profile: True
     .legend-proxy{ gap: 10px; }
   }
 
-  /* Transparent overlay content below the oval (chips, etc.) */
-  .map-overlay{ position: relative; z-index: 2; margin-top: 0; }
-
-  /* ===== Chips ===== */
-  .chips{
-    display:flex; flex-wrap:wrap; justify-content:center;
-    gap:.75rem; margin:.15rem 0 0;
-  }
-  .chip{
-    display:inline-block; padding:.45rem 1rem; border-radius:9999px;
-    background:#f3f4f6; border:1px solid #e5e7eb; box-shadow:0 1px 0 rgba(0,0,0,.02) inset;
-    color:#111827; font-weight:700; line-height:1; white-space:nowrap;
-    font-size:clamp(.85rem,.9vw,1rem);
-  }
-  .chip-marquee{
-    --gap: .75rem; --speed: 35s; --gutter: calc(var(--tl-track)/2);
-    --fadeL: 16px; --fadeR: 8%;
-    position: relative; overflow: hidden; margin-top: .25rem;
-    -webkit-mask-image: linear-gradient(
-      to right,
-      transparent 0,
-      transparent calc(var(--gutter) - var(--fadeL)),
-      #000        var(--gutter),
-      #000        calc(100% - var(--fadeR)),
-      transparent 100%
-    );
-            mask-image: linear-gradient(
-      to right,
-      transparent 0,
-      transparent calc(var(--gutter) - var(--fadeL)),
-      #000        var(--gutter),
-      #000        calc(100% - var(--fadeR)),
-      transparent 100%
-    );
-  }
-  .chip-track{ display:inline-flex; gap:var(--gap); width:max-content; animation: chip-marquee var(--speed) linear infinite; }
-  .chip-marquee:hover .chip-track{ animation-play-state: paused; }
-  @media (prefers-reduced-motion: reduce){ .chip-track{ animation: none; } }
-  @keyframes chip-marquee{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
-
   /* ===== Timeline ===== */
-  .timeline{ position:relative; margin:1.0rem 0 1.0rem; padding:1.5rem 0; background:transparent; isolation:isolate; }
+  .timeline{
+    position: relative;
+    margin: 1.0rem 0 1.0rem; /* distance between map and timeline */
+    padding: 1.5rem 0 1.5rem;  /* ~one extra line on top for “up” cards */
+    background: transparent;
+    isolation: isolate;
+  }
   .tl-list{
     list-style:none; margin:0; padding:0; display:grid;
     grid-auto-flow: column; grid-auto-columns: var(--tl-track);
@@ -162,15 +130,56 @@ author_profile: True
   .tl-pill--work{ --pill-bg:#f54927; --pill-fg:#ffffff; }
   .tl-pill--pres{ --pill-bg:#4734E0; --pill-fg:#ffffff; }
 
-  @media (max-width: 640px){ :root{ --overlay-frac:.40; --map-h:50vh; } }
-  @media (max-width: 800px){ .tl-item .stem{ height: calc(var(--stem,110px)*.75); top:auto; } }
-
+  /* Layout wrappers */
   .layout--single .page__inner-wrap{ max-width: min(95vw, 1400px); overflow: visible; }
   .layout--single .page__sidebar{ float:none; width:auto; max-width:100%; margin:0 0 1rem 0; position:static; }
   .layout--single .sidebar{ position:static; }
 
-  /* full-bleed helper for chips & timeline (unchanged) */
-  .fullbleed{ width:80vw; max-width:80vw; margin-left:35%; margin-right:35%; transform:translateX(-50%); padding-inline: clamp(8px, 2.5vw, 24px); }
+  /* full-bleed helper for sections (timeline & chips) */
+  .fullbleed{
+    width:80vw; max-width:80vw;
+    margin-left:35%;
+    margin-right:35%;
+    transform:translateX(-50%);
+    padding-inline: clamp(8px, 2.5vw, 24px);
+  }
+
+  /* ===== Chips (moved to BOTTOM, under the timeline) ===== */
+  .chips{
+    display:flex; flex-wrap:wrap; justify-content:center;
+    gap:.75rem; margin:.5rem 0 0;
+  }
+  .chip{
+    display:inline-block; padding:.45rem 1rem; border-radius:9999px;
+    background:#f3f4f6; border:1px solid #e5e7eb; box-shadow:0 1px 0 rgba(0,0,0,.02) inset;
+    color:#111827; font-weight:700; line-height:1; white-space:nowrap;
+    font-size:clamp(.85rem,.9vw,1rem);
+  }
+  .chip-marquee{
+    --gap: .75rem; --speed: 35s; --gutter: calc(var(--tl-track)/2);
+    --fadeL: 16px; --fadeR: 8%;
+    position: relative; overflow: hidden; margin-top: .25rem;
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      transparent calc(var(--gutter) - var(--fadeL)),
+      #000        var(--gutter),
+      #000        calc(100% - var(--fadeR)),
+      transparent 100%
+    );
+            mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      transparent calc(var(--gutter) - var(--fadeL)),
+      #000        var(--gutter),
+      #000        calc(100% - var(--fadeR)),
+      transparent 100%
+    );
+  }
+  .chip-track{ display:inline-flex; gap:var(--gap); width:max-content; animation: chip-marquee var(--speed) linear infinite; }
+  .chip-marquee:hover .chip-track{ animation-play-state: paused; }
+  @media (prefers-reduced-motion: reduce){ .chip-track{ animation: none; } }
+  @keyframes chip-marquee{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
 </style>
 
 <!-- ===== Map Section ===== -->
@@ -187,52 +196,11 @@ author_profile: True
 
     <!-- Legend proxy (we fill this from INSIDE the iframe) -->
     <div class="legend-proxy" role="group" aria-label="Map legend"></div>
-
-    <!-- Below-oval overlay content (no extra legend here) -->
-    <div class="map-overlay">
-      <div class="fullbleed">
-        <div class="chip-marquee" aria-label="Expertise">
-          <div class="chips chip-track">
-            <!-- set #1 -->
-            <span class="chip">10-Time Faculty of the Year</span>
-            <span class="chip">Machine Learning</span>
-            <span class="chip">AI</span>
-            <span class="chip">Analytics</span>
-            <span class="chip">Python</span>
-            <span class="chip">SQL</span>
-            <span class="chip">R</span>
-            <span class="chip">HTML5</span>
-            <span class="chip">CSS</span>
-            <span class="chip">Jupyter</span>
-            <span class="chip">scikit-learn</span>
-            <span class="chip">PyTorch</span>
-            <span class="chip">Bilingual</span>
-            <!-- set #2 (duplicate for seamless scroll) -->
-            <span class="chip">10-Time Faculty of the Year</span>
-            <span class="chip">Machine Learning</span>
-            <span class="chip">AI</span>
-            <span class="chip">Analytics</span>
-            <span class="chip">Python</span>
-            <span class="chip">SQL</span>
-            <span class="chip">R</span>
-            <span class="chip">HTML5</span>
-            <span class="chip">CSS</span>
-            <span class="chip">Jupyter</span>
-            <span class="chip">scikit-learn</span>
-            <span class="chip">PyTorch</span>
-            <span class="chip">Bilingual</span>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </figure>
 
 <!-------------->
-<!--          -->
 <!-- Timeline -->
-<!--  START   -->
-<!--          -->
 <!-------------->
 <div class="fullbleed">
   <div class="timeline" aria-label="Career timeline">
@@ -553,7 +521,6 @@ author_profile: True
 <!--            -->
 <!-- START 2018 -->
 <!--            -->
-
     <li class="tl-item down" style="--stem: 115px;" data-key="paris-france">
       <span class="tick"></span>
       <span class="stem"></span>
@@ -678,17 +645,47 @@ author_profile: True
   </div>
 </div>
 
-<!-------------->
-<!--          -->
-<!-- Timeline -->
-<!--   END    -->
-<!--          -->
-<!-------------->
+<!----------------------------->
+<!-- Chips UNDER the timeline -->
+<!----------------------------->
+<div class="fullbleed">
+  <div class="chip-marquee" aria-label="Expertise">
+    <div class="chips chip-track">
+      <!-- set #1 -->
+      <span class="chip">10-Time Faculty of the Year</span>
+      <span class="chip">Machine Learning</span>
+      <span class="chip">AI</span>
+      <span class="chip">Analytics</span>
+      <span class="chip">Python</span>
+      <span class="chip">SQL</span>
+      <span class="chip">R</span>
+      <span class="chip">HTML5</span>
+      <span class="chip">CSS</span>
+      <span class="chip">Jupyter</span>
+      <span class="chip">scikit-learn</span>
+      <span class="chip">PyTorch</span>
+      <span class="chip">Bilingual</span>
+
+      <!-- set #2 (duplicate for seamless scroll) -->
+      <span class="chip">10-Time Faculty of the Year</span>
+      <span class="chip">Machine Learning</span>
+      <span class="chip">AI</span>
+      <span class="chip">Analytics</span>
+      <span class="chip">Python</span>
+      <span class="chip">SQL</span>
+      <span class="chip">R</span>
+      <span class="chip">HTML5</span>
+      <span class="chip">CSS</span>
+      <span class="chip">Jupyter</span>
+      <span class="chip">scikit-learn</span>
+      <span class="chip">PyTorch</span>
+      <span class="chip">Bilingual</span>
+    </div>
+  </div>
+</div>
 
 <!-------------->
-<!--          -->
 <!-- Scripts  -->
-<!--          -->
 <!-------------->
 
 <script>
