@@ -62,7 +62,7 @@ author_profile: True
   .legend-proxy{
     position: absolute;      /* anchored relative to .map-shell (the map) */
     left: 50%;
-    bottom: calc(var(--legend-overlap) * 1.25); /* closer to the map edge */
+    bottom: calc(var(--legend-overlap) * 0.75); /* closer to the map edge */
     transform: translateX(-50%);
     z-index: 10;             /* above the map & page overlays */
 
@@ -140,7 +140,7 @@ author_profile: True
     width:80vw; max-width:80vw;
     margin-left:35%;
     margin-right:35%;
-    transform:translateX(-55%); /* higher numbers == wider */
+    transform:translateX(-60%); /* higher numbers == wider */
     padding-inline: clamp(8px, 2.5vw, 24px);
   }
 
