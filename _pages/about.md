@@ -62,7 +62,7 @@ author_profile: True
   .legend-proxy{
     position: absolute;      /* anchored relative to .map-shell (the map) */
     left: 50%;
-    bottom: calc(var(--legend-overlap) * 3.00); /* closer to the map edge */
+    bottom: calc(var(--legend-overlap) * 2.50); /* closer to the map edge */
     transform: translateX(-50%);
     z-index: 10;             /* above the map & page overlays */
 
