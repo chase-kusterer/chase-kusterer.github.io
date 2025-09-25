@@ -16,7 +16,7 @@ author_profile: True
     --oval-ry: 42%;
     --oval-cx: 50%;
     --oval-cy: 50%;
-    --legend-overlap: clamp(6px, calc(var(--map-h) * 0.03), 18px);
+    --legend-overlap: clamp(6px, calc(var(--map-h) * 0.03), 18px); /* proximity controls are further below */
 
     /* Timeline */
     --tl-line: #0f172a33;
@@ -60,7 +60,7 @@ author_profile: True
   .legend-proxy{
     position: absolute;      /* anchored relative to .map-shell (the map) */
     left: 50%;
-    bottom: calc(var(--legend-overlap) * 1); /* larger numbers make legend closer to map */
+    bottom: calc(var(--legend-overlap) * -0.5); /* ??? smaller numbers make legend closer to map */
     transform: translateX(-50%);
     z-index: 10;             /* above the map & page overlays */
 
