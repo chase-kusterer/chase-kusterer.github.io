@@ -101,16 +101,18 @@ author_profile: true
     {% endif %}
 
     {% if items and items != empty %}
+
       <div class="proj-grid">
-        {%- for item in items -%}
-          {%- assign teaser = item.teaser | default: item.image | default: item.thumbnail -%}
-          {%- if teaser == nil or teaser == '' -%}
-            {%- comment -%}
-              Fallback: try assets/images/teasers/<slug>.png
-            {%- endcomment -%}
-            {%- assign guess = 'assets/images/teasers/' | append: item.slug | append: '.png' -%}
-            {%- assign teaser = guess -%}
-          {%- endif -%}
+        <a class="proj" href="{{ '/projects/s2-tif/' | relative_url }}">
+          <img src="{{ '/assets/images/teasers/s2_tif_card.png' | relative_url }}" alt="S2-TIF Project">
+          <span class="proj-title">S2-TIF</span>
+        </a>
+      
+        <a class="proj" href="{{ '/projects/textbook/' | relative_url }}">
+          <img src="{{ '/assets/images/teasers/textbook_card.png' | relative_url }}" alt="Textbook Project">
+          <span class="proj-title">Textbook</span>
+        </a>
+      </div>
 
           <a class="proj-tile" href="{{ item.url | relative_url }}">
             <img class="proj-tile__img" src="{{ teaser | relative_url }}" alt="{{ item.title | escape }}">
