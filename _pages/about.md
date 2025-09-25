@@ -61,8 +61,8 @@ author_profile: True
   /* Legend proxy (cloned from inside career_map2.html) */
   .legend-proxy{
     position: absolute;      /* anchored relative to .map-shell (the map) */
-    left: 50%;
-    bottom: calc(var(--legend-overlap) * 0.25); /* closer to the map edge */
+    left: 35%;
+    bottom: calc(var(--legend-overlap) * 0.05); /* closer to the map edge */
     transform: translateX(-50%);
     z-index: 10;             /* above the map & page overlays */
 
@@ -144,7 +144,7 @@ author_profile: True
     /* 0   = flush left
        0.5 = centered
        1   = flush right   */
-    --bleed-bias: 0.30;  /* move closer to left by lowering this (e.g., 0.25) */
+    --bleed-bias: 0.10;  /* move closer to left by lowering this (e.g., 0.25) */
   
     width: var(--bleed-w);
     /* Split the remaining space (100vw - width) using the bias */
