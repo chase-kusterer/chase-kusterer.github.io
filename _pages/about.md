@@ -59,7 +59,7 @@ author_profile: True
   .legend-proxy{
     position: absolute;      /* anchored relative to .map-shell (the map) */
     left: 50%;
-    bottom: -6px;            /* closer to the map: tweak -2px … -12px */
+    bottom: -20px;            /* closer to the map: tweak -2px … -12px */
     transform: translateX(-50%);
     z-index: 10;             /* above the map & page overlays */
 
