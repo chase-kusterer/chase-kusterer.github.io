@@ -45,7 +45,7 @@ author_profile: True
   .map-viewport iframe{
     display:block; width:100%; height: var(--map-h); border:0;
   }
-
+/*
   .map-legend{
     align-self:center; display:flex; justify-content:center; gap:1rem; flex-wrap:wrap;
     text-align:center; font-size:.90em; margin:.15rem 0 0; pointer-events: none;
@@ -54,7 +54,7 @@ author_profile: True
     width:10px; height:10px; border-radius:50%; display:inline-block;
     box-shadow:0 0 0 2px #fff, 0 0 0 3px #e5e7eb;
   }
-
+*/
     /*                       */
     /* chip row under legend */
     /*                       */
@@ -287,13 +287,19 @@ author_profile: True
 
   /* tightening map ↔ legend spacing */
   .map-overlay{ margin-top: 0 !important; }   /* was .25rem */
+
+  /*
   .map-legend{  margin-top: 0 !important; }   /* was .15rem */
+  */
   
   /* gentle overlap: lift the legend up into the map */
   .map-shell { --legend-lift: 3.25rem; }       /* tweak: .25rem–1rem */
+
+  /*
   .map-legend{ margin-top: 0 !important;
                transform: translateY(calc(-1 * var(--legend-lift)));
                line-height: 1;}
+  */
 </style>
 
 
@@ -312,11 +318,7 @@ author_profile: True
         <!--                    -->
         <!-- map legend content -->
         <!--                    -->
-      <div class="map-legend" role="group" aria-label="Map legend">
-        <span><span class="dot" style="background:#e11d48;"></span> Places I’ve Worked</span>
-        <span><span class="dot" style="background:#2563eb;"></span> Presentations &amp; Workshops</span>
-        <span><span class="dot" style="background:#FFD700;"></span> Education</span>
-      </div>
+
 
         <!--       -->
         <!-- chips -->
