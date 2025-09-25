@@ -60,7 +60,7 @@ author_profile: True
   .legend-proxy{
     position: absolute;      /* anchored relative to .map-shell (the map) */
     left: 50%;
-    bottom: calc(var(--legend-overlap) * -0.05); /* ??? smaller numbers make legend closer to map */
+    bottom: calc(var(--legend-overlap) * 1.25); /* larger numbers make legend closer to map */
     transform: translateX(-50%);
     z-index: 10;             /* above the map & page overlays */
 
