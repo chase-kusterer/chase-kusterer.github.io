@@ -139,7 +139,7 @@ author_profile: True
   /* zoom-stable with controllable left bias */
   .fullbleed{
     /* width of the section */
-    --bleed-w: min(80vw, 1400px);
+    --bleed-w: min(80vw, 2000px);
   
     /* 0   = flush left
        0.5 = centered
