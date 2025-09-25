@@ -11,7 +11,7 @@ author_profile: True
   :root{
     /* Map */
     --map-h: 60vh;
-    --overlay-frac: .42;
+    --overlay-frac: 1.00;
     --oval-rx: 50%;
     --oval-ry: 42%;
     --oval-cx: 50%;
@@ -163,7 +163,7 @@ author_profile: True
     
 
   @media (max-width: 640px){
-    :root{ --overlay-frac:.40; --map-h:50vh; }
+    :root{ --overlay-frac: 1.00; --map-h:50vh; }
   }
   @media (max-width: 800px){
     .tl-item .stem{ height: calc(var(--stem,110px) * .75); top:auto; } /* slightly longer stems on small screens */
@@ -205,7 +205,7 @@ author_profile: True
     </div>
     
 
-    <!-- transparent overlay area = normal page content -->
+ 
 
   </div>  <!-- /map-shell -->
 </figure> <!-- /figure -->
