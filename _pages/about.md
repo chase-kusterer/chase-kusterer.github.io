@@ -144,7 +144,7 @@ author_profile: True
     /* 0   = flush left
        0.5 = centered
        1   = flush right   */
-    --bleed-bias: -1.00;  /* move closer to left by lowering this (e.g., 0.25) */
+    --bleed-bias: -1.25;  /* move closer to left by lowering this (e.g., 0.25) */
   
     width: var(--bleed-w);
     /* Split the remaining space (100vw - width) using the bias */
