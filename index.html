@@ -81,51 +81,36 @@ author_profile: true
 <div class="home-cards">
 
   <!-- Card 1: Projects (auto-populated tiles) -->
-  <section class="card">
-    <div class="card__heading">
-      <span>Projects</span>
-      <a class="card__cta" href="{{ '/portfolio/' | relative_url }}">View all →</a>
+<section class="card">
+  <div class="card__heading">
+    <span>Projects</span>
+    <a class="card__cta" href="{{ '/portfolio/' | relative_url }}">View all →</a>
+  </div>
+
+  {% assign items = site.projects | default: site.portfolio | default: site.categories.portfolio %}
+  {% if items and items != empty %}
+    <div class="proj-grid">
+      {%- for item in items limit:6 -%}
+        {%- assign teaser = item.teaser | default: item.image | default: '/assets/images/teasers/' | append: item.slug | append: '_card.png' -%}
+        <a class="proj-tile" href="{{ item.url | relative_url }}">
+          <img class="proj-tile__img" src="{{ teaser | relative_url }}" alt="{{ item.title | escape }}">
+          <span class="proj-tile__label">{{ item.title }}</span>
+        </a>
+      {%- endfor -%}
     </div>
-
-    {% comment %}
-      Try common places people store portfolio items.
-      - Collection “portfolio” (/_pages/portfolio)
-      - Category “portfolio” (posts)
-    {% endcomment %}
-    {% assign items = site.projects %}
-    {% if items == nil or items == empty %}
-      {% assign items = site.portfolio %}
-    {% endif %}
-    {% if items == nil or items == empty %}
-      {% assign items = site.categories.portfolio %}
-    {% endif %}
-
-    {% if items and items != empty %}
-
-      <div class="proj-grid">
-        <a class="proj" href="{{ '/projects/s2-tif/' | relative_url }}">
-          <img src="{{ '/assets/images/teasers/s2_tif_card.png' | relative_url }}" alt="S2-TIF Project">
-          <span class="proj-title">S2-TIF</span>
-        </a>
-      
-        <a class="proj" href="{{ '/projects/textbook/' | relative_url }}">
-          <img src="{{ '/assets/images/teasers/textbook_card.png' | relative_url }}" alt="Textbook Project">
-          <span class="proj-title">Textbook</span>
-        </a>
-      </div>
-
-          <a class="proj-tile" href="{{ item.url | relative_url }}">
-            <img class="proj-tile__img" src="{{ teaser | relative_url }}" alt="{{ item.title | escape }}">
-            <span class="proj-tile__label">{{ item.title }}</span>
-          </a>
-        {%- endfor -%}
-      </div>
-    {% else %}
-      <div class="proj-grid--empty">
-        <div>No portfolio items found. Add entries to <code>_projects</code> (or <code>_portfolio</code>) and give them a <code>teaser</code> image in <code>assets/images/teasers/</code>.</div>
-      </div>
-    {% endif %}
-  </section>
+  {% else %}
+    <div class="proj-grid">
+      <a class="proj-tile" href="{{ '/projects/s2-tif/' | relative_url }}">
+        <img class="proj-tile__img" src="{{ '/assets/images/teasers/s2_tif_card.png' | relative_url }}" alt="S2-TIF Project">
+        <span class="proj-tile__label">S2-TIF</span>
+      </a>
+      <a class="proj-tile" href="{{ '/projects/textbook/' | relative_url }}">
+        <img class="proj-tile__img" src="{{ '/assets/images/teasers/textbook_card.png' | relative_url }}" alt="Textbook Project">
+        <span class="proj-tile__label">Textbook</span>
+      </a>
+    </div>
+  {% endif %}
+</section>
 
   <!-- Card 2: Textbook (link) -->
   <a class="card card--link" href="https://chase-kusterer.github.io/projects/textbook/">
