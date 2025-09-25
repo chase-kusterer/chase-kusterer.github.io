@@ -60,46 +60,23 @@
 </head>
 <body>
 
-  <!-- Wrap map + legend together -->
-  <div class="map-wrap">
-    <!-- Folium / Leaflet map container -->
-    <div class="folium-map" id="map_38aeee7d88381084d80d1393780a5281"></div>
+  <!-- Folium / Leaflet map container -->
+  <div class="folium-map" id="map_38aeee7d88381084d80d1393780a5281"></div>
 
-    <!-- Legend sits on top of the oval crop, centered at bottom -->
-    <div class="map-legend" role="group" aria-label="Map legend">
-      <span><span class="dot" style="background:#e11d48;"></span> Places I’ve Worked</span>
-      <span><span class="dot" style="background:#2563eb;"></span> Presentations &amp; Workshops</span>
-      <span><span class="dot" style="background:#FFD700;"></span> Education</span>
-    </div>
+  <!-- ===== Map Legend (place AFTER the map div) ===== -->
+  <div class="map-legend" role="group" aria-label="Map legend">
+    <span><span class="dot" style="background:#e11d48;"></span> Places I’ve Worked</span>
+    <span><span class="dot" style="background:#2563eb;"></span> Presentations &amp; Workshops</span>
+    <span><span class="dot" style="background:#FFD700;"></span> Education</span>
   </div>
 
   <style>
-    /* Container establishes a positioning context */
-    .map-wrap{
-      position: relative;
-      width: 100%;
-      /* optional: keep layout tight to the map’s height */
-      /* display: inline-block; */
-    }
-
-    /* Ensure the map is the back-most layer in this stack */
-    #map_38aeee7d88381084d80d1393780a5281{
-      position: relative;
-      z-index: 0;               /* baseline */
-    }
-    /* Keep the decorative ring under the legend */
-    #map_38aeee7d88381084d80d1393780a5281::after{
-      z-index: 1;               /* ring stays below the legend */
-    }
-
-    /* Legend pinned to bottom center of the map area */
+    /* ===== Legend base ===== */
     .map-legend{
-      position: absolute;
-      left: 50%;
-      bottom: -12px;            /* overlap the white band; tweak as needed */
-      transform: translateX(-50%);
-      z-index: 9999;            /* higher than map + ::after */
-
+      position: relative;
+      /* pull the legend upward so it overlaps the white crop band */
+      margin: -28px auto 12px;     /* tweak the -28px to adjust overlap */
+      width: fit-content;
       background: #ffffff;
       border: 1px solid rgba(0,0,0,0.08);
       border-radius: 10px;
@@ -110,28 +87,46 @@
       gap: 16px;
       align-items: center;
       font: 500 14px/1.3 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      pointer-events: auto;
+      z-index: 1000; /* ensure it sits above the page background */
     }
 
+    /* Each legend item */
     .map-legend > span{
       display: inline-flex;
       align-items: center;
       gap: 8px;
       white-space: nowrap;
     }
+
+    /* The colored dots */
     .map-legend .dot{
       display: inline-block;
-      width: 12px; height: 12px;
+      width: 12px;
+      height: 12px;
       border-radius: 9999px;
       border: 1px solid rgba(0,0,0,0.25);
       flex: 0 0 auto;
     }
 
+    /* Mobile-friendly stacking */
     @media (max-width: 640px){
       .map-legend{
         grid-auto-flow: row;
         gap: 10px;
         padding: 10px 12px;
+      }
+    }
+
+    /* Optional: subtle dark-mode polish */
+    @media (prefers-color-scheme: dark){
+      .map-legend{
+        background: #111827;
+        color: #E5E7EB;
+        border-color: rgba(255,255,255,0.08);
+        box-shadow: 0 6px 16px rgba(0,0,0,0.6);
+      }
+      .map-legend .dot{
+        border-color: rgba(255,255,255,0.25);
       }
     }
   </style>
