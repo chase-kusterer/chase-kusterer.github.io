@@ -45,100 +45,6 @@ author_profile: True
   .map-viewport iframe{
     display:block; width:100%; height: var(--map-h); border:0;
   }
-/*
-  .map-legend{
-    align-self:center; display:flex; justify-content:center; gap:1rem; flex-wrap:wrap;
-    text-align:center; font-size:.90em; margin:.15rem 0 0; pointer-events: none;
-  }
-  .map-legend .dot{
-    width:10px; height:10px; border-radius:50%; display:inline-block;
-    box-shadow:0 0 0 2px #fff, 0 0 0 3px #e5e7eb;
-  }
-*/
-    /*                       */
-    /* chip row under legend */
-    /*                       */
-    .chips{
-      display:flex;
-      flex-wrap:wrap;
-      justify-content:center;   /* center the whole row */
-      gap:.75rem;               /* space between pills */
-      margin:.15rem 0 0;        /* keep it tight to the legend */
-    }
-    
-    .chip{
-      display:inline-block;
-      padding:.45rem 1rem;      /* pill padding */
-      border-radius:9999px;     /* fully rounded */
-      background:#f3f4f6;       /* light gray like screenshot */
-      border:1px solid #e5e7eb; /* subtle edge */
-      box-shadow:0 1px 0 rgba(0,0,0,.02) inset;
-      color:#111827;
-      font-weight:700;
-      line-height:1;
-      white-space:nowrap;       /* keep each pill on one line */
-      font-size:clamp(.85rem,.9vw,1rem);
-    }
-    
-    /* If you still see a tiny gap and want the chips tucked up:
-       uncomment the next line to lift the chips slightly. 
-    .chips{ transform: translateY(calc(-1 * (var(--legend-lift) - .5rem))); } */
-
-    /*                       */
-    /* additional chip rules */
-    /*                       */
-  
-    /* Marquee wrapper (viewport) */
-    .chip-marquee{
-      --gap: .75rem;                       /* matches your .chips gap */
-      --speed: 35s;                        /* slower = larger number */
-      --gutter: calc(var(--tl-track) / 2); /* padding variable */
-      --fadeL: 16px;  /* left fade width */
-      --fadeR: 8%;    /* right fade width */
-      position: relative;
-      overflow: hidden;
-      margin-top: .25rem;     /* stays tight under legend */
-      
-      /* hard left cutoff at the same gutter as the timeline */
-      -webkit-mask-image: linear-gradient(
-          to right,
-          transparent 0,
-          transparent calc(var(--gutter) - var(--fadeL)),
-          #000        var(--gutter),
-          #000        calc(100% - var(--fadeR)),
-          transparent 100%
-          );
-        mask-image: linear-gradient(
-          to right,
-          transparent 0,
-          transparent calc(var(--gutter) - var(--fadeL)),
-          #000        var(--gutter),
-          #000        calc(100% - var(--fadeR)),
-          transparent 100%
-        );
-    }
-    
-    /* Moving track (just your .chips, animated) */
-    .chip-track{
-      display: inline-flex;
-      gap: var(--gap);
-      width: max-content;             /* shrink to content */
-      animation: chip-marquee var(--speed) linear infinite;
-    }
-    
-    /* pause on hover */
-    .chip-marquee:hover .chip-track{ animation-play-state: paused; }
-    
-    /* accessibility: honor reduced motion */
-    @media (prefers-reduced-motion: reduce){
-      .chip-track{ animation: none; }
-    }
-    
-    /* keyframes: move half the duplicated track width */
-    @keyframes chip-marquee{
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); } /* requires duplicated content */
-    }
 
 
   
@@ -285,21 +191,7 @@ author_profile: True
 .layout--single .page__inner-wrap{ overflow: visible; }
 
 
-  /* tightening map ↔ legend spacing */
-  .map-overlay{ margin-top: 0 !important; }   /* was .25rem */
 
-  /*
-  .map-legend{  margin-top: 0 !important; }   /* was .15rem */
-  */
-  
-  /* gentle overlap: lift the legend up into the map */
-  .map-shell { --legend-lift: 3.25rem; }       /* tweak: .25rem–1rem */
-
-  /*
-  .map-legend{ margin-top: 0 !important;
-               transform: translateY(calc(-1 * var(--legend-lift)));
-               line-height: 1;}
-  */
 </style>
 
 
@@ -314,51 +206,6 @@ author_profile: True
     
 
     <!-- transparent overlay area = normal page content -->
-    <div class="map-overlay">
-        <!--                    -->
-        <!-- map legend content -->
-        <!--                    -->
-
-
-        <!--       -->
-        <!-- chips -->
-        <!--       -->
-  <div class="fullbleed">  <!-- FULL-BLEED START -->
-    <div class="chip-marquee" aria-label="Expertise">
-      <div class="chips chip-track">
-      <!-- set #1 -->
-        <span class="chip">10-Time Faculty of the Year</span>
-        <span class="chip">Machine Learning</span>
-        <span class="chip">AI</span>
-        <span class="chip">Analytics</span>
-        <span class="chip">Python</span>
-        <span class="chip">SQL</span>
-        <span class="chip">R</span>
-        <span class="chip">HTML5</span>
-        <span class="chip">CSS</span>
-        <span class="chip">Jupyter</span>
-        <span class="chip">scikit-learn</span>
-        <span class="chip">PyTorch</span>
-        <span class="chip">Bilingual</span>
-
-        <!-- set #2 (duplicate for seamless scroll) -->
-        <span class="chip">10-Time Faculty of the Year</span>
-        <span class="chip">Machine Learning</span>
-        <span class="chip">AI</span>
-        <span class="chip">Python</span>
-        <span class="chip">SQL</span>
-        <span class="chip">R</span>
-        <span class="chip">HTML5</span>
-        <span class="chip">CSS</span>
-        <span class="chip">Jupyter</span>
-        <span class="chip">scikit-learn</span>
-        <span class="chip">PyTorch</span>
-        <span class="chip">Bilingual</span>
-        
-      </div> <!-- /chips chip-track -->
-      </div> <!-- /chip-marquee -->
-      </div> <!-- FULL-BLEED END -->
-      </div> <!-- /map-overlay -->
 
   </div>  <!-- /map-shell -->
 </figure> <!-- /figure -->
