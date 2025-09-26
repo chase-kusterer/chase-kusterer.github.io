@@ -216,6 +216,13 @@ author_profile: True
     --tl-title-size: 1rem;
   }
 
+    .map-shell{
+    /* Prevent true edge-to-edge clipping, including iOS notches */
+    padding-left:  max(10px, env(safe-area-inset-left));
+    padding-right: max(10px, env(safe-area-inset-right));
+    box-sizing: border-box;
+  }
+
   /* Legend containment + wrapping on small screens */
   .legend-proxy{
     left: 50%;
