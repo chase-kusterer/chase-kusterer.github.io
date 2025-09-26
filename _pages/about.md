@@ -124,8 +124,8 @@ author_profile: True
   @media (max-width: 480px){ .tl-nudge{ display:none; } }
   .tl-eyebrow{ font-size:.70rem; letter-spacing:.03em; text-transform:uppercase; color:var(--tl-muted); }
   .tl-range{   font-size:.80rem; color:var(--tl-muted); margin:.15rem 0 .35rem; }
-  .tl-title{   margin:0; font-size:var(--tl-title-size, 1.00rem); line-height:1.25; font-weight:700; hyphens:auto; overflow-wrap:anywhere; }
-  .tl-sub{     margin:.15rem 0 0; font-size:var(--tl-title-size, 1.00rem); color:var(--tl-muted); }
+  .tl-title{   margin:0; font-size:var(1.00rem); line-height:1.25; font-weight:700; hyphens:auto; overflow-wrap:anywhere; }
+  .tl-sub{     margin:.15rem 0 0; font-size:var(0.80rem); color:var(--tl-muted); }
   .tl-pill{ --pill-bg:#caff00; --pill-fg:#0f172a; display:inline-block; padding:.2rem .5rem; border-radius:999px; font-weight:600; font-size:.75rem; line-height:1.2; background:var(--pill-bg); color:var(--pill-fg); }
   .tl-pill--work{ --pill-bg:#f54927; --pill-fg:#ffffff; }
   .tl-pill--pres{ --pill-bg:#4734E0; --pill-fg:#ffffff; }
