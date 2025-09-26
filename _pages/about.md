@@ -36,8 +36,8 @@ author_profile: True
     width: 100%;
     margin: 0;
     height: calc(var(--map-h) * (1 - var(--overlay-frac))) ;
-    outline: 6px solid red !important;
-    outline-offset: 0
+    /* outline: 6px solid red !important;
+    outline-offset: 0 */
     padding-bottom: 0 !important; 
   }
 
