@@ -36,6 +36,8 @@ author_profile: True
     width: 100%;
     margin: 0;
     height: calc(var(--map-h) * (1 - var(--overlay-frac)));
+    outline: 6px solid red !important;
+    outline-offset: 0; 
   }
 
   /* Masked viewport: clips the iframe to an oval and leaves a white band below */
@@ -44,6 +46,8 @@ author_profile: True
     height: calc(var(--map-h) * (1 - var(--overlay-frac)));
     overflow: hidden;
     z-index: 1; /* legend sits above this */
+    outline: 6px solid purple !important;
+    outline-offset: 0;
   }
   .map-viewport iframe{
     display:block; width:100%; height: var(--map-h); border:0;
@@ -53,7 +57,7 @@ author_profile: True
   .legend-proxy{
     position: absolute;                         /* anchored relative to .map-shell (the map) */
     left: 46%;                                  /* adjusting center */
-    bottom: calc(var(--legend-overlap) * 5); /* closer to the map edge */
+    bottom: calc(var(--legend-overlap) * -1); /* closer to the map edge */
     transform: translateX(-50%);
     z-index: 10;             /* above the map & page overlays */
 
@@ -146,14 +150,6 @@ author_profile: True
     transform: none;
   }
 
-  @media (max-width: 640px){
-  .fullbleed{
-    --bleed-w: 100vw;
-    --bleed-bias: 0;   /* flush left on narrow screens */
-    padding-inline: 8px;
-  }
-}
-
   /* ===== Chips (moved to BOTTOM, under the timeline) ===== */
   .chips{
     display:flex; flex-wrap:wrap; justify-content:center;
@@ -241,10 +237,10 @@ author_profile: True
   /* Full-bleed alignment on phones */
   .fullbleed{
     --bleed-w: 100vw;
-    --bleed-bias: 0;
+    --bleed-bias: 0; /* flush left on narrow screens */
     margin-left: 0;
     margin-right: 0;
-    padding-inline: 12px;
+    padding-inline: 8px;
   }
 }
 </style>
