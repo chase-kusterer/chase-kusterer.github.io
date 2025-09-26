@@ -400,7 +400,7 @@ author_profile: True
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
-        <span class="tl-pill tl-pill--pres">Speaker</span>
+        <span class="tl-pill tl-pill--pres">TedX Talk</span>
         <div class="tl-range">2015</div>
         <h4 class="tl-title">The Fridge has Facebook</h4>
         <div class="tl-sub">TedX</div>
@@ -639,7 +639,7 @@ author_profile: True
       </div>
     </li>    
     
-    <li class="tl-item down" style="--stem: 130px;" data-key="san-francisco-usa">
+    <li class="tl-item down" style="--stem: 130px;" data-key="san-francisco-bay-area-usa">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
@@ -651,7 +651,19 @@ author_profile: True
       </div>
     </li>
 
-    <li class="tl-item up" style="--stem: 130px;" data-key="san-francisco-usa">
+    <li class="tl-item down" style="--stem: 130px;" data-key="san-francisco-bay-area-usa">
+      <span class="tick"></span>
+      <span class="stem"></span>
+      <div class="card">
+        <span class="tl-pill tl-pill--work">Work</span>
+        <div class="tl-range">2022-2023 · 2 years</div>
+        <h4 class="tl-title">Faculty (Visiting)</h4>
+        <div class="tl-sub">University of California, Berkeley</div>
+        <div class="tl-sub">Berkeley · USA</div>
+      </div>
+    </li>
+
+    <li class="tl-item up" style="--stem: 130px;" data-key="san-francisco-bay-area-usa">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
@@ -661,7 +673,19 @@ author_profile: True
         <h4 class="tl-title">A Beginner's Guide to Data Analysis in Python</h4>
         <div class="tl-sub">San Francisco · USA</div>
       </div>
-    </li>    
+    </li>
+
+    <li class="tl-item up" style="--stem: 130px;" data-key="boston-usa">
+      <span class="tick"></span>
+      <span class="stem"></span>
+      <div class="card">
+        <span class="tl-pill tl-pill--work">Work</span>
+        <div class="tl-range">2020-Present · 5 years</div>
+        <h4 class="tl-title">Faculty (Visiting)</h4>
+        <div class="tl-sub">Hult International Business School</div>
+        <div class="tl-sub">Boston · USA</div>
+      </div>
+    </li>
     
     <li class="tl-item down" style="--stem: 115px;" data-key="new-york-city-usa">
       <span class="tick"></span>
@@ -675,7 +699,7 @@ author_profile: True
       </div>
     </li>
 
-    <li class="tl-item up" style="--stem: 130px;" data-key="san-francisco-usa">
+    <li class="tl-item up" style="--stem: 130px;" data-key="san-francisco-bay-area-usa">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
