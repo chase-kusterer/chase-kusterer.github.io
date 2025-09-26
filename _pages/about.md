@@ -11,11 +11,6 @@ author_profile: True
   :root{
     /* Map */
     --map-h: 60vh;
-    --overlay-frac: .42;  /* how much “white band” shows under the oval */
-    --oval-rx: 50%;
-    --oval-ry: 42%;
-    --oval-cx: 50%;
-    --oval-cy: 50%;
 
     /* Legend overlap that adapts to map size (closer to map) */
     --legend-overlap: clamp(4px, calc(var(--map-h) * 0.02), 14px);
@@ -46,12 +41,6 @@ author_profile: True
     position: relative;
     height: calc(var(--map-h) * (1 - var(--overlay-frac)));
     overflow: hidden;
-    -webkit-mask-image: radial-gradient(
-      ellipse var(--oval-rx) var(--oval-ry) at var(--oval-cx) var(--oval-cy),
-      #000 98%, transparent 100%);
-            mask-image: radial-gradient(
-      ellipse var(--oval-rx) var(--oval-ry) at var(--oval-cx) var(--oval-cy),
-      #000 98%, transparent 100%);
     z-index: 1; /* legend sits above this */
   }
   .map-viewport iframe{
