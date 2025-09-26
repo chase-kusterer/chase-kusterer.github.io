@@ -140,9 +140,17 @@
                 {
                     center: [33.25704835483369, 31.09475782070367],
                     crs: L.CRS.EPSG3857,
-                    zoom: 2, <!-- controls Zoom start for map -->
+                    zoom: 1, <!-- controls Zoom start for map -->
                     zoomControl: true,
                     preferCanvas: false,
+
+                    /* disable panning/dragging & user zoom */
+                    dragging: false,
+                    scrollWheelZoom: false,
+                    doubleClickZoom: false,
+                    boxZoom: false,
+                    touchZoom: false,
+                    keyboard: false
                 }
             );
             L.control.scale().addTo(map_38aeee7d88381084d80d1393780a5281);
