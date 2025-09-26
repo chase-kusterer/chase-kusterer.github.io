@@ -11,6 +11,7 @@ author_profile: True
   :root{
     /* Map */
     --map-h: 60vh;
+    --overlay-frac: .36
 
     /* Legend overlap that adapts to map size (closer to map) */
     --legend-overlap: clamp(4px, calc(var(--map-h) * 0.02), 14px);
@@ -34,6 +35,7 @@ author_profile: True
     position: relative; /* legend is positioned RELATIVE to this wrapper */
     width: 100%;
     margin: 0;
+    height: calc(var(--map-h) * (1 - var(--overlay-frac)));
   }
 
   /* Masked viewport: clips the iframe to an oval and leaves a white band below */
@@ -51,7 +53,7 @@ author_profile: True
   .legend-proxy{
     position: absolute;                         /* anchored relative to .map-shell (the map) */
     left: 46%;                                  /* adjusting center */
-    bottom: calc(var(--legend-overlap) * 0.05); /* closer to the map edge */
+    bottom: calc(var(--legend-overlap) * -1); /* closer to the map edge */
     transform: translateX(-50%);
     z-index: 10;             /* above the map & page overlays */
 
@@ -74,10 +76,7 @@ author_profile: True
     border: 1px solid rgba(0,0,0,.25);
     display: inline-block; flex: 0 0 auto;
   }
-  @media (max-width: 640px){
-    .legend-proxy{ gap: 10px; }
-  }
-
+  
   /* ===== Timeline ===== */
   .timeline{
     position: relative;
@@ -225,8 +224,8 @@ author_profile: True
 
   /* Legend containment + wrapping on small screens */
   .legend-proxy{
-    left: 50%;
-    bottom: clamp(6px, 2.2vh, 14px);
+    left: 46%;
+    bottom: calc(var(--legend-overlap) * -1);
     transform: translateX(-50%);
     max-width: 94vw;
     padding-inline: 10px;
