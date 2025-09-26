@@ -8,59 +8,40 @@ author_profile: True
 ---
 
 <style>
-  /* ===========================
-     Global variables
-     =========================== */
   :root{
-    /* Map geometry */
+    /* Map */
     --map-h: 60vh;
-    --overlay-frac: .42;   /* how much “white band” shows under the oval */
+    --overlay-frac: .42;  /* how much “white band” shows under the oval */
     --oval-rx: 50%;
     --oval-ry: 42%;
     --oval-cx: 50%;
     --oval-cy: 50%;
-    /* Legend overlap that adapts to map size (closer to map edge) */
+
+    /* Legend overlap that adapts to map size (closer to map) */
     --legend-overlap: clamp(4px, calc(var(--map-h) * 0.02), 14px);
 
-    /* Timeline base (we'll scale these below with --tl-scale) */
+    /* Timeline */
     --tl-line: #0f172a33;
     --tl-dot:  #0f172a;
     --tl-muted:#6b7280;
+    --tl-gap:  2rem;        /* baseline ↔ card gap */
+    --tl-track: 200px;      /* fixed step between dots */
+    --tl-height: 360px;     /* total vertical working height of each column */
     --tl-gap-factor: 1.00;  /* closer to 1 = farther from the line */
 
-    /* Base sizes (do not edit; change --tl-scale instead) */
-    --tl-track-base:        200px;  /* spacing between dots */
-    --tl-height-base:       360px;  /* total vertical working height */
-    --tl-gap-base:          2rem;   /* dot ↔ card distance */
-    --tl-dot-size-base:     12px;   /* dot */
-    --tl-card-offset-base:  12px;   /* card x-offset */
-    --tl-title-size-base:   1.10rem;
-
-    /* One knob to resize the entire timeline */
-    --tl-scale: 0.85; /* 1.00 = original size, <1 smaller, >1 larger */
-
-    /* Zoom-stable full-bleed width + bias
-       0   = flush left, 0.5 = centered, 1 = flush right */
-    --bleed-w: min(80vw, 1400px);
-    --bleed-bias: 0.35;  /* move left (<0.5), center (=0.5), right (>0.5) */
+    /* Card & tick */
+    --tl-card-offset: 12px; /* space from tick to card’s left edge */
+    --tl-dot-size: 12px;    /* dot size (keep in sync with .tick) */
   }
 
-  /* Derived timeline sizes (auto) */
-  :root{
-    --tl-track:        calc(var(--tl-track-base)       * var(--tl-scale));
-    --tl-height:       calc(var(--tl-height-base)      * var(--tl-scale));
-    --tl-gap:          calc(var(--tl-gap-base)         * var(--tl-scale));
-    --tl-dot-size:     calc(var(--tl-dot-size-base)    * var(--tl-scale));
-    --tl-card-offset:  calc(var(--tl-card-offset-base) * var(--tl-scale));
-    --tl-title-size:   calc(var(--tl-title-size-base)  * var(--tl-scale));
-    --tl-stem-scale:   var(--tl-scale); /* stems follow the same scale */
+  /* ===== Map (robust stacking; legend mirrors from iframe) ===== */
+  .map-shell{
+    position: relative; /* legend is positioned RELATIVE to this wrapper */
+    width: 100%;
+    margin: 0;
   }
 
-  /* ===========================
-     Map (legend mirrors from iframe)
-     =========================== */
-  .map-shell{ position: relative; width: 100%; margin: 0; }
-
+  /* Masked viewport: clips the iframe to an oval and leaves a white band below */
   .map-viewport{
     position: relative;
     height: calc(var(--map-h) * (1 - var(--overlay-frac)));
@@ -77,16 +58,16 @@ author_profile: True
     display:block; width:100%; height: var(--map-h); border:0;
   }
 
-  /* Legend proxy (cloned from inside career_map2.html) */
+  /* legend proxy (cloned from inside career_map2.html) */
   .legend-proxy{
-    position: absolute;      /* anchored to .map-shell (the map) */
-    left: 50%;
-    bottom: calc(var(--legend-overlap) * -1); /* tuck onto the white band */
+    position: absolute;                         /* anchored relative to .map-shell (the map) */
+    left: 46%;                                  /* adjusting center */
+    bottom: calc(var(--legend-overlap) * 0.05); /* closer to the map edge */
     transform: translateX(-50%);
-    z-index: 10;
+    z-index: 10;             /* above the map & page overlays */
 
-    /* visual: no border/shadow per your request */
-    background: transparent;
+    /* visual style: no border, no shadow, horizontal layout */
+    background: transparent; /* blends with the white band */
     border: 0;
     box-shadow: none;
 
@@ -97,7 +78,7 @@ author_profile: True
     font: 500 14px/1.3 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
   }
   .legend-proxy > span{
-    display:inline-flex; align-items:center; gap:8px; white-space:nowrap;
+    display: inline-flex; align-items: center; gap: 8px; white-space: nowrap;
   }
   .legend-proxy .dot{
     width: 12px; height: 12px; border-radius: 9999px;
@@ -108,9 +89,7 @@ author_profile: True
     .legend-proxy{ gap: 10px; }
   }
 
-  /* ===========================
-     Timeline (driven by variables above)
-     =========================== */
+  /* ===== Timeline ===== */
   .timeline{
     position: relative;
     margin: 1.0rem 0 1.0rem; /* distance between map and timeline */
@@ -118,136 +97,76 @@ author_profile: True
     background: transparent;
     isolation: isolate;
   }
-
   .tl-list{
-    list-style:none; margin:0; padding:0;
-    display:grid;
-    grid-auto-flow: column;
-    grid-auto-columns: var(--tl-track);     /* column width = equal spacing */
-    gap: calc(.75rem * var(--tl-scale));    /* inter-dot gap scales */
-    overflow-x:auto; overflow-y:visible;
-    overscroll-behavior-x:contain; scroll-snap-type:x proximity;
+    list-style:none; margin:0; padding:0; display:grid;
+    grid-auto-flow: column; grid-auto-columns: var(--tl-track);
+    gap: .75rem; overflow-x:auto; overflow-y:visible; overscroll-behavior-x:contain; scroll-snap-type:x proximity;
     min-height: var(--tl-height);
-    /* Baseline under first dot */
     background: linear-gradient(to right, var(--tl-line), var(--tl-line)) no-repeat;
     background-position: calc(var(--tl-track)/2) 50%;
-    background-size: calc(100% - (var(--tl-track)/2)) calc(2px * var(--tl-scale));
+    background-size: calc(100% - (var(--tl-track)/2)) 2px;
   }
-
-  .tl-item{
-    position: relative;
-    height: var(--tl-height);
-    overflow: visible;
-    scroll-snap-align: center;
-  }
-
+  .tl-item{ position:relative; height:var(--tl-height); overflow:visible; scroll-snap-align:center; }
   .tl-item .tick{
     position:absolute; left:50%; top:50%;
     width: var(--tl-dot-size); height: var(--tl-dot-size); border-radius:50%;
-    background: var(--tl-dot);
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    box-shadow: 0 0 0 calc(2px * var(--tl-scale)) #fff; /* thin ring scales */
+    background: var(--tl-dot); transform: translate(-50%, -50%); z-index:2; box-shadow:0 0 0 2px #fff;
   }
-
-  .tl-item .stem{
-    position:absolute; left:50%;
-    width: calc(2px * var(--tl-scale));
-    background:var(--tl-line);
-    transform: translateX(-50%);
-    z-index:1;
-  }
-  .tl-item.up   .stem{
-    height: calc((var(--stem, 110px) * .5 * var(--tl-stem-scale)) + (var(--tl-gap) * var(--tl-gap-factor)));
-    top:    calc(50% - ((var(--stem, 110px) * .5 * var(--tl-stem-scale)) + (var(--tl-gap) * var(--tl-gap-factor))));
-  }
-  .tl-item.down .stem{
-    height: calc((var(--stem, 110px) * .5 * var(--tl-stem-scale)) + (var(--tl-gap) * var(--tl-gap-factor)));
-    top: 50%;
-  }
-
-  .tl-item.up   .card{ position:absolute; left:50%;
-                       bottom: calc(50% + (var(--tl-gap) * var(--tl-gap-factor)));
-                       margin-left: var(--tl-card-offset); text-align:left; }
-  .tl-item.down .card{ position:absolute; left:50%;
-                       top:    calc(50% + (var(--tl-gap) * var(--tl-gap-factor)));
-                       margin-left: var(--tl-card-offset); text-align:left; }
-
-  .tl-item .card{
-    width: clamp(calc(220px * var(--tl-scale)), calc(26vw * var(--tl-scale)), calc(400px * var(--tl-scale)));
-    max-width: 48ch;
-  }
-
-  .tl-nudge{
-    position:absolute; top:50%;
-    transform:translateY(-50%);
-    width: calc(38px * var(--tl-scale));
-    height: calc(38px * var(--tl-scale));
-    border-radius:9999px;
-    border:1px solid #e5e7eb;
-    background: rgba(255,255,255,.9);
-    box-shadow:0 2px 8px rgba(0,0,0,.08);
-    display:grid; place-items:center;
-    cursor:pointer; z-index:5;
-  }
-  .tl-nudge--left  { left:.5rem; }
-  .tl-nudge--right { right:.5rem; }
-  .tl-nudge:hover  { background:#fff; }
-  .tl-nudge svg    { display:block; width: calc(18px * var(--tl-scale)); height: calc(18px * var(--tl-scale)); }
+  .tl-item .stem{ position:absolute; left:50%; width:2px; background:var(--tl-line); transform:translateX(-50%); z-index:1; }
+  .tl-item.up   .stem{ height: calc((var(--stem,110px)*.5) + (var(--tl-gap)*var(--tl-gap-factor))); top: calc(50% - ((var(--stem,110px)*.5) + (var(--tl-gap)*var(--tl-gap-factor)))); }
+  .tl-item.down .stem{ height: calc((var(--stem,110px)*.5) + (var(--tl-gap)*var(--tl-gap-factor))); top: 50%; }
+  .tl-item.up   .card{ position:absolute; left:50%; bottom: calc(50% + (var(--tl-gap)*var(--tl-gap-factor))); margin-left: var(--tl-card-offset); text-align:left; }
+  .tl-item.down .card{ position:absolute; left:50%; top:    calc(50% + (var(--tl-gap)*var(--tl-gap-factor))); margin-left: var(--tl-card-offset); text-align:left; }
+  .tl-item .card{ width: clamp(260px, 26vw, 400px); max-width: 48ch; }
+  .tl-nudge{ position:absolute; top:50%; transform:translateY(-50%); width:38px; height:38px; border-radius:9999px; border:1px solid #e5e7eb;
+             background: rgba(255,255,255,.9); box-shadow:0 2px 8px rgba(0,0,0,.08); display:grid; place-items:center; cursor:pointer; z-index:5; }
+  .tl-nudge--left{ left:.5rem; } .tl-nudge--right{ right:.5rem; } .tl-nudge:hover{ background:#fff; } .tl-nudge svg{ display:block; }
   @media (max-width: 480px){ .tl-nudge{ display:none; } }
-
   .tl-eyebrow{ font-size:.70rem; letter-spacing:.03em; text-transform:uppercase; color:var(--tl-muted); }
   .tl-range{   font-size:.80rem; color:var(--tl-muted); margin:.15rem 0 .35rem; }
-  .tl-title{   margin:0; font-size:var(--tl-title-size); line-height:1.25; font-weight:700; hyphens: auto; overflow-wrap: anywhere;}
+  .tl-title{   margin:0; font-size:var(--tl-title-size, 1.10rem); line-height:1.25; font-weight:700; hyphens:auto; overflow-wrap:anywhere; }
   .tl-sub{     margin:.15rem 0 0; color:var(--tl-muted); }
-  .tl-pill{
-    --pill-bg:#caff00;   /* default bg */
-    --pill-fg:#0f172a;   /* default fg */
-    display:inline-block;
-    padding:.2rem .5rem;
-    border-radius:999px;
-    font-weight:600;
-    font-size:.75rem;
-    line-height:1.2;
-    background:var(--pill-bg);
-    color:var(--pill-fg);
-  }
+  .tl-pill{ --pill-bg:#caff00; --pill-fg:#0f172a; display:inline-block; padding:.2rem .5rem; border-radius:999px; font-weight:600; font-size:.75rem; line-height:1.2; background:var(--pill-bg); color:var(--pill-fg); }
   .tl-pill--work{ --pill-bg:#f54927; --pill-fg:#ffffff; }
   .tl-pill--pres{ --pill-bg:#4734E0; --pill-fg:#ffffff; }
 
-  @media (max-width: 640px){
-    :root{ --overlay-frac:.40; --map-h:50vh; }
-  }
-  @media (max-width: 800px){
-    .tl-item .stem{ height: calc(var(--stem,110px) * .75); top:auto; } /* slightly longer stems on small screens */
-  }
-
-  /* ===========================
-     Layout wrappers
-     =========================== */
+  /* Layout wrappers */
   .layout--single .page__inner-wrap{ max-width: min(95vw, 1400px); overflow: visible; }
   .layout--single .page__sidebar{ float:none; width:auto; max-width:100%; margin:0 0 1rem 0; position:static; }
   .layout--single .sidebar{ position:static; }
 
-  /* Zoom-stable full-bleed with left↔right bias */
+  /* full-bleed helper for sections (timeline & chips) */
+  /* zoom-stable with controllable left bias */
   .fullbleed{
+    /* width of the section */
+    --bleed-w: min(80vw, 2000px);
+  
+    /* 0   = flush left
+       0.5 = centered
+       1   = flush right   */
+    --bleed-bias: -1.25;  /* move closer to left by lowering this (e.g., 0.25) */
+  
     width: var(--bleed-w);
+    /* Split the remaining space (100vw - width) using the bias */
     margin-left:  calc((100vw - var(--bleed-w)) * var(--bleed-bias));
     margin-right: calc((100vw - var(--bleed-w)) * (1 - var(--bleed-bias)));
+  
+    /* keep your inner padding */
     padding-inline: clamp(8px, 2.5vw, 24px);
+  
+    /* important: remove the old centering hack so it doesn't fight this */
     transform: none;
   }
-  @media (max-width: 640px){
-    .fullbleed{
-      --bleed-w: 100vw;
-      --bleed-bias: 0;   /* flush left on narrow screens */
-      padding-inline: 8px;
-    }
-  }
 
-  /* ===========================
-     Chips (bottom of page)
-     =========================== */
+  @media (max-width: 640px){
+  .fullbleed{
+    --bleed-w: 100vw;
+    --bleed-bias: 0;   /* flush left on narrow screens */
+    padding-inline: 8px;
+  }
+}
+
+  /* ===== Chips (moved to BOTTOM, under the timeline) ===== */
   .chips{
     display:flex; flex-wrap:wrap; justify-content:center;
     gap:.75rem; margin:.5rem 0 0;
@@ -288,6 +207,7 @@ author_profile: True
 <!-- ===== Map Section ===== -->
 <figure style="margin:0;">
   <div class="map-shell">
+    <!-- Clipped oval map -->
     <div class="map-viewport">
       <iframe
         src="{{ '/assets/maps/career_map2.html' | relative_url }}"
@@ -803,7 +723,7 @@ author_profile: True
       const src = doc.querySelector('.map-legend');  // legend already inside career_map2.html
       if (!src) return;
 
-      // Copy the legend items into the proxy; keep layout via our CSS
+      // Copy the legend’s items into the proxy (keeps it horizontal via our CSS)
       proxy.innerHTML = src.innerHTML;
 
       // Hide the legend inside the iframe to avoid duplication
@@ -812,23 +732,24 @@ author_profile: True
     }catch(e){ /* ignore cross-origin issues if any */ }
   }
 
-  if (iframe){ iframe.addEventListener('load', mirrorLegend); }
+  if (iframe){
+    iframe.addEventListener('load', mirrorLegend);
+  }
 })();
 </script>
 
 <script>
-/* Timeline ↔ Map messaging (unchanged logic) */
+/* Timeline ↔ Map messaging (unchanged) */
 (function(){
   const mapFrame = document.querySelector('.map-viewport iframe');
   const tlList   = document.querySelector('.timeline .tl-list');
-
+  
   const leftBtn  = document.querySelector('.timeline .tl-nudge--left');
   const rightBtn = document.querySelector('.timeline .tl-nudge--right');
-
-  // read --tl-track (defaults to 200 if not found)
+  
   const rootStyles = getComputedStyle(document.documentElement);
   const step = parseInt(rootStyles.getPropertyValue('--tl-track')) || 200;
-
+  
   function updateNudges(){
     if (!tlList || !leftBtn || !rightBtn) return;
     const max = tlList.scrollWidth - tlList.clientWidth - 1;
@@ -906,9 +827,8 @@ author_profile: True
           if (!map) return;
 
           var markersByKey = {};
-          var currentKey = null;  // track what's open
+          var currentKey = null;
 
-          // open exactly one thing at a time
           function openForKey(key){
             if (!key || !markersByKey[key]) return;
             try { map.closeTooltip(); } catch(e){}
@@ -948,7 +868,6 @@ author_profile: True
                 layer.__key = key;
                 markersByKey[key] = layer;
 
-                // map click → parent, but also enforce single open here
                 if (layer.on){
                   layer.on('click', function(){
                     openForKey(this.__key);
