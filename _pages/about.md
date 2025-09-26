@@ -136,8 +136,8 @@ author_profile: True
     --bleed-bias: -1.25;  /* move closer to left by lowering this (e.g., 0.25) */
 
     /* hard-coded anchors */
-    --left-stop: 32px;          /* author profile's LEFT margin line */
-    --right-stop: 32px;         /* page RIGHT margin (gutter) */
+    --left-stop: 2rem;          /* author profile's LEFT margin line */
+    --right-stop: 2rem;         /* page RIGHT margin (gutter) */
 
     /* base margins from bias */
     --ml-base: calc((100vw - var(--bleed-w)) * var(--bleed-bias));
