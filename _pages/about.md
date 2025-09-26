@@ -757,7 +757,6 @@ author_profile: True
 <!-------------->
 <!-- Scripts  -->
 <!-------------->
-
 <script>
 /* Clone the legend from INSIDE the iframe into our .legend-proxy (same-origin) */
 (function(){
@@ -787,7 +786,7 @@ author_profile: True
 </script>
 
 <script>
-/* Timeline ↔ Map messaging (unchanged) */
+/* Timeline ↔ Map messaging (unchanged except for “no recenter”) */
 (function(){
   const mapFrame = document.querySelector('.map-viewport iframe');
   const tlList   = document.querySelector('.timeline .tl-list');
@@ -827,9 +826,10 @@ author_profile: True
     itemsByKey[key] = el;
     el.addEventListener('click', ()=>{
       if (mapFrame?.contentWindow) {
+        // still notify the map which item was chosen
         mapFrame.contentWindow.postMessage({type:'showCity', key}, '*');
       }
-      activate(key);
+      activate(key); // highlight in timeline without moving the map
     });
   });
 
@@ -843,7 +843,7 @@ author_profile: True
     tlList.scrollTo({left: Math.max(0,target), behavior:'smooth'});
   }
 
-  // map -> timeline
+  // map -> timeline (no recenter; just highlight)
   window.addEventListener('message', (ev)=>{
     const data = ev.data || {};
     if (data.type === 'mapClick' && data.key){ activate(data.key); }
@@ -867,6 +867,11 @@ author_profile: True
         ready(function(){
           var L = window.L; if (!L) return;
 
+          // global: prevent popups from auto-panning the map
+          try { if (L.Popup && L.Popup.prototype && L.Popup.prototype.options) {
+            L.Popup.prototype.options.autoPan = false;
+          }} catch(e){}
+
           // find map
           var map = null;
           for (var k in window){
@@ -874,27 +879,46 @@ author_profile: True
           }
           if (!map) return;
 
+          // toggle: whether selecting a city re-centers the map
+          var RECENTER_ON_SELECT = false;
+
           var markersByKey = {};
           var currentKey = null;
 
           function openForKey(key){
             if (!key || !markersByKey[key]) return;
+
+            // close previously opened UI
             try { map.closeTooltip(); } catch(e){}
-            try { map.closePopup(); }   catch(e){}
+            try { map.closePopup();   } catch(e){}
+
             if (currentKey && markersByKey[currentKey] && currentKey !== key){
               try { markersByKey[currentKey].closeTooltip && markersByKey[currentKey].closeTooltip(); } catch(e){}
-              try { markersByKey[currentKey].closePopup   && markersByKey[currentKey].closePopup(); }   catch(e){}
+              try { markersByKey[currentKey].closePopup   && markersByKey[currentKey].closePopup();   } catch(e){}
             }
+
             var layer = markersByKey[key];
+
+            // ensure this layer's popup won't auto-pan
+            try {
+              var p = layer.getPopup && layer.getPopup();
+              if (p && p.options) p.options.autoPan = false;
+            } catch(e){}
+
+            // open tooltip/popup without moving the map
             try {
               if (layer.getTooltip && layer.getTooltip()) layer.openTooltip();
               else if (layer.getPopup && layer.getPopup()) layer.openPopup();
             } catch(e){}
-            try {
-              var center = layer.getLatLng ? layer.getLatLng()
-                         : (layer.getBounds ? layer.getBounds().getCenter() : null);
-              if (center) map.setView(center, map.getZoom(), {animate:true});
-            } catch(e){}
+
+            // previously: recenter here. Now guarded by flag.
+            if (RECENTER_ON_SELECT){
+              try {
+                var center = layer.getLatLng ? layer.getLatLng()
+                           : (layer.getBounds ? layer.getBounds().getCenter() : null);
+                if (center) map.setView(center, map.getZoom(), {animate:true});
+              } catch(e){}
+            }
             currentKey = key;
           }
 
@@ -918,7 +942,9 @@ author_profile: True
 
                 if (layer.on){
                   layer.on('click', function(){
+                    // open details but do NOT recenter
                     openForKey(this.__key);
+                    // notify parent so timeline highlights the item
                     window.parent.postMessage({type:'mapClick', key: this.__key}, '*');
                   });
                 }
@@ -941,7 +967,7 @@ author_profile: True
           window.addEventListener('message', function(ev){
             var data = ev.data || {};
             if (data.type === 'showCity' && data.key){
-              openForKey(data.key);
+              openForKey(data.key); // open tooltip/popup only
             }
           });
 
