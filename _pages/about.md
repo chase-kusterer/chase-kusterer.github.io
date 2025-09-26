@@ -11,7 +11,7 @@ author_profile: True
   :root{
     /* Map */
     --map-h: 60vh;
-    --overlay-frac: .36
+    --overlay-frac: 0 !important;
 
     /* Legend overlap that adapts to map size (closer to map) */
     --legend-overlap: clamp(4px, calc(var(--map-h) * 0.02), 14px);
@@ -35,15 +35,17 @@ author_profile: True
     position: relative; /* legend is positioned RELATIVE to this wrapper */
     width: 100%;
     margin: 0;
-    height: calc(var(--map-h) * (1 - var(--overlay-frac)));
+    height: calc(var(--map-h) * (1 - var(--overlay-frac))) ;
     outline: 6px solid red !important;
-    outline-offset: 0; 
+    outline-offset: 0
+    padding-bottom: 0 !important; 
   }
 
   /* Masked viewport: clips the iframe to an oval and leaves a white band below */
   .map-viewport{
     position: relative;
-    height: calc(var(--map-h) * (1 - var(--overlay-frac)));
+    height: calc(var(--map-h) * (1 - var(--overlay-frac))) !important;
+    padding: 0 !important;
     overflow: hidden;
     z-index: 1; /* legend sits above this */
   }
