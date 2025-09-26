@@ -134,11 +134,20 @@ author_profile: True
        0.5 = centered
        1   = flush right   */
     --bleed-bias: -1.25;  /* move closer to left by lowering this (e.g., 0.25) */
+
+    /* hard-coded anchors */
+    --left-stop: 32px;          /* author profile's LEFT margin line */
+    --right-stop: 32px;         /* page RIGHT margin (gutter) */
+
+    /* base margins from bias */
+    --ml-base: calc((100vw - var(--bleed-w)) * var(--bleed-bias));
+    --mr-base: calc((100vw - var(--bleed-w)) * (1 - var(--bleed-bias)));
   
     width: var(--bleed-w);
-    /* Split the remaining space (100vw - width) using the bias */
-    margin-left:  calc((100vw - var(--bleed-w)) * var(--bleed-bias));
-    margin-right: calc((100vw - var(--bleed-w)) * (1 - var(--bleed-bias)));
+    
+    /* clamp against your hard stops */
+    margin-left:  max(var(--ml-base), var(--left-stop));
+    margin-right: max(var(--mr-base), var(--right-stop));
   
     /* keep your inner padding */
     padding-inline: clamp(8px, 2.5vw, 24px);
