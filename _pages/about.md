@@ -202,7 +202,59 @@ author_profile: True
   .chip-marquee:hover .chip-track{ animation-play-state: paused; }
   @media (prefers-reduced-motion: reduce){ .chip-track{ animation: none; } }
   @keyframes chip-marquee{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+
+
+/* ------------------- */
+/* MOBILE FRIENDLINESS */
+/* ------------------- */
+/* Mobile overrides – only change what needs to change on small screens */
+@media (max-width: 640px){
+  :root{
+    /* Map shape/size (overrides your base 60vh etc ONLY on mobile) */
+    --map-h: 56vh;
+    --overlay-frac: .36;
+    --oval-rx: 52%;
+    --oval-ry: 58%;
+
+    /* Timeline density */
+    --tl-track: 160px;
+    --tl-height: 300px;
+    --tl-gap: 1.5rem;
+    --tl-dot-size: 10px;
+    --tl-card-offset: 10px;
+
+    /* Optional: define a smaller title size; your CSS already has a fallback */
+    --tl-title-size: 1rem;
+  }
+
+  /* Legend containment + wrapping on small screens */
+  .legend-proxy{
+    left: 50%;
+    bottom: clamp(6px, 2.2vh, 14px);
+    transform: translateX(-50%);
+    max-width: 94vw;
+    padding-inline: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    font-size: 13px;
+    line-height: 1.25;
+    box-sizing: border-box;
+  }
+
+  /* Full-bleed alignment on phones */
+  .fullbleed{
+    --bleed-w: 100vw;
+    --bleed-bias: 0;
+    margin-left: 0;
+    margin-right: 0;
+    padding-inline: 12px;
+  }
+}
 </style>
+
+
 
 <!-- ===== Map Section ===== -->
 <figure style="margin:0;">
