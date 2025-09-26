@@ -138,37 +138,32 @@ author_profile: True
   /* full-bleed helper for sections (timeline & chips) */
   /* zoom-stable with controllable left bias */
   .fullbleed{
-  /* width of the section */
-  --bleed-w: min(80vw, 2000px);
+    /* width of the section */
+    --bleed-w: min(80vw, 2000px);
+  
+    /* 0   = flush left
+       0.5 = centered
+       1   = flush right   */
+    --bleed-bias: -1.25;  /* move closer to left by lowering this (e.g., 0.25) */
+  
+    width: var(--bleed-w);
+    /* Split the remaining space (100vw - width) using the bias */
+    margin-left:  calc((100vw - var(--bleed-w)) * var(--bleed-bias));
+    margin-right: calc((100vw - var(--bleed-w)) * (1 - var(--bleed-bias)));
+  
+    /* keep your inner padding */
+    padding-inline: clamp(8px, 2.5vw, 24px);
+  
+    /* important: remove the old centering hack so it doesn't fight this */
+    transform: none;
+  }
 
-  /* 0   = flush left, 0.5 = centered, 1 = flush right
-     (you can still push left by using values < 0, but anchors will clamp) */
-  --bleed-bias: -1.25;
-
-  /* adjustable extra offsets you control (px, rem, etc.) */
-  --anchor-left-extra: 0px;   /* nudge stop line right if needed */
-  --anchor-right-extra: 0px;  /* nudge stop line left if needed */
-
-  /* base margins from bias */
-  --ml-base: calc((100vw - var(--bleed-w)) * var(--bleed-bias));
-  --mr-base: calc((100vw - var(--bleed-w)) * (1 - var(--bleed-bias)));
-
-  /* runtime anchors (set by JS) + your extras */
-  margin-left:  max(var(--ml-base), calc(var(--anchor-left, 0px)  + var(--anchor-left-extra)));
-  margin-right: max(var(--mr-base), calc(var(--anchor-right, 0px) + var(--anchor-right-extra)));
-
-  padding-inline: clamp(8px, 2.5vw, 24px);
-  transform: none;
-}
-
-@media (max-width: 640px){
+  @media (max-width: 640px){
   .fullbleed{
     --bleed-w: 100vw;
-    --bleed-bias: 0;                 /* flush left on narrow screens */
-    --anchor-left-extra: 0px;        /* disable extras on small screens */
-    --anchor-right-extra: 0px;
+    --bleed-bias: 0;   /* flush left on narrow screens */
+    padding-inline: 8px;
   }
-}
 }
 
   /* ===== Chips (moved to BOTTOM, under the timeline) ===== */
@@ -910,41 +905,5 @@ author_profile: True
     s.textContent = code;
     d.body.appendChild(s);
   });
-})();
-</script>
-
-<script>
-/* Compute left/right anchors for full-bleed so it won't cross the author profile (left)
-   and respects an adjustable right stop. Updates on resize/zoom. */
-(function(){
-  function updateAnchors(){
-    const r = document.documentElement;
-    const sidebar = document.querySelector('.page__sidebar, .author__sidebar, .sidebar');
-    const inner   = document.querySelector('.page__inner-wrap');
-    const vw      = window.innerWidth || document.documentElement.clientWidth;
-
-    // Left stop: right edge of the author sidebar (fallback: container's left edge)
-    let leftStop = 0;
-    if (sidebar){
-      const sb = sidebar.getBoundingClientRect();
-      leftStop = Math.max(0, sb.right);
-    } else if (inner){
-      const ib = inner.getBoundingClientRect();
-      leftStop = Math.max(0, ib.left);
-    }
-
-    // Right stop: distance from viewport right to container's right edge
-    let rightStop = 0;
-    if (inner){
-      const ib = inner.getBoundingClientRect();
-      rightStop = Math.max(0, vw - ib.right);
-    }
-
-    r.style.setProperty('--anchor-left',  leftStop + 'px');
-    r.style.setProperty('--anchor-right', rightStop + 'px');
-  }
-
-  window.addEventListener('load',   updateAnchors);
-  window.addEventListener('resize', updateAnchors);
 })();
 </script>
