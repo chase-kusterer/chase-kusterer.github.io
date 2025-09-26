@@ -651,7 +651,7 @@ author_profile: True
       </div>
     </li>
 
-    <li class="tl-item down" style="--stem: 130px;" data-key="san-francisco-bay-area-usa">
+    <li class="tl-item up" style="--stem: 130px;" data-key="san-francisco-bay-area-usa">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
@@ -663,7 +663,7 @@ author_profile: True
       </div>
     </li>
 
-    <li class="tl-item up" style="--stem: 130px;" data-key="san-francisco-bay-area-usa">
+    <li class="tl-item down" style="--stem: 130px;" data-key="san-francisco-bay-area-usa">
       <span class="tick"></span>
       <span class="stem"></span>
       <div class="card">
