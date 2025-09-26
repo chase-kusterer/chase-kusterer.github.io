@@ -11,7 +11,7 @@ author_profile: True
   :root{
     /* Map */
     --map-h: 60vh;
-    --overlay-frac: .50
+    --overlay-frac: .36
 
     /* Legend overlap that adapts to map size (closer to map) */
     --legend-overlap: clamp(4px, calc(var(--map-h) * 0.02), 14px);
@@ -53,7 +53,7 @@ author_profile: True
   .legend-proxy{
     position: absolute;                         /* anchored relative to .map-shell (the map) */
     left: 46%;                                  /* adjusting center */
-    bottom: calc(var(--legend-overlap) * -1); /* closer to the map edge */
+    bottom: calc(var(--legend-overlap) * 5); /* closer to the map edge */
     transform: translateX(-50%);
     z-index: 10;             /* above the map & page overlays */
 
@@ -225,7 +225,7 @@ author_profile: True
   /* Legend containment + wrapping on small screens */
   .legend-proxy{
     left: 46%;
-    bottom: calc(var(--legend-overlap) * -1);
+    bottom: calc(var(--legend-overlap) * 5);
     transform: translateX(-50%);
     max-width: 94vw;
     padding-inline: 10px;
