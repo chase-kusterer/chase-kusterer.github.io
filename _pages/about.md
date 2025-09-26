@@ -46,8 +46,6 @@ author_profile: True
     height: calc(var(--map-h) * (1 - var(--overlay-frac)));
     overflow: hidden;
     z-index: 1; /* legend sits above this */
-    outline: 6px solid purple !important;
-    outline-offset: 0;
   }
   .map-viewport iframe{
     display:block; width:100%; height: var(--map-h); border:0;
