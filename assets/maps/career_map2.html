@@ -27,11 +27,12 @@
 
     
     <style>
-        html, body { height: 100%; margin: 0; }         /* kill default body margin */
-        /* Make the Leaflet container fill the iframe height */
-        #map, #mapid, .leaflet-container { height: 100% !important; }
-        /* If your map DIV uses a different id/class, include it too: */
-        /* #career-map, .folium-map { height:100% !important; } */
+  html, body { height: 100%; margin: 0; }
+  #map_38aeee7d88381084d80d1393780a5281 { height: 100% !important; width: 100% !important; }
+  .leaflet-container { height: 100% !important; }
+
+  /* Safety net if Folium wrapped your map in a single top-level <div> */
+  body > div:first-child { height: 100%; }
     </style>
 
 
