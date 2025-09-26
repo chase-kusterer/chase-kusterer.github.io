@@ -11,12 +11,8 @@ author_profile: True
   :root{
     /* Map */
     --map-h: 60vh;
-    --overlay-frac: .42;  /* how much “white band” shows under the oval */
-    --oval-rx: 50%;
-    --oval-ry: 42%;
-    --oval-cx: 50%;
-    --oval-cy: 50%;
 
+    
     /* Legend overlap that adapts to map size (closer to map) */
     --legend-overlap: clamp(4px, calc(var(--map-h) * 0.02), 14px);
 
@@ -46,12 +42,6 @@ author_profile: True
     position: relative;
     height: calc(var(--map-h) * (1 - var(--overlay-frac)));
     overflow: hidden;
-    -webkit-mask-image: radial-gradient(
-      ellipse var(--oval-rx) var(--oval-ry) at var(--oval-cx) var(--oval-cy),
-      #000 98%, transparent 100%);
-            mask-image: radial-gradient(
-      ellipse var(--oval-rx) var(--oval-ry) at var(--oval-cx) var(--oval-cy),
-      #000 98%, transparent 100%);
     z-index: 1; /* legend sits above this */
   }
   .map-viewport iframe{
@@ -135,36 +125,7 @@ author_profile: True
   .layout--single .page__sidebar{ float:none; width:auto; max-width:100%; margin:0 0 1rem 0; position:static; }
   .layout--single .sidebar{ position:static; }
 
-  /* full-bleed helper for sections (timeline & chips) */
-  /* zoom-stable with controllable left bias */
-  .fullbleed{
-    /* width of the section */
-    --bleed-w: min(80vw, 2000px);
-  
-    /* 0   = flush left
-       0.5 = centered
-       1   = flush right   */
-    --bleed-bias: -1.25;  /* move closer to left by lowering this (e.g., 0.25) */
-  
-    width: var(--bleed-w);
-    /* Split the remaining space (100vw - width) using the bias */
-    margin-left:  calc((100vw - var(--bleed-w)) * var(--bleed-bias));
-    margin-right: calc((100vw - var(--bleed-w)) * (1 - var(--bleed-bias)));
-  
-    /* keep your inner padding */
-    padding-inline: clamp(8px, 2.5vw, 24px);
-  
-    /* important: remove the old centering hack so it doesn't fight this */
-    transform: none;
-  }
 
-  @media (max-width: 640px){
-  .fullbleed{
-    --bleed-w: 100vw;
-    --bleed-bias: 0;   /* flush left on narrow screens */
-    padding-inline: 8px;
-  }
-}
 
   /* ===== Chips (moved to BOTTOM, under the timeline) ===== */
   .chips{
@@ -224,7 +185,6 @@ author_profile: True
 <!-------------->
 <!-- Timeline -->
 <!-------------->
-<div class="fullbleed">
   <div class="timeline" aria-label="Career timeline">
   <ol class="tl-list">
 
@@ -670,7 +630,6 @@ author_profile: True
 <!----------------------------->
 <!-- Chips UNDER the timeline -->
 <!----------------------------->
-<div class="fullbleed">
   <div class="chip-marquee" aria-label="Expertise">
     <div class="chips chip-track">
       <!-- set #1 -->
