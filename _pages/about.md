@@ -101,15 +101,15 @@ author_profile: True
   }
   .tl-item{ position:relative; height:var(--tl-height); overflow:visible; scroll-snap-align:center; }
   .tl-item .tick{
-    position:absolute; left:50%; top:50%;
+    position:absolute; left:0; top:50%;
     width: var(--tl-dot-size); height: var(--tl-dot-size); border-radius:50%;
-    background: var(--tl-dot); transform: translate(-50%, -50%); z-index:2; box-shadow:0 0 0 2px #fff;
+    background: var(--tl-dot); transform: translate(0, -50%); z-index:2; box-shadow:0 0 0 2px #fff;
   }
-  .tl-item .stem{ position:absolute; left:50%; width:2px; background:var(--tl-line); transform:translateX(-50%); z-index:1; }
+  .tl-item .stem{ position:absolute; left:0; width:2px; background:var(--tl-line); transform: none; }
   .tl-item.up   .stem{ height: calc((var(--stem,110px)*.5) + (var(--tl-gap)*var(--tl-gap-factor))); top: calc(50% - ((var(--stem,110px)*.5) + (var(--tl-gap)*var(--tl-gap-factor)))); }
   .tl-item.down .stem{ height: calc((var(--stem,110px)*.5) + (var(--tl-gap)*var(--tl-gap-factor))); top: 50%; }
-  .tl-item.up   .card{ position:absolute; left:50%; bottom: calc(45% + (var(--tl-gap)*var(--tl-gap-factor))); margin-left: var(--tl-card-offset); text-align:left; }
-  .tl-item.down .card{ position:absolute; left:50%; top:    calc(45% + (var(--tl-gap)*var(--tl-gap-factor))); margin-left: var(--tl-card-offset); text-align:left; }
+  .tl-item.up   .card{ position:absolute; left:0; bottom: calc(45% + (var(--tl-gap)*var(--tl-gap-factor))); margin-left: calc(var(--tl-dot-size) + var(--tl-card-offset)); text-align:left; }
+  .tl-item.down .card{ position:absolute; left:0; top:    calc(45% + (var(--tl-gap)*var(--tl-gap-factor))); margin-left: calc(var(--tl-dot-size) + var(--tl-card-offset)); text-align:left; }
   .tl-item .card{ width: clamp(260px, 26vw, 400px); max-width: 48ch; }
   .tl-nudge{ position:absolute; top:50%; transform:translateY(-50%); width:38px; height:38px; border-radius:9999px; border:1px solid #e5e7eb;
              background: rgba(255,255,255,.9); box-shadow:0 2px 8px rgba(0,0,0,.08); display:grid; place-items:center; cursor:pointer; z-index:5; }
