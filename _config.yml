@@ -70,7 +70,7 @@ plugins:
 
 author:
   name   : "Chase Kusterer"
-  avatar : "/assets/images/chase-casual.JPG"
+  avatar : "/assets/images/chase-casual-wide.JPG"
   bio    : "**Data Scientist | Educator | Author** \n Passionate about creating analytical value with machine learning and AI."
   links:
     - label: "GitHub"
