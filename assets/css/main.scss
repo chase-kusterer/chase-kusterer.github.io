@@ -85,15 +85,26 @@
 /* avatar photo adjustments */
 /* ------------------------ */
 /* make the author avatar square and remove the ring */
+/* remove the thick white ring/border around the avatar everywhere */
 .author__avatar,
-.author__avatar img {
+.author__avatar img,
+.author__avatar a img,
+img.u-photo {
   border-radius: 0 !important;   /* remove circular mask */
+  border: 0 !important;
+  box-shadow: none !important;   /* overrides the theme's white ring */
+  background: transparent !important;
+  padding: 0 !important;
+  outline: none !important;
+  overflow: visible !important;
+  clip-path: none !important;    /* just in case a skin uses clip-path */
 }
 
-.author__avatar img {
-  box-shadow: none !important;   /* remove the subtle ring */
-  clip-path: none !important;    /* just in case a skin uses clip-path */
-  overflow: visible !important;
+/* If your layout adds a border/shadow on the wrapper too */
+.author__avatar {
+  background: none !important;
+  /* some skins add subtle shadows on the wrapper */
+  box-shadow: none !important;
 }
 
 /* optional: tighten bottom space around media */
