@@ -267,7 +267,7 @@ author_profile: True
 <!-------------->
 <!-- Timeline -->
 <!-------------->
-<div class="fullbleed">
+<div>
   <div class="timeline" aria-label="Career timeline">
   <ol class="tl-list">
 
@@ -737,7 +737,7 @@ author_profile: True
 <!----------------------------->
 <!-- Chips UNDER the timeline -->
 <!----------------------------->
-<div class="fullbleed">
+<div>
   <div class="chip-marquee" aria-label="Expertise">
     <div class="chips chip-track">
       <!-- set #1 -->
