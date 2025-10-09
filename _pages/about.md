@@ -95,8 +95,6 @@ author_profile: True
     gap: .75rem; overflow-x:auto; overflow-y:visible; overscroll-behavior-x:contain; scroll-snap-type:x proximity;
     min-height: var(--tl-height);
     background: linear-gradient(to right, var(--tl-line), var(--tl-line)) no-repeat;
-    background-position: calc(var(--tl-track)/2) 50%;
-    background-size: calc(100% - (var(--tl-track)/2)) 2px;
   }
   .tl-item{ position:relative; height:var(--tl-height); overflow:visible; scroll-snap-align:center; }
   .tl-item .tick{
