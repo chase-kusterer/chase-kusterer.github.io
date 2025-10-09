@@ -110,3 +110,16 @@ img.u-photo {
 /* optional: tighten bottom space around media */
 .page__content figure,
 .page__content iframe { margin-bottom: 0.5rem; }  /* was 0.75rem */
+
+/* make the avatar photo larger */
+.author__avatar {
+  /* responsive size (scales with viewport; clamped) */
+  clamp(140px, 18vw, 220px) !important;
+  height: clamp(140px, 18vw, 220px) !important;
+}
+
+.author__avatar img {
+  width: 100% !important;   /* fill the wrapper */
+  height: 100% !important;  /* keep it square */
+  object-fit: cover;        /* crops gently if ratios differ */
+}
