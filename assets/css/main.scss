@@ -81,6 +81,21 @@
 .page__content h3 { font-size: 1.00rem; line-height: 1.20; }
 .page__content h4 { font-size: 0.80rem; line-height: 1.22; }
 
-/* Optional: tighten bottom space around media */
+/* ------------------------ */
+/* avatar photo adjustments */
+/* ------------------------ */
+/* make the author avatar square and remove the ring */
+.author__avatar,
+.author__avatar img {
+  border-radius: 0 !important;   /* remove circular mask */
+}
+
+.author__avatar img {
+  box-shadow: none !important;   /* remove the subtle ring */
+  clip-path: none !important;    /* just in case a skin uses clip-path */
+  overflow: visible !important;
+}
+
+/* optional: tighten bottom space around media */
 .page__content figure,
 .page__content iframe { margin-bottom: 0.5rem; }  /* was 0.75rem */
