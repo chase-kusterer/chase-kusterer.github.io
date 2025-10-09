@@ -35,6 +35,9 @@ timezone: America/Los_Angeles # https://en.wikipedia.org/wiki/List_of_tz_databas
 include:
   - _pages
 
+# removing Feed button from footer.
+atom_feed:
+  hide: true
 
 # adding top-level projects block
 collections:
