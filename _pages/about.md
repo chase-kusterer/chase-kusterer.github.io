@@ -150,7 +150,7 @@ author_profile: True
     transform: none;
   }
 
-  /* ===== Chips (moved to BOTTOM, under the timeline) ===== */
+  /* ===== Chips ===== */
   .chips{
     display:flex; flex-wrap:wrap; justify-content:center;
     gap:.75rem; margin:.5rem 0 0;
@@ -162,7 +162,7 @@ author_profile: True
     font-size:clamp(.85rem,.9vw,1rem);
   }
   .chip-marquee{
-    --gap: .75rem; --speed: 35s; --gutter: calc(var(--tl-track)/2);
+    --gap: .75rem; --speed: 35s; --gutter: 0;
     --fadeL: 16px; --fadeR: 8%;
     position: relative; overflow: hidden; margin-top: .25rem;
     -webkit-mask-image: linear-gradient(
@@ -173,13 +173,7 @@ author_profile: True
       #000        calc(100% - var(--fadeR)),
       transparent 100%
     );
-            mask-image: linear-gradient(
-      to right,
-      transparent 0,
-      transparent calc(var(--gutter) - var(--fadeL)),
-      #000        var(--gutter),
-      #000        calc(100% - var(--fadeR)),
-      transparent 100%
+      mask-image: none;
     );
   }
   .chip-track{ display:inline-flex; gap:var(--gap); width:max-content; animation: chip-marquee var(--speed) linear infinite; }
