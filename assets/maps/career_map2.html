@@ -122,17 +122,17 @@
     {
       center: [33.25704835483369, 31.09475782070367],
       crs: L.CRS.EPSG3857,
-      zoom: 1, // controls zoom start for map
-      zoomControl: true,
-      preferCanvas: false,
+      zoom: 3,              // controls zoom start for map
+      zoomControl: true,    // shows Leaflet’s “+ / –” zoom UI (control enabled).
+      preferCanvas: false,  // rendering choice (not a UI control, but a map capability toggle).
 
       /* disable panning/dragging & user zoom */
-      dragging: false,
-      scrollWheelZoom: false,
-      doubleClickZoom: false,
-      boxZoom: false,
-      touchZoom: false,
-      keyboard: false
+      dragging: false,        // disables mouse/touch panning/drag.
+      scrollWheelZoom: false, // disables zooming with the mouse wheel/trackpad.
+      doubleClickZoom: false, // disables double-click to zoom.
+      boxZoom: false,         // disables shift-drag box-zoom.
+      touchZoom: false,       // disables pinch-to-zoom on touch.
+      keyboard: false         // disables keyboard nav/zoom keys.
     }
   );
   L.control.scale().addTo(map_38aeee7d88381084d80d1393780a5281);
