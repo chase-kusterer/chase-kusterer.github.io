@@ -87,6 +87,7 @@ author_profile: True
     margin: 1.0rem 0 1.0rem; /* distance between map and timeline */
     padding: 1.5rem 0 1.5rem;  /* ~one extra line on top for “up” cards */
     background: transparent;
+    background-size: calc(100% - (var(--tl-track)/2)) 2px;
     isolation: isolate;
   }
   .tl-list{
