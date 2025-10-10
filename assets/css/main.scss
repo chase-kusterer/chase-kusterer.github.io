@@ -116,3 +116,19 @@ img.u-photo {
   height: 100% !important;
   object-fit: cover;
 }
+
+/* ------------------ */
+/* avatar fade levels */
+/* ------------------ */
+
+/* base fade level */
+.author__avatar img {
+  opacity: 0.9 !important;
+  filter: none !important;
+  transition: opacity .2s ease;     /* optional smoothness */
+}
+
+/* Hover level (e.g., full) */
+.author__avatar a:hover img {
+  opacity: 1 !important;
+}
