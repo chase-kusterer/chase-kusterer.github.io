@@ -21,16 +21,39 @@ author_profile: true
     .home-cards{ grid-template-columns: 1fr; }
   }
 
+  /* card class */
   .card{
     position:relative;
     border: 1px solid #e5e7eb;
-    border-radius: 16px;
-    background: #fff;
+    border-radius: 8px;
+    background: var(--card-bg, #fff);
     padding: clamp(16px, 2.4vw, 24px);
     box-shadow: 0 4px 16px rgba(0,0,0,.04);
-    overflow: hidden;
-    min-height: 220px;
   }
+
+  /* card colors */
+  .card--teal        { --card-bg: #008080; }
+  .card--burntorange { --card-bg: #CC5500; }
+  .card--navy        { --card-bg: #000080; }
+  .card--beige       { --card-bg: #F5F5DC; }
+
+
+  /* text contrast improvements on dark cards */
+  .card--teal,
+  .card--burntorange,
+  .card--navy {
+    color: #fff;
+  }
+
+/* ensuring CTA link inherits legible color on dark cards */
+.card--teal  .card__cta,
+.card--burntorange .card__cta,
+.card--navy .card__cta {
+  color: currentColor;
+  text-decoration: underline; /* optional for clarity on dark bg */
+}
+
+  
   /* linkable cards become a big clickable area */
   .card--link{ text-decoration:none; color:inherit; display:block; }
   .card--link:focus-visible{ outline: 3px solid #2563eb; outline-offset: 4px; border-radius: 16px; }
@@ -80,8 +103,8 @@ author_profile: true
 
 <div class="home-cards">
 
-  <!-- Card 1: Projects (auto-populated tiles) -->
-<section class="card">
+<!-- Card 1: Projects (auto-populated tiles) -->
+<section class="card card--teal">
   <div class="card__heading">
     <span>Projects</span>
     <a class="card__cta" href="{{ '/portfolio/' | relative_url }}">View all →</a>
@@ -113,7 +136,7 @@ author_profile: true
 </section>
 
   <!-- Card 2: Textbook (link) -->
-  <a class="card card--link" href="https://chase-kusterer.github.io/projects/textbook/">
+  <a class="card card--link card--burntorange" href="https://chase-kusterer.github.io/projects/textbook/">
     <div class="card__heading">
       <span>From Print to Prediction <br> A Beginner's Guide to Data Analysis in Python</span>
     </div>
@@ -121,13 +144,13 @@ author_profile: true
   </a>
   
   <!-- Card 3: Guided Analyses (no link yet) -->
-  <section class="card" aria-label="Analysis">
+  <section class="card card--navy" aria-label="Analysis">
     <div class="card__heading"><span>Analysis</span></div>
     <p>A series of guided analysis notebooks for analytics, machine learning, and AI (Link coming soon.)</p>
   </section>
 
   <!-- Card 4: My Career Journey (link) -->
-  <a class="card card--link" href="{{ '/about/' | relative_url }}">
+  <a class="card card--link card--beige" href="{{ '/about/' | relative_url }}">
     <div class="card__heading">
       <span>My Career Journey</span>
     </div>
