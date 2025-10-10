@@ -128,3 +128,41 @@
   mix-blend-mode: normal !important;
   transition: none !important;
 }
+
+/* AVATAR: make rest state identical to hover */
+.author__avatar,
+.author__avatar a,
+.author__avatar img,
+.author__avatar::before,
+.author__avatar::after,
+.author__avatar a::before,
+.author__avatar a::after {
+  opacity: 1 !important;
+  filter: none !important;         /* cancels grayscale/brightness/contrast */
+  mix-blend-mode: normal !important;
+  background: none !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  transition: none !important;
+}
+
+/* Ensure hover/focus/active can't change it back */
+.author__avatar:hover,
+.author__avatar:focus,
+.author__avatar:active,
+.author__avatar a:hover,
+.author__avatar a:focus,
+.author__avatar a:active,
+.author__avatar img:hover,
+.author__avatar img:focus,
+.author__avatar img:active,
+.author__avatar::before:hover,
+.author__avatar::after:hover {
+  opacity: 1 !important;
+  filter: none !important;
+  mix-blend-mode: normal !important;
+  background: none !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  transition: none !important;
+}
