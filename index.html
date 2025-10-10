@@ -31,7 +31,6 @@ author_profile: true
     overflow: hidden;
     min-height: 220px;
   }
-  
   /* linkable cards become a big clickable area */
   .card--link{ text-decoration:none; color:inherit; display:block; }
   .card--link:focus-visible{ outline: 3px solid #2563eb; outline-offset: 4px; border-radius: 16px; }
@@ -45,17 +44,6 @@ author_profile: true
     font-size:.9em; font-weight:700; color:#2563eb; white-space:nowrap;
   }
 
-  /* card colors */
-  .card--peach        { --card-bg: #fff1e6; }
-  .card--slate        { --card-bg: #f1f5f9; }
-  .card--mint         { --card-bg: #ecfdf5; }
-  .card--teal         { --card-bg: #008080; }
-  .card--burntorange  { --card-bg: #CC5500; }
-  .card--navy         { --card-bg: #000080; }
-  .card--beige        { --card-bg: #F5F5DC; }
-
-
-  
   /* ====== Projects tiles inside the first card ====== */
   .proj-grid{
     --cols: 3;
@@ -92,10 +80,10 @@ author_profile: true
 
 <div class="home-cards">
 
-<!-- Card 1: Python Packages (auto-populated tiles) -->
-<section class="card card--teal">
+  <!-- Card 1: Projects (auto-populated tiles) -->
+<section class="card">
   <div class="card__heading">
-    <span>Python Tools and Packages</span>
+    <span>Projects</span>
     <a class="card__cta" href="{{ '/portfolio/' | relative_url }}">View all →</a>
   </div>
 
@@ -125,29 +113,25 @@ author_profile: true
 </section>
 
   <!-- Card 2: Textbook (link) -->
-  <section class="card card--burntorange" aria-label="Analysis">
   <a class="card card--link" href="https://chase-kusterer.github.io/projects/textbook/">
     <div class="card__heading">
       <span>From Print to Prediction <br> A Beginner's Guide to Data Analysis in Python</span>
     </div>
     <p>This interactive book is designed for readers from less-technical backgrounds. You’ll write and run code in each chapter and learn core concepts through short stories and hands-on exercises.</p>
   </a>
-  </section>
   
   <!-- Card 3: Guided Analyses (no link yet) -->
-  <section class="card card--navy" aria-label="Analysis">
+  <section class="card" aria-label="Analysis">
     <div class="card__heading"><span>Analysis</span></div>
     <p>A series of guided analysis notebooks for analytics, machine learning, and AI (Link coming soon.)</p>
   </section>
 
   <!-- Card 4: My Career Journey (link) -->
-  <section class="card card--beige" aria-label="Analysis">
   <a class="card card--link" href="{{ '/about/' | relative_url }}">
     <div class="card__heading">
       <span>My Career Journey</span>
     </div>
     <p>Explore my career journey through an interactive map and timeline.</p>
   </a>
-  </section>
 
 </div>
