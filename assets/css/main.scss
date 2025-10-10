@@ -94,6 +94,7 @@
   width:  clamp(140px, 18vw, 220px) !important;
   height: clamp(140px, 18vw, 220px) !important;
   line-height: 0; /* prevents inline gaps */
+  opacity: 1;
 }
 
 /* image: fill wrapper, square, no clip/ring */
@@ -108,44 +109,7 @@
   background: transparent !important;
   padding: 0 !important;
   outline: none !important;
+  opacity: 1;
   overflow: visible !important;
   clip-path: none !important;   /* in case a skin uses clip-path */
-}
-
-/* ensure linked avatar wrappers don't introduce opacity */
-.author__avatar a{
-  opacity: 1 !important;
-  filter: none !important;
-}
-
-.author__avatar img,
-.author__avatar a img,
-.author__avatar a:hover img,
-.author__avatar a:focus img,
-.author__avatar a:active img{
-  opacity: 1 !important;
-  filter: none !important;
-  mix-blend-mode: none !important;
-  transition: none !important;
-}
-
-/* Ensure hover/focus/active can't change it back */
-.author__avatar:hover,
-.author__avatar:focus,
-.author__avatar:active,
-.author__avatar a:hover,
-.author__avatar a:focus,
-.author__avatar a:active,
-.author__avatar img:hover,
-.author__avatar img:focus,
-.author__avatar img:active,
-.author__avatar::before:hover,
-.author__avatar::after:hover {
-  opacity: 1 !important;
-  filter: none !important;
-  mix-blend-mode: none !important;
-  background: none !important;
-  background-image: none !important;
-  box-shadow: none !important;
-  transition: none !important;
 }
