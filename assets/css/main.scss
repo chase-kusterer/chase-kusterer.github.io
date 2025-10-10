@@ -155,3 +155,36 @@
   filter: none !important;
   mix-blend-mode: normal !important;
 }
+
+/* --------------------------------------------------- */
+/* ==== Link overrides (no fade, no hover change) ==== */
+/* --------------------------------------------------- */
+a,
+a:link,
+a:visited,
+.page__content a,
+.nav__list a,
+.archive__item-title a,
+.pagination a {
+  opacity: 1 !important;
+  filter: none !important;
+  transition: none !important;         /* kill hover transitions */
+  /* optional: pick a fixed color; or leave color alone
+  color: inherit !important;            // keep text color
+  text-decoration: underline;           // or remove/keep as you like
+  */
+}
+
+a:hover,
+a:focus,
+a:active,
+.page__content a:hover,
+.nav__list a:hover,
+.archive__item-title a:hover,
+.pagination a:hover {
+  opacity: 1 !important;
+  filter: none !important;
+  transition: none !important;
+  color: inherit !important;            /* same as non-hover */
+  text-decoration: inherit !important;  /* same as non-hover */
+}
