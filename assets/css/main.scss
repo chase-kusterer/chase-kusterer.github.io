@@ -202,3 +202,11 @@ a:focus img.u-photo {
   mix-blend-mode: normal !important;
   transition: none !important;
 }
+
+/* rare override stuff */
+.author__avatar a { opacity: 1 !important; }
+.author__avatar a:hover,
+.author__avatar a:focus { opacity: 1 !important; }
+
+.dark a img,
+.dark a:hover img { opacity: 1 !important; filter: none !important; }
