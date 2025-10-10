@@ -113,3 +113,45 @@
   overflow: visible !important;
   clip-path: none !important;   /* in case a skin uses clip-path */
 }
+
+/* ---------------------------------------------------------- */
+/* ===== sidebar: disable link/image fades & animations ===== */
+/* ---------------------------------------------------------- */
+.sidebar,
+.sidebar * {
+  transition: none !important;
+  animation: none !important;
+}
+
+/* Ensure avatar never dims or desaturates */
+.sidebar .author__avatar,
+.sidebar .author__avatar a,
+.sidebar .author__avatar img,
+.sidebar .author__avatar a img {
+  opacity: 1 !important;
+  filter: none !important;         /* cancels grayscale/brightness/contrast */
+  mix-blend-mode: normal !important;
+  box-shadow: none !important;
+}
+
+/* In case the theme uses pseudo-element overlays for the fade */
+.sidebar .author__avatar::before,
+.sidebar .author__avatar::after,
+.sidebar .author__avatar a::before,
+.sidebar .author__avatar a::after {
+  content: none !important;
+}
+
+/* Also stop link hover in the sidebar from changing opacity */
+.sidebar a,
+.sidebar a:hover,
+.sidebar a:focus,
+.sidebar a:active,
+.sidebar a img,
+.sidebar a:hover img,
+.sidebar a:focus img,
+.sidebar a:active img {
+  opacity: 1 !important;
+  filter: none !important;
+  mix-blend-mode: normal !important;
+}
