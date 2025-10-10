@@ -165,3 +165,40 @@ a img.u-photo:active {
   filter: none !important;
   mix-blend-mode: normal !important;
 }
+
+
+/* ==== FINAL OVERRIDE: no fade on any linked images (incl. avatar) ==== */
+
+/* Base state for any image (linked or not) */
+img,
+a img {
+  opacity: 1 !important;
+  filter: none !important;            /* cancels grayscale/brightness/contrast */
+  mix-blend-mode: normal !important;
+  transition: none !important;
+}
+
+/* Hover/focus/active on any linked image */
+a:hover img,
+a:focus img,
+a:active img {
+  opacity: 1 !important;
+  filter: none !important;
+  mix-blend-mode: normal !important;
+}
+
+/* Extra specificity for Minimal Mistakes avatar contexts */
+.author__avatar,
+.author__avatar a,
+.author__avatar img,
+.author__avatar a img,
+.masthead .author__avatar img,
+.page__content img.u-photo,
+a img.u-photo,
+a:hover img.u-photo,
+a:focus img.u-photo {
+  opacity: 1 !important;
+  filter: none !important;
+  mix-blend-mode: normal !important;
+  transition: none !important;
+}
