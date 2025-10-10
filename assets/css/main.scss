@@ -121,14 +121,12 @@ img.u-photo {
 /* avatar fade levels */
 /* ------------------ */
 
-/* base fade level */
+/* removing base fade level */
 .author__avatar img {
   opacity: 1 !important;
-  filter: none !important;
-  transition: opacity .2s ease;     /* optional smoothness */
+  filter: none !important;          /* cancels grayscale/brightness if any */
 }
-
-/* Hover level (e.g., full) */
 .author__avatar a:hover img {
-  opacity: 1 !important;
+  opacity: 1 !important;            /* keep it the same on hover */
+  filter: none !important;
 }
