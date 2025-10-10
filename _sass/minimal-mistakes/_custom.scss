@@ -1,39 +1,26 @@
-/* === Disable hover effects in the author sidebar only === */
-
-/* Stop fades/animations */
+/* Kill transitions/animations so nothing animates */
 .sidebar .author__avatar img,
-.sidebar .author__urls a,
-.sidebar .author__content a {
+.sidebar .author__avatar a {
   transition: none !important;
+  animation: none !important;
 }
 
-/* Neutralize hover state for avatar */
-.sidebar .author__avatar:hover img {
-  transform: none !important;
+/* Neutralize any hover styles no matter where they're applied */
+.sidebar .author__avatar:hover img,
+.sidebar .author__avatar a:hover img,
+.sidebar .author__avatar img:hover,
+.sidebar .author__avatar:hover,
+.sidebar .author__avatar a:hover {
   filter: none !important;
   opacity: 1 !important;
+  transform: none !important;
   box-shadow: none !important;
-}
-
-/* Neutralize hover for links (names, social icons, etc.) */
-.sidebar .author__urls a:hover,
-.sidebar .author__urls a:focus,
-.sidebar .author__content a:hover,
-.sidebar .author__content a:focus {
-  color: inherit !important;
   background: none !important;
   text-decoration: none !important;
-  opacity: 1 !important;
-  box-shadow: none !important;
-  transform: none !important;
 }
 
-/* Optional: ensure visited/active don’t look different either */
-.sidebar .author__urls a:active,
-.sidebar .author__urls a:visited,
-.sidebar .author__content a:active,
-.sidebar .author__content a:visited {
-  color: inherit !important;
-  opacity: 1 !important;
-  text-decoration: none !important;
+/* 🔒 Bulletproof fix:
+   Stop the image itself from receiving hover, while keeping the link clickable. */
+.sidebar .author__avatar img {
+  pointer-events: none;   /* hover won’t fire on the img */
 }
