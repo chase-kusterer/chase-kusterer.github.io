@@ -130,3 +130,38 @@ img.u-photo {
   opacity: 1 !important;            /* keep it the same on hover */
   filter: none !important;
 }
+
+/* new fade rules */
+/* ===== Kill all avatar fading/desaturation everywhere, all states ===== */
+.author__avatar img,
+.author__avatar a img,
+img.u-photo,
+a img.u-photo,
+.page__content img.u-photo,
+.masthead .author__avatar img {
+  opacity: 1 !important;
+  filter: none !important;
+  mix-blend-mode: normal !important;
+  transition: none !important;
+}
+
+.author__avatar img:hover,
+.author__avatar img:focus,
+.author__avatar img:active,
+.author__avatar a:hover img,
+.author__avatar a:focus img,
+.author__avatar a:active img,
+a img.u-photo:hover,
+a img.u-photo:focus,
+a img.u-photo:active {
+  opacity: 1 !important;
+  filter: none !important;
+  mix-blend-mode: normal !important;
+}
+
+.author__avatar,
+.author__avatar a {
+  opacity: 1 !important;
+  filter: none !important;
+  mix-blend-mode: normal !important;
+}
