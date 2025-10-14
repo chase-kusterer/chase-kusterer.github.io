@@ -4,3 +4,6 @@
 [submodule "_includes/readmes/s2_tif"]
 	path = _includes/readmes/s2_tif
 	url = https://github.com/chase-kusterer/sentinel_2_tif
+[submodule "_includes/readmes/baserush"]
+	path = _includes/readmes/baserush
+	url = https://github.com/chase-kusterer/baserush
