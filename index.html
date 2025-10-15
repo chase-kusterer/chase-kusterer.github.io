@@ -50,13 +50,12 @@ author_profile: true
 .card--burntorange .card__cta,
 .card--navy .card__cta {
   color: currentColor;
-  text-decoration: underline; /* optional for clarity on dark bg */
 }
 
   
   /* linkable cards become a big clickable area */
   .card--link{ text-decoration:none; color:inherit; display:block; }
-  .card--link:focus-visible{ outline: 3px solid #2563eb; outline-offset: 4px; border-radius: 16px; }
+  /* .card--link:focus-visible{ outline: 3px solid #2563eb; outline-offset: 4px; border-radius: 16px; } */
   .card:hover{ box-shadow: 0 8px 24px rgba(0,0,0,.07); }
 
   .card__heading{
@@ -101,38 +100,33 @@ author_profile: true
   }
 </style>
 
+<!-- --------------------------------------  -->
+<!-- --------------------------------------  -->
+<!-- --------------------------------------  -->
+<!-- Cards -->
+<!-- --------------------------------------  -->
+<!-- --------------------------------------  -->
+<!-- --------------------------------------  -->
+<!-- --------------------------------------  -->
+<!-- --------------------------------------  -->
 <div class="home-cards">
-
+  
 <!-- Card 1: Projects (auto-populated tiles) -->
 <section class="card card--lightgray">
   <div class="card__heading">
     <span>Python Packages and Tools</span>
     <a class="card__cta" href="{{ '/portfolio/' | relative_url }}">View all →</a>
   </div>
-
-  {% assign items = site.projects | default: site.portfolio | default: site.categories.portfolio %}
-  {% if items and items != empty %}
-    <div class="proj-grid">
-      {%- for item in items limit:6 -%}
-        {%- assign teaser = item.teaser | default: item.image | default: '/assets/images/teasers/' | append: item.slug | append: '_card.png' -%}
-        <a class="proj-tile" href="{{ item.url | relative_url }}">
-          <img class="proj-tile__img" src="{{ teaser | relative_url }}" alt="{{ item.title | escape }}">
-          <span class="proj-tile__label">{{ item.title }}</span>
-        </a>
-      {%- endfor -%}
-    </div>
-  {% else %}
     <div class="proj-grid">
       <a class="proj-tile" href="{{ '/projects/s2-tif/' | relative_url }}">
         <img class="proj-tile__img" src="{{ '/assets/images/teasers/s2_tif_card.png' | relative_url }}" alt="S2-TIF Project">
         <span class="proj-tile__label">S2-TIF</span>
       </a>
-      <a class="proj-tile" href="{{ '/projects/textbook/' | relative_url }}">
+      <a class="proj-tile" href="{{ '/projects/baserush/' | relative_url }}">
         <img class="proj-tile__img" src="{{ '/assets/images/teasers/textbook_card.png' | relative_url }}" alt="Textbook Project">
         <span class="proj-tile__label">Textbook</span>
       </a>
     </div>
-  {% endif %}
 </section>
 
   <!-- Card 2: Textbook (link) -->
