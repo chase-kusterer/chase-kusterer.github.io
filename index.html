@@ -23,7 +23,6 @@ author_profile: true
 
   /* card class */
   .card{
-    color: #111827;
     position:relative;
     border: 1px solid #e5e7eb;
     border-radius: 8px;
@@ -91,6 +90,26 @@ author_profile: true
     display:grid; place-items:center; height: 160px; color:#6b7280; font-style:italic;
     border:1px dashed #e5e7eb; border-radius:12px; background:#fafafa;
   }
+
+/* Make linked-card text look like normal text (no blue/underline) */
+.card--link,
+.card--link:link,
+.card--link:visited,
+.card--link:hover,
+.card--link:active {
+  color: #111827 !important;   /* your dark text */
+  text-decoration: none !important;
+  cursor: pointer;
+}
+
+/* Also remove any underline styling from descendants inside the linked card */
+.card--link * {
+  text-decoration: none !important;
+  color: inherit;
+}
+
+/* Keep the blue CTA in Card 1 unchanged */
+.card__cta { color: #2563eb; text-decoration: none; }
 </style>
 
 <!-- --------------------------------------  -->
