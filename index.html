@@ -23,6 +23,7 @@ author_profile: true
 
   /* card class */
   .card{
+    color: #111827;
     position:relative;
     border: 1px solid #e5e7eb;
     border-radius: 8px;
@@ -37,14 +38,6 @@ author_profile: true
   .card--lightgray        { --card-bg: #FAFAFA; }
 
 
-  /* text contrast improvements on dark cards
-  .card--teal,
-  .card--burntorange,
-  .card--navy {
-    color: #fff;
-  }
-  */
-
 /* ensuring CTA link inherits legible color on dark cards */
 .card--teal  .card__cta,
 .card--burntorange .card__cta,
@@ -55,7 +48,7 @@ author_profile: true
   
   /* linkable cards become a big clickable area */
   .card--link{ text-decoration:none; color:inherit; display:block; }
-  /* .card--link:focus-visible{ outline: 3px solid #2563eb; outline-offset: 4px; border-radius: 16px; } */
+  .card--link:focus-visible{ outline: 3px solid #2563eb; outline-offset: 4px; border-radius: 16px; }
   .card:hover{ box-shadow: 0 8px 24px rgba(0,0,0,.07); }
 
   .card__heading{
