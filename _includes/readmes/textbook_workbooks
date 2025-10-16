@@ -1,2 +1,0 @@
-{% capture md %}{% include readmes/workbooks/README.md %}{% endcapture %}
-{{ md | markdownify }}
