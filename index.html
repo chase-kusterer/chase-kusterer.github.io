@@ -34,7 +34,7 @@ author_profile: true
   }
 
   /* card colors #FAFAFA */
-  .card--lightgray        { --card-bg: #e4f0f7; }
+  .card--lightgray        { --card-bg: #f0f5f7; }
 
 
 /* ensuring CTA link inherits legible color on dark cards */
@@ -94,9 +94,10 @@ author_profile: true
 /* Make linked-card text look like normal text (no blue/underline) */
 .card--link,
 .card--link:link,
+.card--link:visited,
 .card--link:hover,
 .card--link:active {
-  text-decoration: none !important;
+  text-decoration: inherit !important;
   cursor: pointer;
   color: inherit;
 }
