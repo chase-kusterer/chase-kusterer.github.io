@@ -94,16 +94,10 @@ author_profile: true
 /* Make linked-card text look like normal text (no blue/underline) */
 .card--link,
 .card--link:link,
-.card--link:visited,
 .card--link:hover,
 .card--link:active {
-  text-decoration: none !important;
+  text-decoration: inherit !important;
   cursor: pointer;
-}
-
-/* Also remove any underline styling from descendants inside the linked card */
-.card--link * {
-  text-decoration: none !important;
   color: inherit;
 }
 
