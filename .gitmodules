@@ -4,6 +4,7 @@
 [submodule "_includes/readmes/workbooks"]
 	path = _includes/readmes/workbooks
 	url = https://github.com/chase-kusterer/workbooks_py_data_analysis
+	branch = main
 [submodule "_includes/readmes/s2_tif"]
 	path = _includes/readmes/s2_tif
 	url = https://github.com/chase-kusterer/sentinel_2_tif
