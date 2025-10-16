@@ -47,7 +47,7 @@ author_profile: true
   
   /* linkable cards become a big clickable area */
   .card--link{ text-decoration:none; color:inherit; display:block; }
-  .card--link:focus-visible{ outline: 3px solid #2563eb; outline-offset: 4px; border-radius: 16px; }
+  .card--link:focus-visible{ outline: 3px solid; outline-offset: 4px; border-radius: 16px; }
   .card:hover{ box-shadow: 0 8px 24px rgba(0,0,0,.07); }
 
   .card__heading{
@@ -91,6 +91,25 @@ author_profile: true
     border:1px dashed #e5e7eb; border-radius:12px; background:#fafafa;
   }
 
+/* Make linked-card text look like normal text (no blue/underline) */
+.card--link,
+.card--link:link,
+.card--link:visited,
+.card--link:hover,
+.card--link:active {
+  text-decoration: none !important;
+  cursor: pointer;
+}
+
+/* Also remove any underline styling from descendants inside the linked card */
+.card--link * {
+  text-decoration: none !important;
+  color: inherit;
+}
+
+/* Keep the blue CTA in Card 1 unchanged */
+.card__cta { color: #2563eb; text-decoration: none; }
+  
 </style>
 
 <!-- --------------------------------------  -->
