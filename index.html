@@ -24,7 +24,7 @@ author_profile: true
   /* card class */
   .card{
     position:relative;
-    border: 1px solid #e5e7eb;
+    border: 3px solid #e5e7eb;
     border-radius: 8px;
     background: var(--card-bg, #fff);
     padding: clamp(16px, 2.4vw, 24px);
@@ -33,8 +33,8 @@ author_profile: true
     min-height: 240px;
   }
 
-  /* card colors #FAFAFA */
-  .card--lightgray        { --card-bg: #f0f5f7; }
+  /* card colors #FAFAFA #f0f5f7 (chef's hat)*/
+  .card--lightgray        { --card-bg: #f7fafb; }
 
 
 /* ensuring CTA link inherits legible color on dark cards */
@@ -130,24 +130,36 @@ author_profile: true
         <span class="proj-tile__label">S2-TIF</span>
       </a>
       <a class="proj-tile" href="{{ '/projects/baserush/' | relative_url }}">
-        <img class="proj-tile__img" src="{{ '/assets/images/teasers/textbook_card.png' | relative_url }}" alt="Textbook Project">
+        <img class="proj-tile__img" src="{{ '/assets/images/teasers/textbook_card.png' | relative_url }}" alt="Textbook">
         <span class="proj-tile__label">Textbook</span>
       </a>
     </div>
 </section>
 
   <!-- Card 2: Textbook (link) -->
-  <a class="card card--link card--lightgray" href="https://chase-kusterer.github.io/projects/textbook/">
-    <div class="card__heading">
-      <span>From Print to Prediction <br> A Beginner's Guide to Data Analysis in Python</span>
-    </div>
+  <section class="card card--lightgray">
+  <div class="card__heading">
+    <span>From Print to Prediction <br> A Beginner's Guide to Data Analysis in Python</span>
+    <a class="card__cta" href="{{ '/portfolio/' | relative_url }}">View all →</a>
+  </div>
     <p>This interactive book is designed for readers from less-technical backgrounds. You’ll write and run code in each chapter and learn core concepts through short stories and hands-on exercises.</p>
-  </a>
+
+    <div class="proj-grid">
+      <a class="proj-tile" href="{{ '/projects/textbook/' | relative_url }}">
+        <img class="proj-tile__img" src="{{ '/assets/images/teasers/textbook_card.png' | relative_url }}" alt="Textbook">
+        <span class="proj-tile__label">Textbook</span>
+      </a>
+      <a class="proj-tile" href="{{ '/projects/textbook_workbooks/' | relative_url }}">
+        <img class="proj-tile__img" src="{{ '/assets/images/teasers/textbook_card.png' | relative_url }}" alt="Workbooks">
+        <span class="proj-tile__label">Workbooks</span>
+      </a>
+    </div>
+</section>
   
-  <!-- Card 3: Guided Analyses (no link yet) -->
+  <!-- Card 3: Machine Learning and AI -->
   <section class="card card--lightgray" aria-label="Analysis">
-    <div class="card__heading"><span>Analysis</span></div>
-    <p>A series of guided analysis notebooks for analytics, machine learning, and AI (Link coming soon.)</p>
+    <div class="card__heading"><span>Machine Learning and AI</span></div>
+    <p>Analysis notebooks for analytics, machine learning, and AI.</p>
   </section>
 
   <!-- Card 4: My Career Journey (link) -->
