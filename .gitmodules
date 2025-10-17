@@ -1,13 +1,24 @@
 [submodule "_includes/readmes/textbook"]
 	path = _includes/readmes/textbook
 	url = https://github.com/chase-kusterer/textbook-py-data-analysis
+
 [submodule "_includes/readmes/workbooks"]
 	path = _includes/readmes/workbooks
 	url = https://github.com/chase-kusterer/workbooks_py_data_analysis
 	branch = main
+
 [submodule "_includes/readmes/s2_tif"]
 	path = _includes/readmes/s2_tif
 	url = https://github.com/chase-kusterer/sentinel_2_tif
+
 [submodule "_includes/readmes/baserush"]
 	path = _includes/readmes/baserush
 	url = https://github.com/chase-kusterer/baserush
+
+[submodule "_includes/readmes/supervised-learning"]
+	path = _includes/readmes/supervised-learning
+	url = https://github.com/chase-kusterer/supervised-learning
+
+[submodule "_includes/readmes/unsupervised-learning"]
+	path = _includes/readmes/unsupervised-learning
+	url = https://github.com/chase-kusterer/unsupervised-learning
