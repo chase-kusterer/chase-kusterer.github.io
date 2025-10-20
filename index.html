@@ -71,10 +71,28 @@ author_profile: true
     position:relative; display:block; border-radius:12px; overflow:hidden;
     border:1px solid #e5e7eb; background:#f8fafc;
   }
+
+  /* main tile__img class */
   .proj-tile__img{
-    aspect-ratio: 16/9; width:100%; object-fit:fill; display:block;
+    aspect-ratio: 16/9; width:100%; object-fit:cover; display:block;
     filter: saturate(1.05);
   }
+
+  /* tile__img class modifier */
+  .proj-tile__img--fill {
+    object-fit: fill; /* stretch */
+  }
+  
+  /* tile__img class modifier */
+  .proj-tile__img--contain {
+    object-fit: contain; /* contain (letterbox) */
+  }
+
+    /* tile__img class modifier */
+  .proj-tile__img--contain {
+    object-fit: scale-down; /* center or none */
+  }
+  
   .proj-tile__label{
     position:absolute; left:8px; bottom:8px;
     background: rgba(255,255,255,.92);
