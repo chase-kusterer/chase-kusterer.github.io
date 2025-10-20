@@ -48,6 +48,7 @@ author_profile: True
     padding: 0 !important;
     overflow: hidden;
     z-index: 1; /* legend sits above this */
+    border-radius: var(--oval-rx, 58%) / var(--oval-ry, 52%);
   }
   .map-viewport iframe{
     display:block; width:100%; height: var(--map-h); border:0;
@@ -194,8 +195,8 @@ author_profile: True
     /* Map shape/size (overrides your base 60vh etc ONLY on mobile) */
     --map-h: 56vh;
     --overlay-frac: .36;
-    --oval-rx: 52%;
-    --oval-ry: 58%;
+    --oval-rx: 58%;
+    --oval-ry: 52%;
 
     /* Timeline density */
     --tl-track: 160px;
@@ -218,7 +219,7 @@ author_profile: True
   /* Legend containment + wrapping on small screens */
   .legend-proxy{
     left: 46%;
-    bottom: calc(var(--legend-overlap) * 5);
+    bottom: calc(var(--legend-overlap) * -1);
     transform: translateX(-50%);
     max-width: 94vw;
     padding-inline: 10px;
@@ -974,17 +975,17 @@ author_profile: True
             try { map.eachLayer(indexLayer); } catch(e){}
           }
 
-          map.whenReady(function(){
-            buildIndex();
-            setTimeout(buildIndex, 250); // in case layers add late
-          });
-
-          // parent → map (timeline click)
-          window.addEventListener('message', function(ev){
-            var data = ev.data || {};
-            if (data.type === 'showCity' && data.key){
-              openForKey(data.key); // open tooltip/popup only
+        // --- START: NEW ZOOM FIX ---
+            // Check parent window width and adjust zoom if mobile
+            try {
+              if (window.parent && window.parent.innerWidth <= 640) {
+                var currentZoom = map.getZoom();
+                map.setZoom(currentZoom - 2); // Zoom out 2 levels
+              }
+            } catch(e) {
+              console.warn('Could not adjust mobile zoom', e);
             }
+            // --- END: NEW ZOOM FIX ---
           });
 
           window.__markersByKey = markersByKey; // debug
