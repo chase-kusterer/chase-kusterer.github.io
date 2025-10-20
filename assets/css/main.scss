@@ -122,8 +122,6 @@
 /* image: fill wrapper, square, no clip/ring */
 .author__avatar img{
   display: block;               /* remove inline baseline gap */
-  width: 100% !important;
-  height: 100% !important;
   object-fit: cover;
   object-position: center top;
   border: 0 !important;
@@ -133,6 +131,5 @@
   padding: 0 !important;
   outline: none !important;
   opacity: 1;
-  overflow: visible !important;
   clip-path: none !important;   /* in case a skin uses clip-path */
 }
