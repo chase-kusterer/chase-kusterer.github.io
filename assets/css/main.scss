@@ -7,6 +7,26 @@
 @import "minimal-mistakes";
 
 
+/* --- Custom CSS for Equal Height Portfolio Cards --- */
+
+// making main grid a flex container
+.entries-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+// making cards flex containers that fill their space
+.grid__item .archive__item {
+  display: flex;
+  flex-direction: column; // Stack the card's content vertically
+  height: 100%;           // Make the card fill the entire height of its grid slot
+}
+
+// allowing excerpts to grow and fill empty space
+.archive__item-excerpt {
+  flex-grow: 1;
+}
+
 
 /* ----------------------------------------------- */
 /* text size adjustment for readmes in other repos */
