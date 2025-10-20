@@ -2,7 +2,7 @@
 title: "Unsupervised Machine Learning"
 excerpt: "Unsupervised machine learning notebooks."
 header:
-  teaser: /assets/images/teasers/textbook_card.png
+  teaser: /assets/images/teasers/unsupervised_card.svg
 tags: [python, ml, ai, analytics, data-science]
 ---
 
