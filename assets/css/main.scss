@@ -108,39 +108,28 @@
 /* ----------------------- */
 
 /* wrapper: square, no ring/border, responsive size */
-.author__avatar {
+.author__avatar{
   background: none !important;
   box-shadow: none !important;
   border: 0 !important;
   border-radius: 0 !important;
-  width: clamp(140px, 18vw, 220px) !important;
+  width:  clamp(140px, 18vw, 220px) !important;
   height: clamp(140px, 18vw, 220px) !important;
   line-height: 0; /* prevents inline gaps */
   opacity: 1;
 }
 
 /* image: fill wrapper, square, no clip/ring */
-.author__avatar img {
-  display: block;                  /* remove inline baseline gap */
-  width: 100% !important;
-  height: 100% !important;
-  /*
-    CHANGE:
-    1. `object-fit: cover;` makes the image fill the entire container.
-    2. `object-position: center top;` tells the browser to keep the
-       image centered horizontally but aligned to the top.
-    This combination ensures the container is filled without cutting
-    off your head.
-  */
+.author__avatar img{
+  display: block;               /* remove inline baseline gap */
   object-fit: cover;
   object-position: center top;
   border: 0 !important;
-  border-radius: 0 !important;      /* remove circular mask */
-  box-shadow: none !important;      /* remove white ring */
+  border-radius: 0 !important;  /* remove circular mask */
+  box-shadow: none !important;  /* remove white ring */
   background: transparent !important;
   padding: 0 !important;
   outline: none !important;
   opacity: 1;
-  overflow: visible !important;
-  clip-path: none !important;      /* in case a skin uses clip-path */
+  clip-path: none !important;   /* in case a skin uses clip-path */
 }
