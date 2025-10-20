@@ -182,7 +182,8 @@ author_profile: true
 
   
   <!-- Card 4: My Career Journey (link) -->
-  <a class="card card--link card--lightgray" href="{{ '/about/' | relative_url }}">
+  <!-- a class="card card--link card--lightgray" href="{{ '/about/' | relative_url }}" -->
+  <section class="card card--lightgray" aria-label="Journey">
     <div class="card__heading">
       <span>My Career Journey</span>
     </div>
@@ -190,11 +191,11 @@ author_profile: true
     <p>Explore my career journey through an interactive map and timeline.</p>
 
     <div class="proj-grid">
-      <a class="proj-tile" href="{{ '/pages/about/' | relative_url }}">
+      <a class="proj-tile" href="{{ '/about/' | relative_url }}">
         <img class="proj-tile__img" src="{{ '/assets/images/teasers/career_card.svg' | relative_url }}" alt="My Career Journey">
         <!-- <span class="proj-tile__label"> __Blank for now__ </span> -->
       </a>
     </div>
-  </a>
+  </section>
 
 </div>
