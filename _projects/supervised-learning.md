@@ -2,7 +2,7 @@
 title: "Supervised Machine Learning"
 excerpt: "Supervised machine learning notebooks."
 header:
-  teaser: /assets/images/teasers/textbook_card.png
+  teaser: /assets/images/teasers/supervised_card.svg
 tags: [python, ml, ai, analytics, data-science]
 ---
 
