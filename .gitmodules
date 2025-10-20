@@ -3,8 +3,8 @@
 	url = https://github.com/chase-kusterer/textbook-py-data-analysis
 
 [submodule "_includes/readmes/workbooks"]
-	path = _includes/readmes/workbooks
-	url = https://github.com/chase-kusterer/workbooks_py_data_analysis
+	path = _includes/readmes/workbook
+	url = https://github.com/chase-kusterer/workbook_py_data_analysis
 	branch = main
 
 [submodule "_includes/readmes/s2_tif"]
