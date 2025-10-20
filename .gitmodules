@@ -2,7 +2,7 @@
 	path = _includes/readmes/textbook
 	url = https://github.com/chase-kusterer/textbook-py-data-analysis
 
-[submodule "_includes/readmes/workbooks"]
+[submodule "_includes/readmes/workbook"]
 	path = _includes/readmes/workbook
 	url = https://github.com/chase-kusterer/workbook_py_data_analysis
 	branch = main
