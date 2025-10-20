@@ -195,8 +195,8 @@ author_profile: True
     /* Map shape/size (overrides your base 60vh etc ONLY on mobile) */
     --map-h: 56vh;
     --overlay-frac: .36;
-    --oval-rx: 58%;
-    --oval-ry: 52%;
+    --oval-rx: 0;
+    --oval-ry: 0;
 
     /* Timeline density */
     --tl-track: 160px;
