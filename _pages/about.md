@@ -13,6 +13,23 @@ author_profile: True
     --map-h: 60vh;
     --overlay-frac: 0 !important;
 
+    /* Interactive and Static Map Versions */
+    .map-interactive {
+      display: block; /* Show interactive map on desktop */
+    }
+    
+    .map-static {
+      display: none;  /* Hide static image on desktop */
+    }
+    
+    .map-static img {
+      width: 100%;
+      height: auto;
+      /* Your static image already has the oval, but you could add this 
+         if you want to ensure it matches your desktop CSS variables */
+      /* border-radius: var(--oval-rx, 58%) / var(--oval-ry, 52%); */
+    }
+    
     /* Legend overlap that adapts to map size (closer to map) */
     --legend-overlap: clamp(4px, calc(var(--map-h) * 0.02), 14px);
 
@@ -207,6 +224,15 @@ author_profile: True
 
     /* Optional: define a smaller title size; your CSS already has a fallback */
     --tl-title-size: 1rem;
+
+    /* Switching to Static Map */
+    .map-interactive {
+    display: none; /* Hide interactive map on mobile */
+  }
+
+    .map-static {
+    display: block; /* Show static image on mobile */
+  }
   }
 
     .map-shell{
@@ -246,9 +272,8 @@ author_profile: True
 
 
 <!-- ===== Map Section ===== -->
-<figure style="margin:0;">
+<figure class="map-interactive" style="margin:0;">
   <div class="map-shell">
-    <!-- Clipped oval map -->
     <div class="map-viewport">
       <iframe
         src="{{ '/assets/maps/career_map2.html' | relative_url }}"
@@ -257,10 +282,15 @@ author_profile: True
         id="career-map-iframe"></iframe>
     </div>
 
-    <!-- Legend proxy (we fill this from INSIDE the iframe) -->
     <div class="legend-proxy" role="group" aria-label="Map legend"></div>
   </div>
 </figure>
+
+<div class="map-static">
+  <img 
+    src="{{ '/assets/images/static_career_map.png' | relative_url }}" 
+    alt="Map of career journey">
+</div>
 
 <!-------------->
 <!-- Timeline -->
