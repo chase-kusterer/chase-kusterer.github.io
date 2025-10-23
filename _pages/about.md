@@ -288,7 +288,7 @@ author_profile: True
 
 <div class="map-static">
   <img 
-    src="{{ '/assets/images/static_career_map.png' | relative_url }}" 
+    src="{{ '/assets/maps/static_career_map.png' | relative_url }}" 
     alt="Map of career journey">
 </div>
 
