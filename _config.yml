@@ -23,6 +23,13 @@ search: true
 url: "https://chase-kusterer.github.io"   # canonical url for SEO
 baseurl: ""                               # empty for a personal github.io site
 
+# Analytics
+analytics:
+  provider: "google-gtag" # GA4
+  google:
+    tracking_id: "G-4M9T92SQR3"
+    anonymize_ip: false
+
 # Build settings
 markdown: kramdown
 remote_theme: mmistakes/minimal-mistakes
