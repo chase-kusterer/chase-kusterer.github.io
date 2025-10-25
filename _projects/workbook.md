@@ -2,7 +2,7 @@
 title: "Interactive Workbooks"
 excerpt: "From Print to Prediction: A Beginner's Guide to Data Analysis in Python"
 header:
-  teaser: /assets/images/teasers/workbook_card.svg
+  teaser: /assets/images/teasers/workbook_ycard.svg
 tags: [python, ml, analytics, data-science, textbook]
 ---
 
