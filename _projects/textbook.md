@@ -2,7 +2,7 @@
 title: "From Print to Prediction"
 excerpt: "A Beginner's Guide to Data Analysis in Python"
 header:
-  teaser: /assets/images/teasers/textbook_card.svg
+  teaser: /assets/images/teasers/textbook_ycard.svg
 tags: [python, ml, analytics, data-science, textbook]
 ---
 
