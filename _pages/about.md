@@ -11,22 +11,8 @@ author_profile: True
   :root{
     /* Map */
     --map-h: 60vh;
-    --overlay-frac: 0 !important;
+    --overlay-frac: 0;
 
-    /* Interactive and Static Map Versions */
-    .map-interactive {
-      display: block; /* Show interactive map on desktop */
-    }
-    
-    .map-static {
-      display: none;  /* Hide static image on desktop */
-    }
-    
-    .map-static img {
-      width: 100%;
-      height: auto;
-    }
-    
     /* Legend overlap that adapts to map size (closer to map) */
     --legend-overlap: clamp(4px, calc(var(--map-h) * 0.02), 14px);
 
@@ -43,6 +29,11 @@ author_profile: True
     --tl-card-offset: 12px; /* space from tick to card’s left edge */
     --tl-dot-size: 12px;    /* dot size (keep in sync with .tick) */
   }
+
+  /* interactive map shows on desktop, static image hides */
+  .map-interactive { display: block; }
+  .map-static { display: none; }
+  .map-static img { width: 100%; height: auto; }
 
   /* ===== Map (robust stacking; legend mirrors from iframe) ===== */
   .map-shell{
@@ -189,7 +180,13 @@ author_profile: True
       #000        calc(100% - var(--fadeR)),
       transparent 100%
     );
-      mask-image: none;
+    mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      transparent calc(var(--gutter) - var(--fadeL)),
+      #000        var(--gutter),
+      #000        calc(100% - var(--fadeR)),
+      transparent 100%
     );
   }
   .chip-track{ display:inline-flex; gap:var(--gap); width:max-content; animation: chip-marquee var(--speed) linear infinite; }
@@ -216,16 +213,11 @@ author_profile: True
     --tl-gap: 1.5rem;
     --tl-dot-size: 10px;
     --tl-card-offset: 10px;
-
-    /* Switching to Static Map */
-    .map-interactive {
-    display: none; /* Hide interactive map on mobile */
   }
 
-    .map-static {
-    display: block; /* Show static image on mobile */
-  }
-  }
+  /* on mobile, hide the interactive map and show the static image */
+  .map-interactive { display: none; }
+  .map-static { display: block; }
 
     .map-shell{
     /* Prevent true edge-to-edge clipping, including iOS notches */
@@ -993,24 +985,26 @@ author_profile: True
             }catch(e){}
           }
 
+          // walking every layer to index markers by city key
           function buildIndex(){
             try { map.eachLayer(indexLayer); } catch(e){}
           }
 
-        // --- START: NEW ZOOM FIX ---
-            // Check parent window width and adjust zoom if mobile
-            try {
-              if (window.parent && window.parent.innerWidth <= 640) {
-                var currentZoom = map.getZoom();
-                map.setZoom(currentZoom - 2); // Zoom out 2 levels
-              }
-            } catch(e) {
-              console.warn('Could not adjust mobile zoom', e);
-            }
-            // --- END: NEW ZOOM FIX ---
+          // building the index so timeline clicks can locate markers
+          buildIndex();
+
+          // opening a marker when the timeline requests a city
+          window.addEventListener('message', function(ev){
+            var data = ev.data || {};
+            if (data.type === 'showCity' && data.key){ openForKey(data.key); }
           });
 
-          window.__markersByKey = markersByKey; // debug
+          // zooming out slightly when embedded on a narrow screen
+          try {
+            if (window.parent && window.parent.innerWidth <= 640){
+              map.setZoom(map.getZoom() - 2);
+            }
+          } catch(e){}
         });
       })();`;
     const s = d.createElement('script');

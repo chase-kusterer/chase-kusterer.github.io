@@ -1,6 +1,6 @@
 ---
 title: "Portfolio · Geospatial"
-permalink: /portfolio/geospacial/
+permalink: /portfolio/geospatial/
 layout: single
 classes: wide
 ---
