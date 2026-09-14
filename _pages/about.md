@@ -25,9 +25,6 @@ author_profile: True
     .map-static img {
       width: 100%;
       height: auto;
-      /* Your static image already has the oval, but you could add this 
-         if you want to ensure it matches your desktop CSS variables */
-      /* border-radius: var(--oval-rx, 58%) / var(--oval-ry, 52%); */
     }
     
     /* Legend overlap that adapts to map size (closer to map) */
@@ -53,8 +50,6 @@ author_profile: True
     width: 100%;
     margin: 0;
     height: calc(var(--map-h) * (1 - var(--overlay-frac))) ;
-    /* outline: 6px solid red !important;
-    outline-offset: 0 */
     padding-bottom: 0 !important; 
   }
 
@@ -221,9 +216,6 @@ author_profile: True
     --tl-gap: 1.5rem;
     --tl-dot-size: 10px;
     --tl-card-offset: 10px;
-
-    /* Optional: define a smaller title size; your CSS already has a fallback */
-    --tl-title-size: 1rem;
 
     /* Switching to Static Map */
     .map-interactive {

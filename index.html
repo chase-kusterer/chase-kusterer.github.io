@@ -36,14 +36,6 @@ author_profile: true
   .card--lightgray        { --card-bg: #f7fafb; }
 
 
-/* ensuring CTA link inherits legible color on dark cards */
-.card--teal  .card__cta,
-.card--burntorange .card__cta,
-.card--navy .card__cta {
-  color: currentColor;
-}
-
-  
   /* linkable cards become a big clickable area */
   .card--link{ text-decoration:none; color:inherit; display:block; }
   .card--link:focus-visible{ outline: 6px solid; outline-offset: 8px; border-radius: 32px; }
@@ -78,21 +70,6 @@ author_profile: true
     filter: saturate(1.05);
   }
 
-  /* tile__img class modifier */
-  .proj-tile__img--fill {
-    object-fit: fill; /* stretch */
-  }
-  
-  /* tile__img class modifier */
-  .proj-tile__img--contain {
-    object-fit: contain; /* contain (letterbox) */
-  }
-
-    /* tile__img class modifier */
-  .proj-tile__img--contain {
-    object-fit: scale-down; /* center or none */
-  }
-  
   .proj-tile__label{
     position:absolute; left:8px; bottom:8px;
     background: rgba(255,255,255,.92);
@@ -134,7 +111,6 @@ author_profile: true
 <section class="card card--lightgray">
   <div class="card__heading">
     <span>Python Packages</span>
-    <!-- a class="card__cta" href="{{ '/portfolio/' | relative_url }}">View all →</a -->
   </div>
 
   <p>Published contributions to the open source world.</p>
@@ -156,7 +132,6 @@ author_profile: true
   <section class="card card--lightgray">
   <div class="card__heading">
     <span>From Print to Prediction <br> A Beginner's Guide to Python for Data Analysis</span>
-    <!-- a class="card__cta" href="{{ '/portfolio/' | relative_url }}">View all →</a -->
   </div>
     
     <p>This interactive book is designed for readers from less-technical backgrounds.</p>
@@ -198,8 +173,7 @@ author_profile: true
   </section>
 
   
-  <!-- Card 4: My Career Journey (link) -->
-  <!-- a class="card card--link card--lightgray" href="{{ '/about/' | relative_url }}" -->
+  <!-- Card 4: My Career Journey -->
   <section class="card card--lightgray" aria-label="Journey">
     <div class="card__heading">
       <span>My Career Journey</span>
@@ -210,7 +184,6 @@ author_profile: true
     <div class="proj-grid">
       <a class="proj-tile" href="{{ '/about/' | relative_url }}">
         <img class="proj-tile__img" src="{{ '/assets/images/teasers/career_ycard.svg' | relative_url }}" alt="My Career Journey">
-        <!-- <span class="proj-tile__label"> __Blank for now__ </span> -->
       </a>
     </div>
   </section>
