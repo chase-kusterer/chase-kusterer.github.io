@@ -651,7 +651,7 @@ author_profile: True
       <span class="stem"></span>
       <div class="card">
         <span class="tl-pill tl-pill--work">Work</span>
-        <div class="tl-range">2018-Present · 7+ years</div>
+        <div class="tl-range" data-since="2018">2018–Present</div>
         <h4 class="tl-title">Faculty of Analytics</h4>
         <div class="tl-sub">Hult International Business School</div>
         <div class="tl-sub">San Francisco · USA</div>
@@ -687,7 +687,7 @@ author_profile: True
       <span class="stem"></span>
       <div class="card">
         <span class="tl-pill tl-pill--work">Work</span>
-        <div class="tl-range">2020-Present · 5 years</div>
+        <div class="tl-range" data-since="2020">2020–Present</div>
         <h4 class="tl-title">Faculty (Visiting)</h4>
         <div class="tl-sub">Hult International Business School</div>
         <div class="tl-sub">Boston · USA</div>
@@ -1011,6 +1011,19 @@ author_profile: True
     s.type = 'text/javascript';
     s.textContent = code;
     d.body.appendChild(s);
+  });
+})();
+</script>
+
+<script>
+/* filling in "· N years" on open-ended ranges from the current year */
+(function(){
+  var now = new Date().getFullYear();
+  document.querySelectorAll('.tl-range[data-since]').forEach(function(el){
+    var since = parseInt(el.getAttribute('data-since'), 10);
+    if (!since) return;
+    var years = now - since;
+    el.textContent = since + '\u2013Present · ' + years + ' year' + (years === 1 ? '' : 's');
   });
 })();
 </script>
