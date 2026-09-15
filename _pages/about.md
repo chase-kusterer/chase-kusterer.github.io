@@ -11,25 +11,8 @@ author_profile: True
   :root{
     /* Map */
     --map-h: 60vh;
-    --overlay-frac: 0 !important;
+    --overlay-frac: 0;
 
-    /* Interactive and Static Map Versions */
-    .map-interactive {
-      display: block; /* Show interactive map on desktop */
-    }
-    
-    .map-static {
-      display: none;  /* Hide static image on desktop */
-    }
-    
-    .map-static img {
-      width: 100%;
-      height: auto;
-      /* Your static image already has the oval, but you could add this 
-         if you want to ensure it matches your desktop CSS variables */
-      /* border-radius: var(--oval-rx, 58%) / var(--oval-ry, 52%); */
-    }
-    
     /* Legend overlap that adapts to map size (closer to map) */
     --legend-overlap: clamp(4px, calc(var(--map-h) * 0.02), 14px);
 
@@ -47,14 +30,17 @@ author_profile: True
     --tl-dot-size: 12px;    /* dot size (keep in sync with .tick) */
   }
 
+  /* interactive map shows on desktop, static image hides */
+  .map-interactive { display: block; }
+  .map-static { display: none; }
+  .map-static img { width: 100%; height: auto; }
+
   /* ===== Map (robust stacking; legend mirrors from iframe) ===== */
   .map-shell{
     position: relative; /* legend is positioned RELATIVE to this wrapper */
     width: 100%;
     margin: 0;
     height: calc(var(--map-h) * (1 - var(--overlay-frac))) ;
-    /* outline: 6px solid red !important;
-    outline-offset: 0 */
     padding-bottom: 0 !important; 
   }
 
@@ -71,7 +57,7 @@ author_profile: True
     display:block; width:100%; height: var(--map-h); border:0;
   }
 
-  /* legend proxy (cloned from inside career_map2.html) */
+  /* legend proxy (cloned from inside career_map.html) */
   .legend-proxy{
     position: absolute;                         /* anchored relative to .map-shell (the map) */
     left: 46%;                                  /* adjusting center */
@@ -194,7 +180,13 @@ author_profile: True
       #000        calc(100% - var(--fadeR)),
       transparent 100%
     );
-      mask-image: none;
+    mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      transparent calc(var(--gutter) - var(--fadeL)),
+      #000        var(--gutter),
+      #000        calc(100% - var(--fadeR)),
+      transparent 100%
     );
   }
   .chip-track{ display:inline-flex; gap:var(--gap); width:max-content; animation: chip-marquee var(--speed) linear infinite; }
@@ -206,7 +198,7 @@ author_profile: True
 /* ------------------- */
 /* MOBILE FRIENDLINESS */
 /* ------------------- */
-/* Mobile overrides – only change what needs to change on small screens */
+/* mobile overrides, only what needs to change on small screens */
 @media (max-width: 640px){
   :root{
     /* Map shape/size (overrides your base 60vh etc ONLY on mobile) */
@@ -221,19 +213,11 @@ author_profile: True
     --tl-gap: 1.5rem;
     --tl-dot-size: 10px;
     --tl-card-offset: 10px;
-
-    /* Optional: define a smaller title size; your CSS already has a fallback */
-    --tl-title-size: 1rem;
-
-    /* Switching to Static Map */
-    .map-interactive {
-    display: none; /* Hide interactive map on mobile */
   }
 
-    .map-static {
-    display: block; /* Show static image on mobile */
-  }
-  }
+  /* on mobile, hide the interactive map and show the static image */
+  .map-interactive { display: none; }
+  .map-static { display: block; }
 
     .map-shell{
     /* Prevent true edge-to-edge clipping, including iOS notches */
@@ -276,7 +260,7 @@ author_profile: True
   <div class="map-shell">
     <div class="map-viewport">
       <iframe
-        src="{{ '/assets/maps/career_map2.html' | relative_url }}"
+        src="{{ '/assets/maps/career_map.html' | relative_url }}"
         title="Career Map"
         loading="lazy"
         id="career-map-iframe"></iframe>
@@ -667,7 +651,7 @@ author_profile: True
       <span class="stem"></span>
       <div class="card">
         <span class="tl-pill tl-pill--work">Work</span>
-        <div class="tl-range">2018-Present · 7+ years</div>
+        <div class="tl-range" data-since="2018">2018–Present</div>
         <h4 class="tl-title">Faculty of Analytics</h4>
         <div class="tl-sub">Hult International Business School</div>
         <div class="tl-sub">San Francisco · USA</div>
@@ -703,7 +687,7 @@ author_profile: True
       <span class="stem"></span>
       <div class="card">
         <span class="tl-pill tl-pill--work">Work</span>
-        <div class="tl-range">2020-Present · 5 years</div>
+        <div class="tl-range" data-since="2020">2020–Present</div>
         <h4 class="tl-title">Faculty (Visiting)</h4>
         <div class="tl-sub">Hult International Business School</div>
         <div class="tl-sub">Boston · USA</div>
@@ -805,7 +789,7 @@ author_profile: True
 <!-- Scripts  -->
 <!-------------->
 <script>
-/* Clone the legend from INSIDE the iframe into our .legend-proxy (same-origin) */
+/* clone the legend out of the iframe into our proxy (same-origin) */
 (function(){
   const iframe = document.getElementById('career-map-iframe');
   const proxy  = document.querySelector('.legend-proxy');
@@ -814,13 +798,13 @@ author_profile: True
     try{
       const doc = iframe.contentDocument || iframe.contentWindow?.document;
       if (!doc) return;
-      const src = doc.querySelector('.map-legend');  // legend already inside career_map2.html
+      const src = doc.querySelector('.map-legend');  // legend already inside career_map.html
       if (!src) return;
 
-      // Copy the legend’s items into the proxy (keeps it horizontal via our CSS)
+      // copy the legend items into the proxy
       proxy.innerHTML = src.innerHTML;
 
-      // Hide the legend inside the iframe to avoid duplication
+      // hide the in-iframe legend to avoid duplication
       src.style.display = 'none';
       src.setAttribute('aria-hidden', 'true');
     }catch(e){ /* ignore cross-origin issues if any */ }
@@ -833,7 +817,7 @@ author_profile: True
 </script>
 
 <script>
-/* Timeline ↔ Map messaging (unchanged except for “no recenter”) */
+/* keep the timeline and map in sync without recentering */
 (function(){
   const mapFrame = document.querySelector('.map-viewport iframe');
   const tlList   = document.querySelector('.timeline .tl-list');
@@ -1001,30 +985,45 @@ author_profile: True
             }catch(e){}
           }
 
+          // walking every layer to index markers by city key
           function buildIndex(){
             try { map.eachLayer(indexLayer); } catch(e){}
           }
 
-        // --- START: NEW ZOOM FIX ---
-            // Check parent window width and adjust zoom if mobile
-            try {
-              if (window.parent && window.parent.innerWidth <= 640) {
-                var currentZoom = map.getZoom();
-                map.setZoom(currentZoom - 2); // Zoom out 2 levels
-              }
-            } catch(e) {
-              console.warn('Could not adjust mobile zoom', e);
-            }
-            // --- END: NEW ZOOM FIX ---
+          // building the index so timeline clicks can locate markers
+          buildIndex();
+
+          // opening a marker when the timeline requests a city
+          window.addEventListener('message', function(ev){
+            var data = ev.data || {};
+            if (data.type === 'showCity' && data.key){ openForKey(data.key); }
           });
 
-          window.__markersByKey = markersByKey; // debug
+          // zooming out slightly when embedded on a narrow screen
+          try {
+            if (window.parent && window.parent.innerWidth <= 640){
+              map.setZoom(map.getZoom() - 2);
+            }
+          } catch(e){}
         });
       })();`;
     const s = d.createElement('script');
     s.type = 'text/javascript';
     s.textContent = code;
     d.body.appendChild(s);
+  });
+})();
+</script>
+
+<script>
+/* filling in "· N years" on open-ended ranges from the current year */
+(function(){
+  var now = new Date().getFullYear();
+  document.querySelectorAll('.tl-range[data-since]').forEach(function(el){
+    var since = parseInt(el.getAttribute('data-since'), 10);
+    if (!since) return;
+    var years = now - since;
+    el.textContent = since + '\u2013Present · ' + years + ' year' + (years === 1 ? '' : 's');
   });
 })();
 </script>
