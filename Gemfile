@@ -13,3 +13,8 @@ group :jekyll_plugins do
   gem "jekyll-include-cache"
 
 end
+gem "csv"
+gem "bigdecimal"
+gem "base64"
+gem "logger"
+gem "ostruct"
